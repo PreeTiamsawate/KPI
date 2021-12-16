@@ -71,6 +71,126 @@ nav {
     padding-right: 20px;
 }
 
+.filter-boxes {
+    height: 32.5px;
+    width: 250px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#filter-btn {
+    width: 35.42px;
+    height: 32.5px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DEDEDE;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#filter-btn:hover {
+    border: 2px solid #444444;
+}
+
+
+/* #filter-btn>img:hover {
+    background: none;
+} */
+
+.filter-boxes>form {
+    width: 388px;
+    height: 104px;
+    background: #F3F3F3 0% 0% no-repeat padding-box;
+    border: 1px solid #DEDEDE;
+    border-radius: 5px;
+    margin-left: -20px;
+    margin-top: 170px;
+}
+
+.filter-boxes>form>div {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.filter-boxes>form>div>div:nth-of-type(1) {
+    width: 340px;
+    height: 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font: normal normal normal 16px/100px Prompt;
+    letter-spacing: 0px;
+    color: #000000;
+}
+
+.filter-boxes>form>div>div:nth-of-type(1)>div {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.filter-boxes>form>div>div:nth-of-type(2) {
+    width: 200px;
+    height: 32px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.filter-boxes>form>div>div:nth-of-type(2)>button {
+    width: 78px;
+    height: 32px;
+    border-radius: 5px;
+}
+
+.filter-boxes>form>div>div:nth-of-type(2)>button:nth-of-type(1) {
+    background: #777777 0% 0% no-repeat padding-box;
+    color: #FFFFFF;
+}
+
+.filter-boxes>form>div>div:nth-of-type(2)>button:nth-of-type(1):hover {
+    background-color: #444444;
+}
+
+.filter-boxes>form>div>div:nth-of-type(2)>button:nth-of-type(2) {
+    background: #F3F3F3 0% 0% no-repeat padding-box;
+}
+
+.filter-boxes>form>div>div:nth-of-type(2)>button:nth-of-type(2):hover {
+    background-color: #FFFFFF;
+}
+
+#search-box {
+    width: 170px;
+    height: 32px;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #DEDEDE;
+    border-radius: 5px;
+    display: flex;
+}
+
+#search-box>label {
+    width: 30px;
+    height: 100%;
+    text-align: center;
+    padding-top: 4px;
+}
+
+#search-box>input {
+    width: 140px;
+    height: 100%;
+    border: none;
+    background-color: transparent;
+}
+
 .score-definations {
     width: 605px;
     height: 328px;

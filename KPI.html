@@ -36,13 +36,53 @@
                 <div>
                     <img src="./kpi_image/Icon awesome-user-circle.svg" class="USER_IMAGE">
                     <span class="USER_ID">12345</span>
-                    <span class="USER_NAME">XXXXXX</span>
-                    <span class="USER_SURNAME">XXXXXXX</span>
-
+                    <span class="USER_FULL_NAME">XXXXXX XXXXXXXXX</span>
                 </div>
             </div>
             <nav>
-                <div>
+                <div class="filter-boxes">
+                    <div id="filter-btn" class="w3-dropdown-click">
+                        <img src="./kpi_image/Icon material-filter-list.svg">
+                    </div>
+                    <form action="" class="w3-dropdown-content">
+                        <div>
+                            <div>
+                                <div>
+                                    <input type="radio" id="graded" name="graded_number_filter">
+                                    <label for="graded">ให้คะแนนแล้ว</label>
+                                    <span class="GRADED_NUMBER">(100)</span>
+                                </div>
+                                <div>
+                                    <input type="radio" id="not-graded" name="graded_number_filter">
+                                    <label for="not-graded">ยังไม่ให้คะแนน</label>
+                                    <span class="NOT_GRADED_NUMBER">(900)</span>
+                                </div>
+
+                            </div>
+                            <div>
+                                <button type="submit">
+                                    นำไปใช้
+                                </button>
+                                <button id="cancel-form-btn">
+                                    ยกเลิก
+                                </button>
+
+                            </div>
+                        </div>
+
+                    </form>
+
+                    <div id="search-box">
+                        <label for="search-id">
+                            <img src="./kpi_image/Icon ionic-ios-search.svg" alt="">
+                        </label>
+                        <input type="text" placeholder="search from ID" id="search-id">
+
+
+                    </div>
+
+
+
 
 
                 </div>
@@ -90,6 +130,7 @@
 
     </div>
 
+    <script src="./KPI_dropdown_control.js"></script>
 </body>
 
 </html>
