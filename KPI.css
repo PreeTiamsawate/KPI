@@ -73,7 +73,7 @@ nav {
 
 .filter-boxes {
     height: 32.5px;
-    width: 250px;
+    width: 230px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -278,7 +278,7 @@ nav {
 
 #GRADE_TABLE thead tr:nth-of-type(1) {
     text-align: center;
-    font: normal normal 600 16px/24px Prompt;
+    font: normal normal 500 16px/24px Prompt;
     letter-spacing: 0px;
     color: #000000;
 }
@@ -299,4 +299,39 @@ nav {
     font: normal normal 400 12px/16px Prompt;
     letter-spacing: 0px;
     color: #000000;
+}
+
+td>.w3-dropdown-hover {
+    width: 88px;
+    height: 32px;
+    background-color: transparent !important;
+}
+
+td>.w3-dropdown-hover:hover {
+    border: 1px solid #330066;
+    border-radius: 5px;
+}
+
+td>.w3-dropdown-hover>.w3-dropdown-content {
+    width: 336px;
+    height: auto;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #330066;
+    border-radius: 5px;
+    margin-left: -125px;
+    margin-top: 25px;
+    padding-left: 15px;
+    padding-right: 15px;
+    text-align: left;
+}
+
+td>.w3-dropdown-hover>.w3-dropdown-content>h6 {
+    text-align: left;
+    font: normal normal 600 12px/18px Prompt;
+    letter-spacing: 0px;
+    color: #000000;
+}
+
+td>.w3-dropdown-hover>.w3-dropdown-content li:not(:last-child) {
+    margin-bottom: 8px;
 }
