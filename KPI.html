@@ -20,6 +20,8 @@
 
 <body>
     <div class="container-xxl">
+
+        <!-- Header Section ================================================== -->
         <header>
             <div class="headline">
                 <div>
@@ -39,6 +41,8 @@
                     <span class="USER_FULL_NAME">XXXXXX XXXXXXXXX</span>
                 </div>
             </div>
+
+            <!-- Filter Bar Section =========================================== -->
             <nav>
                 <div class="filter-boxes">
                     <div id="filter-btn" class="w3-dropdown-click">
@@ -80,10 +84,6 @@
 
 
                     </div>
-
-
-
-
 
                 </div>
                 <div class="w3-dropdown-hover">
@@ -127,6 +127,7 @@
             </nav>
 
         </header>
+
         <main>
             <form action="">
                 <table id="GRADE_TABLE">
@@ -146,6 +147,7 @@
                         <col>
                         <col>
                     </colgroup>
+                    <!-- Table Header ========================================= -->
                     <thead>
                         <tr>
                             <th rowspan="2" colspan="3">
@@ -254,7 +256,226 @@
                         </tr>
 
                     </thead>
-                    <tbody>
+
+                    <!-- Table Body ================================================================ -->
+                    <tbody class="grading-tbody">
+                        <tr>
+                            <td class="EMPLOYEE_LEVEL">6</td>
+                            <td class="EMPLOYEE_ID">88888</td>
+                            <td class="EMPLOYEE_FULLNAME">xxxxxxxxxx xxxxxxxxxx</td>
+                            <td class="service_orientation_score score">
+                                <div>
+                                    <select name="">
+                                        <option value=""></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+
+                                </div>
+                            </td>
+                            <td class=" result_orientation_score score ">
+                                <div>
+                                    <select name=" ">
+                                        <option value=" "></option>
+                                        <option value="1 ">1</option>
+                                        <option value="2 ">2</option>
+                                        <option value="3 ">3</option>
+                                        <option value="4 ">4</option>
+                                        <option value="5 ">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+                                </div>
+                            </td>
+                            <td class="flexibility_and_adaptability_score score ">
+                                <div>
+                                    <select name=" ">
+                                        <option value=" "></option>
+                                        <option value="1 ">1</option>
+                                        <option value="2 ">2</option>
+                                        <option value="3 ">3</option>
+                                        <option value="4 ">4</option>
+                                        <option value="5 ">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+
+                                </div>
+                            </td>
+                            <td class="core_competency_total total ">
+                                <input type="text " readonly>
+                            </td>
+                            <td></td>
+                            <td class="make_it_happen_score score ">
+                                <div>
+                                    <select name=" ">
+                                        <option value=" "></option>
+                                        <option value="1 ">1</option>
+                                        <option value="2 ">2</option>
+                                        <option value="3 ">3</option>
+                                        <option value="4 ">4</option>
+                                        <option value="5 ">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+
+                                </div>
+                            </td>
+                            <td class="provide_solutions_score score ">
+                                <div>
+                                    <select name=" ">
+                                        <option value=" "></option>
+                                        <option value="1 ">1</option>
+                                        <option value="2 ">2</option>
+                                        <option value="3 ">3</option>
+                                        <option value="4 ">4</option>
+                                        <option value="5 ">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+
+                                </div>
+                            </td>
+                            <td class="inspire_people_score score ">
+                                <div>
+                                    <select name=" ">
+                                        <option value=" "></option>
+                                        <option value="1 ">1</option>
+                                        <option value="2 ">2</option>
+                                        <option value="3 ">3</option>
+                                        <option value="4 ">4</option>
+                                        <option value="5 ">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+
+                                </div>
+                            </td>
+                            <td class="leadership_competency_total total ">
+                                <input type="text " readonly>
+                            </td>
+
+                            <td class="grand_total ">
+                                <input type="text " readonly>
+                            </td>
+                            <td class="total_competency_100% grand_total ">
+                                <input type="text " readonly>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="EMPLOYEE_LEVEL">6</td>
+                            <td class="EMPLOYEE_ID">88888</td>
+                            <td class="EMPLOYEE_FULLNAME">xxxxxxxxxx xxxxxxxxxx</td>
+                            <td class="service_orientation_score score">
+                                <div>
+                                    <select name="">
+                                        <option value=""></option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+
+                                </div>
+                            </td>
+                            <td class=" result_orientation_score score ">
+                                <div>
+                                    <select name=" ">
+                                        <option value=" "></option>
+                                        <option value="1 ">1</option>
+                                        <option value="2 ">2</option>
+                                        <option value="3 ">3</option>
+                                        <option value="4 ">4</option>
+                                        <option value="5 ">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+                                </div>
+                            </td>
+                            <td class="flexibility_and_adaptability_score score ">
+                                <div>
+                                    <select name=" ">
+                                        <option value=" "></option>
+                                        <option value="1 ">1</option>
+                                        <option value="2 ">2</option>
+                                        <option value="3 ">3</option>
+                                        <option value="4 ">4</option>
+                                        <option value="5 ">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+
+                                </div>
+                            </td>
+                            <td class="core_competency_total total ">
+                                <input type="text " readonly>
+                            </td>
+                            <td></td>
+                            <td class="make_it_happen_score score ">
+                                <div>
+                                    <select name=" ">
+                                        <option value=" "></option>
+                                        <option value="1 ">1</option>
+                                        <option value="2 ">2</option>
+                                        <option value="3 ">3</option>
+                                        <option value="4 ">4</option>
+                                        <option value="5 ">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+
+                                </div>
+                            </td>
+                            <td class="provide_solutions_score score ">
+                                <div>
+                                    <select name=" ">
+                                        <option value=" "></option>
+                                        <option value="1 ">1</option>
+                                        <option value="2 ">2</option>
+                                        <option value="3 ">3</option>
+                                        <option value="4 ">4</option>
+                                        <option value="5 ">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+
+                                </div>
+                            </td>
+                            <td class="inspire_people_score score ">
+                                <div>
+                                    <select name=" ">
+                                        <option value=" "></option>
+                                        <option value="1 ">1</option>
+                                        <option value="2 ">2</option>
+                                        <option value="3 ">3</option>
+                                        <option value="4 ">4</option>
+                                        <option value="5 ">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน"></textarea>
+
+                                </div>
+                            </td>
+                            <td class="leadership_competency_total total ">
+                                <input type="text " readonly>
+                            </td>
+
+                            <td class="grand_total ">
+                                <input type="text " readonly>
+                            </td>
+                            <td class="total_competency_100% grand_total ">
+                                <input type="text " readonly>
+                            </td>
+                        </tr>
+
 
                     </tbody>
 
@@ -265,7 +486,8 @@
 
     </div>
 
-    <script src="./KPI_dropdown_control.js"></script>
+    <script src="./KPI_dropdown_control.js "></script>
+    <script src="./KPI_comment_box_control.js"></script>
 </body>
 
 </html>

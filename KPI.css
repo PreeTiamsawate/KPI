@@ -59,6 +59,9 @@ body {
     color: #000000;
 }
 
+
+/* Filter Bar Section========  */
+
 nav {
     width: 100%;
     height: 50px;
@@ -69,6 +72,10 @@ nav {
     align-items: center;
     padding-left: 20px;
     padding-right: 20px;
+}
+
+.w3-dropdown-click:hover {
+    background: none;
 }
 
 .filter-boxes {
@@ -236,6 +243,9 @@ nav {
 
 /* Grading Table Section ======================================= */
 
+
+/* Table Header ===== */
+
 #GRADE_TABLE {
     width: 100%;
     text-align: center;
@@ -334,4 +344,62 @@ td>.w3-dropdown-hover>.w3-dropdown-content>h6 {
 
 td>.w3-dropdown-hover>.w3-dropdown-content li:not(:last-child) {
     margin-bottom: 8px;
+}
+
+
+/* table body section ==== */
+
+.grading-tbody tr {
+    height: 40px;
+    background: #F3F3F3 0% 0% no-repeat padding-box;
+    font: normal normal normal 14px/18px Prompt;
+    letter-spacing: 0px;
+    color: #000000;
+}
+
+.grading-tbody tr>td:nth-of-type(3) {
+    font: normal normal normal 12px/18px Prompt;
+}
+
+td.score>div {
+    height: 120%;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+td.score>div>select {
+    width: 50%;
+    text-align: center;
+}
+
+td.score>div>img {
+    cursor: pointer;
+}
+
+td.score>div>textarea {
+    margin-top: 35px;
+    margin-left: 205px;
+    border: 1px solid #330066;
+    border-radius: 5px;
+    padding: 10px;
+}
+
+td.total>input {
+    width: 50%;
+    background-color: white;
+    text-align: center;
+    border: none;
+    font: normal normal 600 12px/18px Prompt;
+    letter-spacing: 0px;
+}
+
+td.grand_total>input {
+    width: 50%;
+    background-color: white;
+    text-align: center;
+    border: none;
+    font: normal normal 600 14px/18px Prompt;
+    letter-spacing: 0px;
 }
