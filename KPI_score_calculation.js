@@ -34,7 +34,7 @@ const calculateScores = function() {
         }
         gradingRow.querySelector("td.raw_total > input").setAttribute("value", String(rawTotal))
         const getCompetencyPercentTotal = function(coreWeight, leaderWeight) {
-            return (coreTotal * coreWeight / 15) + (leaderTotal * leaderWeight / 15)
+            return ((coreTotal * coreWeight / 15) + (leaderTotal * leaderWeight / 15)).toFixed(2)
         }
 
         if (employeeLv >= 1 && employeeLv <= 7) {
@@ -50,7 +50,7 @@ const calculateScores = function() {
         }
         competencyPercentTotalInput.setAttribute("value", String(competencyPercentTotal))
 
-        console.log(employeeLv, serviceScore, resultScore, flexibilityScore, makeItScore, provideScore, inspireScore, coreTotal, leaderTotal, rawTotal, competencyPercentTotal)
+        // console.log(employeeLv, serviceScore, resultScore, flexibilityScore, makeItScore, provideScore, inspireScore, coreTotal, leaderTotal, rawTotal, competencyPercentTotal)
     }
 }
 calculateScores()

@@ -400,6 +400,20 @@ td.grand_total>input {
     background-color: white;
     text-align: center;
     border: none;
-    font: normal normal 600 15px/18px Prompt;
+    font: normal normal 600 14px/18px Prompt;
     letter-spacing: 0px;
+}
+
+#submitPage {
+    width: 178px;
+    height: 34px;
+    border: 1px solid #330066;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    text-align: center;
+    font: normal normal normal 12px/18px Prompt;
+    letter-spacing: 0px;
+    color: #330066;
+    float: right;
+    margin-top: 20px;
 }

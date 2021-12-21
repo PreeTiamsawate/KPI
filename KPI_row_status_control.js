@@ -1,4 +1,5 @@
 const gradingRows = document.querySelectorAll("tbody.grading-tbody > tr")
+const submitPageBtn = document.querySelector("#submitPage")
 
 const assignRowStatus = function() {
     for (const gradingRow of gradingRows) {
@@ -21,9 +22,38 @@ const assignRowStatus = function() {
             gradingRow.style.backgroundColor = "#F3F3F3";
         }
     }
+    const purpleRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
+
+    if (purpleRows.length > 0) {
+        submitPageBtn.style.backgroundColor = "#F9E8FF";
+        submitPageBtn.style.cursor = "not-allowed"
+        submitPageBtn.disabled = true
+    } else {
+        submitPageBtn.style.backgroundColor = "#FFFFFF";
+        submitPageBtn.style.cursor = "pointer"
+        submitPageBtn.disabled = false
+    }
 }
 assignRowStatus()
 const scoreSelects = document.querySelectorAll("td.score > div > select")
 for (const scoreSelect of scoreSelects) {
     scoreSelect.addEventListener('change', assignRowStatus)
 }
+
+// const purpleRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
+// const getRowAlert = function(e) {
+//     e.preventDefault();
+//     alert("จงเติมคะแนนในแถวสีม่วงอ่อนให้ครบทุกช่อง")
+// }
+// submitPageBtn.addEventListener('click', function(e) {
+//     if (purpleRows.length > 0) {
+//         e.preventDefault();
+//         alert("จงเติมคะแนนในแถวสีม่วงอ่อนให้ครบทุกช่อง")
+//     }
+// })
+
+// if (purpleRows.length > 0) {
+//     submitPageBtn.addEventListener('click', getRowAlert)
+// } else {
+//     submitPageBtn.removeEventListener('click', getRowAlert)
+// }

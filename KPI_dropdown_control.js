@@ -1,6 +1,7 @@
 const filterBtn = document.querySelector("#filter-btn");
 const dropdownForm = document.querySelector(".filter-boxes").querySelector(".w3-dropdown-content");
 const cancelFormBtn = document.querySelector("#cancel-form-btn")
+const filterRadios = document.querySelectorAll(".filter-boxes input[type='radio']")
 const btnHoverActive = function() {
     this.style.border = "2px solid #444444"
 }
@@ -34,5 +35,7 @@ cancelFormBtn.addEventListener('click', function(e) {
         filterBtn.addEventListener("mouseleave", btnHoverOff)
 
     }
+    for (const filterRadio of filterRadios)
+        filterRadio.checked = false
 
 })
