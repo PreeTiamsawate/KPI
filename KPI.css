@@ -391,7 +391,7 @@ td.total>input {
     background-color: white;
     text-align: center;
     border: none;
-    font: normal normal 600 12px/18px Prompt;
+    font: normal normal 600 14px/18px Prompt;
     letter-spacing: 0px;
 }
 
@@ -400,6 +400,6 @@ td.grand_total>input {
     background-color: white;
     text-align: center;
     border: none;
-    font: normal normal 600 14px/18px Prompt;
+    font: normal normal 600 15px/18px Prompt;
     letter-spacing: 0px;
 }
