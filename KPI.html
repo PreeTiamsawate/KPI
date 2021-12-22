@@ -259,7 +259,7 @@
 
                     <!-- Table Body ================================================================ -->
                     <tbody class="grading-tbody">
-                        <tr row-status="">
+                        <!-- <tr row-status="">
                             <td class="EMPLOYEE_LEVEL">7</td>
                             <td class="EMPLOYEE_ID">23754</td>
                             <td class="EMPLOYEE_FULLNAME">xxxxxxxxxx xxxxxxxxxx</td>
@@ -798,7 +798,7 @@
                             <td class="total_competency_percent grand_total ">
                                 <input type="text " readonly>
                             </td>
-                        </tr>
+                        </tr> -->
 
 
                     </tbody>
@@ -807,9 +807,233 @@
                 </table>
                 <button type="submit" id="submitPage">Submit This Page</button>
             </form>
+
+            <div id="pagination-wrapper"></div>
+
         </main>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script src="./KPI_dummy_json.js"></script>
+    <script>
+        var state = {
+            'querySet': dummyKPI,
+
+            'page': 1, //start page
+            'rows': 20, //number of rows showed
+            'window': 5, //number of pagination buttons
+        }
+
+        buildTable()
+
+        function pagination(querySet, page, rows) {
+
+            var trimStart = (page - 1) * rows
+            var trimEnd = trimStart + rows
+
+            var trimmedData = querySet.slice(trimStart, trimEnd)
+
+            var pages = Math.round(querySet.length / rows);
+
+            console.log("querySet.length: ", querySet.length)
+
+            return {
+                'querySet': trimmedData,
+                'pages': pages,
+            }
+        }
+
+        function pageButtons(pages) {
+            var wrapper = document.getElementById('pagination-wrapper')
+
+            wrapper.innerHTML = ``
+            console.log('Pages: ', pages)
+            console.log("state.page: ", state.page)
+            var maxLeft = (state.page - Math.floor(state.window / 2))
+            var maxRight = (state.page + Math.floor(state.window / 2))
+
+            if (maxLeft < 1) {
+                maxLeft = 1
+                maxRight = state.window
+            }
+
+            if (maxRight > pages) {
+                maxLeft = pages - (state.window - 1)
+
+                if (maxLeft < 1) {
+                    maxLeft = 1
+                }
+                maxRight = pages
+            }
+
+
+
+            for (var page = maxLeft; page <= maxRight; page++) {
+                wrapper.innerHTML += `<button value=${page} class="page btn">${page}</button>`
+            }
+
+            if (state.page != 1) {
+                wrapper.innerHTML = `<button value=${1} class="page btn">&#171; First</button>` + wrapper.innerHTML
+            }
+
+            if (state.page != pages) {
+                wrapper.innerHTML += `<button value=${pages} class="page btn">Last &#187;</button>`
+            }
+            $(`button[value = ${state.page}]`).css({
+                border: "1px solid #330066"
+            })
+            $('.page').on('click', function() {
+                $('.grading-tbody').empty()
+
+                state.page = Number($(this).val())
+                console.log("state.page: ", state.page)
+                $(`button[value = ${state.page}]`).css({
+                    border: "1px solid #330066"
+                })
+                buildTable()
+                commentBoxControl()
+                dynamicInputControl()
+                assignRowStatus()
+                rowStatusByInput()
+                calculateScores()
+                calculateScoresByInput()
+            })
+
+        }
+
+
+        function buildTable() {
+            var table = $('.grading-tbody')
+
+            var data = pagination(state.querySet, state.page, state.rows)
+            var myList = data.querySet
+
+            for (var i = 1 in myList) {
+                //Keep in mind we are using "Template Litterals to create rows"
+                var row = `<tr row-status="">
+                            <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
+                            <td class="EMPLOYEE_ID">${myList[i].APPRAISAL_EMPLOYEE_ID}</td>
+                            <td class="EMPLOYEE_FULLNAME">${myList[i].APPRAISAL_EMPLOYEE_NAME}</td>
+                            <td class="service_orientation_score score">
+                                <div>
+                                    <select name="">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE1}</textarea>
+
+                                </div>
+                            </td>
+                            <td class=" result_orientation_score score ">
+                                <div>
+                                    <select name="">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE2}</textarea>
+                                </div>
+                            </td>
+                            <td class="flexibility_and_adaptability_score score ">
+                                <div>
+                                    <select name="">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE3}</textarea>
+
+                                </div>
+                            </td>
+                            <td class="core_competency_total total ">
+                                <input name="" value="${myList[i].APPRAISAL_COMPETENCY_CTOTAL}" type="text" readonly>
+                            </td>
+                            <td></td>
+                            <td class="make_it_happen_score score ">
+                                <div>
+                                    <select name="">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE1}</textarea>
+
+                                </div>
+                            </td>
+                            <td class="provide_solutions_score score ">
+                                <div>
+                                    <select name="">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE2}</textarea>
+
+                                </div>
+                            </td>
+                            <td class="inspire_people_score score ">
+                                <div>
+                                    <select name="">
+                                        <option value="0">0</option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                    </select>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE3}</textarea>
+
+                                </div>
+                            </td>
+                            <td class="leadership_competency_total total ">
+                                <input name="" value="${myList[i].APPRAISAL_COMPETENCY_LTOTAL}" type="text " readonly>
+                            </td>
+
+                            <td class="raw_total grand_total ">
+                                <input name="" value="${myList[i].APPRAISAL_COMPETENCY_TOTAL}" type="text " readonly>
+                            </td>
+                            <td class="total_competency_percent grand_total ">
+                                <input name="" value="${myList[i].APPRAISAL_COMPETENCY_TOTAL100}" type="text " readonly>
+                            </td>
+                        </tr>
+              `
+                table.append(row)
+                let n = Number(i) + 1
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE1}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.result_orientation_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE2}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.flexibility_and_adaptability_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE3}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.make_it_happen_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE1}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.provide_solutions_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE2}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.inspire_people_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE3}]`).attr("selected", "selected")
+            }
+
+            pageButtons(data.pages)
+
+        }
+    </script>
 
     <script src="./KPI_dropdown_control.js "></script>
     <script src="./KPI_comment_box_control.js"></script>

@@ -1,11 +1,11 @@
 const calculateScores = function() {
     const gradingRows = document.querySelectorAll("tbody.grading-tbody > tr")
     const getValue = function(expectedComponet) {
-        return (expectedComponet ? Number(expectedComponet.value) : 0)
-    }
-    const getComponent = function(expectedComponet) {
-        return (expectedComponet ? expectedComponet : 0)
-    }
+            return (expectedComponet ? Number(expectedComponet.value) : 0)
+        }
+        // const getComponent = function(expectedComponet) {
+        //     return (expectedComponet ? expectedComponet : 0)
+        // }
 
 
 
@@ -54,7 +54,10 @@ const calculateScores = function() {
     }
 }
 calculateScores()
-const scoreSelectors = document.querySelectorAll("td.score > div > select")
-for (const scoreSelector of scoreSelectors) {
-    scoreSelector.addEventListener('change', calculateScores)
+const calculateScoresByInput = function() {
+    const scoreSelectors = document.querySelectorAll("td.score > div > select")
+    for (const scoreSelector of scoreSelectors) {
+        scoreSelector.addEventListener('change', calculateScores)
+    }
 }
+calculateScoresByInput()

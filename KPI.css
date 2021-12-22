@@ -358,7 +358,9 @@ td>.w3-dropdown-hover>.w3-dropdown-content li:not(:last-child) {
 }
 
 .grading-tbody tr>td:nth-of-type(3) {
-    font: normal normal normal 12px/18px Prompt;
+    font: normal normal normal 14px/18px Prompt;
+    white-space: nowrap;
+    overflow: hidden;
 }
 
 td.score>div {
@@ -405,6 +407,8 @@ td.grand_total>input {
 }
 
 #submitPage {
+    display: inline-block;
+    margin-left: calc(100% - 178px);
     width: 178px;
     height: 34px;
     border: 1px solid #330066;
@@ -414,6 +418,28 @@ td.grand_total>input {
     font: normal normal normal 12px/18px Prompt;
     letter-spacing: 0px;
     color: #330066;
-    float: right;
     margin-top: 20px;
+}
+
+#pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    width: auto;
+    height: 50px;
+    min-width: 400px;
+    border: 1px solid #330066;
+    border-radius: 5px;
+    background-color: #FFFFFF;
+    text-align: center;
+    margin: 10px 0 50px 0;
+}
+
+#pagination-wrapper>.btn {
+    margin: 1px;
+    text-align: center;
+    font: normal normal normal 16px/18px Prompt;
+    letter-spacing: 0px;
+    color: #330066;
 }
