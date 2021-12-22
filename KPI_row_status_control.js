@@ -50,26 +50,67 @@ assignRowStatus()
 const rowStatusByInput = function() {
     const scoreSelects = document.querySelectorAll("td.score > div > select")
     for (const scoreSelect of scoreSelects) {
-        scoreSelect.addEventListener('change', assignRowStatus)
+        scoreSelect.addEventListener('change', function() {
+            // const gradingRows = document.querySelectorAll("tbody.grading-tbody > tr")
+            const submitPageBtn = document.querySelector("#submitPage")
+            const paginationWrapper = document.querySelector("#pagination-wrapper")
+            const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
+            const currentGradingRow = this.parentElement.parentElement.parentElement;
+
+            const rowSelects = currentGradingRow.querySelectorAll("td.score > div > select");
+            let valueCount = 0
+            for (const rowSelect of rowSelects) {
+                if (rowSelect.value != "0")
+                    valueCount++
+            }
+
+            if (valueCount === rowSelects.length) {
+                currentGradingRow.setAttribute("row-status", "newly-filled")
+                currentGradingRow.style.backgroundColor = "#A0E7E5";
+
+            } else if (valueCount !== rowSelects.length && valueCount !== 0) {
+                currentGradingRow.setAttribute("row-status", "being-filled")
+                currentGradingRow.style.backgroundColor = "#F9E8FF";
+            } else if (valueCount === 0) {
+                currentGradingRow.setAttribute("row-status", "")
+                currentGradingRow.style.backgroundColor = "#F3F3F3";
+            }
+
+
+            const purpleRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
+            const greenRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'newly-filled']")
+            if (purpleRows.length > 0) {
+                submitPageBtn.style.backgroundColor = "#F9E8FF";
+                submitPageBtn.style.cursor = "not-allowed"
+                submitPageBtn.disabled = true
+                paginationWrapper.style.backgroundColor = "#F9E8FF";
+                paginationWrapper.style.cursor = "not-allowed"
+                for (const paginationBtn of paginationBtns) {
+                    paginationBtn.disabled = true
+                }
+
+            } else if (greenRows.length > 0) {
+                submitPageBtn.style.backgroundColor = "#A0E7E5";
+                submitPageBtn.style.cursor = "pointer"
+                submitPageBtn.disabled = false
+                paginationWrapper.style.backgroundColor = "#FFFFFF";
+                paginationWrapper.style.cursor = "not-allowed"
+                for (const paginationBtn of paginationBtns) {
+                    paginationBtn.disabled = true
+                }
+
+            } else {
+                submitPageBtn.style.backgroundColor = "#FFFFFF";
+                submitPageBtn.style.cursor = "pointer"
+                submitPageBtn.disabled = false
+                paginationWrapper.style.backgroundColor = "#FFFFFF";
+                paginationWrapper.style.cursor = "pointer"
+                for (const paginationBtn of paginationBtns) {
+                    paginationBtn.disabled = false
+                }
+            }
+
+        })
     }
 }
 rowStatusByInput()
-
-
-// const purpleRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
-// const getRowAlert = function(e) {
-//     e.preventDefault();
-//     alert("จงเติมคะแนนในแถวสีม่วงอ่อนให้ครบทุกช่อง")
-// }
-// submitPageBtn.addEventListener('click', function(e) {
-//     if (purpleRows.length > 0) {
-//         e.preventDefault();
-//         alert("จงเติมคะแนนในแถวสีม่วงอ่อนให้ครบทุกช่อง")
-//     }
-// })
-
-// if (purpleRows.length > 0) {
-//     submitPageBtn.addEventListener('click', getRowAlert)
-// } else {
-//     submitPageBtn.removeEventListener('click', getRowAlert)
-// }

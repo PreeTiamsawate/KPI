@@ -64,7 +64,7 @@
 
                             </div>
                             <div>
-                                <button type="submit">
+                                <button type="submit" id="use-filter-button">
                                     นำไปใช้
                                 </button>
                                 <button id="cancel-form-btn">
@@ -815,15 +815,19 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+
     <script src="./KPI_dummy_json.js"></script>
     <script>
+        const rawData = dummyKPI;
+        const gradedData = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
+        const notGradedData = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
         var state = {
-            'querySet': dummyKPI,
-
+            'querySet': rawData, //filtered json
             'page': 1, //start page
             'rows': 20, //number of rows showed
             'window': 5, //number of pagination buttons
         }
+
 
         buildTable()
 
