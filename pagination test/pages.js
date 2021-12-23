@@ -417,26 +417,26 @@ var tableData = [{
         'last_name': 'Manning',
         'rank': '18',
     },
-    {
-        'first_name': 'Marus',
-        'last_name': 'Marriota',
-        'rank': '19',
-    },
-    {
-        'first_name': 'Ryan',
-        'last_name': 'Fitzpatrick',
-        'rank': '21',
-    },
-    {
-        'first_name': 'Chad',
-        'last_name': 'Pennington',
-        'rank': '21',
-    },
-    {
-        'first_name': 'John',
-        'last_name': 'Doe',
-        'rank': '22',
-    },
+    // {
+    //     'first_name': 'Marus',
+    //     'last_name': 'Marriota',
+    //     'rank': '19',
+    // },
+    // {
+    //     'first_name': 'Ryan',
+    //     'last_name': 'Fitzpatrick',
+    //     'rank': '21',
+    // },
+    // {
+    //     'first_name': 'Chad',
+    //     'last_name': 'Pennington',
+    //     'rank': '21',
+    // },
+    // {
+    //     'first_name': 'John',
+    //     'last_name': 'Doe',
+    //     'rank': '22',
+    // },
 ]
 
 
@@ -463,8 +463,9 @@ function pagination(querySet, page, rows) {
 
     var trimmedData = querySet.slice(trimStart, trimEnd)
 
-    var pages = Math.round(querySet.length / rows);
+    var pages = Math.ceil(querySet.length / rows);
     console.log(querySet.length)
+    console.log("pages:", pages)
     return {
         'querySet': trimmedData,
         'pages': pages,

@@ -17,7 +17,7 @@ const assignRowStatus = function() {
 
         } else if (valueCount !== rowSelects.length && valueCount !== 0) {
             gradingRow.setAttribute("row-status", "being-filled")
-            gradingRow.style.backgroundColor = "#F9E8FF";
+            gradingRow.style.backgroundColor = "#FFF0DC";
         } else if (valueCount === 0) {
             gradingRow.setAttribute("row-status", "")
             gradingRow.style.backgroundColor = "#F3F3F3";
@@ -26,10 +26,10 @@ const assignRowStatus = function() {
     const purpleRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
 
     if (purpleRows.length > 0) {
-        submitPageBtn.style.backgroundColor = "#F9E8FF";
+        submitPageBtn.style.backgroundColor = "#FFF0DC";
         submitPageBtn.style.cursor = "not-allowed"
         submitPageBtn.disabled = true
-        paginationWrapper.style.backgroundColor = "#F9E8FF";
+        paginationWrapper.style.backgroundColor = "#FFF0DC";
         paginationWrapper.style.cursor = "not-allowed"
         for (const paginationBtn of paginationBtns) {
             paginationBtn.disabled = true
@@ -39,7 +39,7 @@ const assignRowStatus = function() {
         submitPageBtn.style.backgroundColor = "#FFFFFF";
         submitPageBtn.style.cursor = "pointer"
         submitPageBtn.disabled = false
-        paginationWrapper.style.backgroundColor = "#FFFFFF";
+        paginationWrapper.style.backgroundColor = "transparent";
         paginationWrapper.style.cursor = "pointer"
         for (const paginationBtn of paginationBtns) {
             paginationBtn.disabled = false
@@ -66,11 +66,11 @@ const rowStatusByInput = function() {
 
             if (valueCount === rowSelects.length) {
                 currentGradingRow.setAttribute("row-status", "newly-filled")
-                currentGradingRow.style.backgroundColor = "#A0E7E5";
+                currentGradingRow.style.backgroundColor = "#E3FFE1";
 
             } else if (valueCount !== rowSelects.length && valueCount !== 0) {
                 currentGradingRow.setAttribute("row-status", "being-filled")
-                currentGradingRow.style.backgroundColor = "#F9E8FF";
+                currentGradingRow.style.backgroundColor = "#FFF0DC";
             } else if (valueCount === 0) {
                 currentGradingRow.setAttribute("row-status", "")
                 currentGradingRow.style.backgroundColor = "#F3F3F3";
@@ -80,20 +80,20 @@ const rowStatusByInput = function() {
             const purpleRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
             const greenRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'newly-filled']")
             if (purpleRows.length > 0) {
-                submitPageBtn.style.backgroundColor = "#F9E8FF";
+                submitPageBtn.style.backgroundColor = "#FFF0DC";
                 submitPageBtn.style.cursor = "not-allowed"
                 submitPageBtn.disabled = true
-                paginationWrapper.style.backgroundColor = "#F9E8FF";
+                paginationWrapper.style.backgroundColor = "#FFF0DC";
                 paginationWrapper.style.cursor = "not-allowed"
                 for (const paginationBtn of paginationBtns) {
                     paginationBtn.disabled = true
                 }
 
             } else if (greenRows.length > 0) {
-                submitPageBtn.style.backgroundColor = "#A0E7E5";
+                submitPageBtn.style.backgroundColor = "#E3FFE1";
                 submitPageBtn.style.cursor = "pointer"
                 submitPageBtn.disabled = false
-                paginationWrapper.style.backgroundColor = "#FFFFFF";
+                paginationWrapper.style.backgroundColor = "transparent";
                 paginationWrapper.style.cursor = "not-allowed"
                 for (const paginationBtn of paginationBtns) {
                     paginationBtn.disabled = true
@@ -103,7 +103,7 @@ const rowStatusByInput = function() {
                 submitPageBtn.style.backgroundColor = "#FFFFFF";
                 submitPageBtn.style.cursor = "pointer"
                 submitPageBtn.disabled = false
-                paginationWrapper.style.backgroundColor = "#FFFFFF";
+                paginationWrapper.style.backgroundColor = "transparent";
                 paginationWrapper.style.cursor = "pointer"
                 for (const paginationBtn of paginationBtns) {
                     paginationBtn.disabled = false

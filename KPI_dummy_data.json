@@ -1,4 +1,4 @@
-const dummyKPI = [{
+[{
         "APPRAISAL_LEVEL": 7,
         "APPRAISAL_EMPLOYEE_ID": "42654",
         "APPRAISAL_EMPLOYEE_NAME": "นาย อาชว์ ชำนาญศิลป์ สุดยอดนักพัฒนา ลมุนพันธ์",
@@ -9698,12 +9698,4 @@ const dummyKPI = [{
         "APPRAISAL_KPI_TOTAL": 0,
         "APPRAISAL_GRAND_TOTAL": 0
     }
-
-
 ]
-let i = 1
-for (let dummy of dummyKPI) {
-    dummy.APPRAISAL_EMPLOYEE_NAME = i + dummy.APPRAISAL_EMPLOYEE_NAME
-        // console.log(dummy.APPRAISAL_EMPLOYEE_NAME)
-    i++
-}
