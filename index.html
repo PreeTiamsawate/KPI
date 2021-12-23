@@ -80,7 +80,7 @@
                         <label for="search-id">
                             <img src="./kpi_image/Icon ionic-ios-search.svg" alt="">
                         </label>
-                        <input type="text" placeholder="search from ID" id="search-id">
+                        <input type="text" placeholder="search ID or Name" id="search-id">
 
 
                     </div>
@@ -287,8 +287,9 @@
     <script src="./KPI_dummy_json.js"></script>
     <script>
         const rawData = dummyKPI;
-        const gradedData = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
-        const notGradedData = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
+        const gradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
+        const notGradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
+
         var state = {
             'querySet': rawData, //data json
             'page': 1, //start page
@@ -300,7 +301,28 @@
         const filterRadios = document.querySelectorAll(".filter-boxes input[type='radio']")
         const useFilterBtn = document.querySelector('#use-filter-button')
         const cancelFormBtn = document.querySelector("#cancel-form-btn")
-        buildTable()
+        const searchInput = document.querySelector("#search-id");
+
+        searchInput.addEventListener('keydown', function() {
+            console.log(this.value)
+            let filterValue = this.value;
+            let dataById = []
+            if (filterValue != "") {
+                dataById = rawData.filter(data => data.APPRAISAL_EMPLOYEE_ID.includes(filterValue) || data.APPRAISAL_EMPLOYEE_NAME.toUpperCase().includes(filterValue.toUpperCase()))
+            } else {
+                dataById = rawData
+            }
+
+            $('.grading-tbody').empty()
+            buildTable(dataById)
+            commentBoxControl()
+            dynamicInputControl()
+            assignRowStatus()
+            rowStatusByInput()
+            calculateScores()
+            calculateScoresByInput()
+        })
+        buildTable(rawData)
 
         function pagination(querySet, page, rows) {
 
@@ -365,7 +387,7 @@
                 $(`button[value = ${state.page}]`).css({
                     border: "1px solid #330066"
                 })
-                buildTable()
+                buildTable(rawData)
                 commentBoxControl()
                 dynamicInputControl()
                 assignRowStatus()
@@ -375,12 +397,15 @@
             })
 
         }
+
+
+
         useFilterBtn.addEventListener('click', function(e) {
 
 
             e.preventDefault();
             $('.grading-tbody').empty()
-            buildTable()
+            buildTable(rawData)
             commentBoxControl()
             dynamicInputControl()
             assignRowStatus()
@@ -403,7 +428,7 @@
                 filterRadio.checked = false
             }
             $('.grading-tbody').empty()
-            buildTable()
+            buildTable(rawData)
             commentBoxControl()
             dynamicInputControl()
             assignRowStatus()
@@ -413,17 +438,23 @@
         })
 
 
-        function buildTable() {
+        function buildTable(Data) {
             var table = $('.grading-tbody')
             console.log("state.page to build: ", state.page)
+            const gradedData = Data.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
+            const notGradedData = Data.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
             if (filterRadios[0].checked) {
                 state.querySet = gradedData;
 
             } else if (filterRadios[1].checked) {
                 state.querySet = notGradedData;
             } else {
-                state.querySet = rawData;
+                state.querySet = Data;
             }
+
+
+
+
             console.log("screenedData :", state.querySet.length)
             var data = pagination(state.querySet, state.page, state.rows)
             var myList = data.querySet
@@ -559,8 +590,9 @@
     <script src="./KPI_comment_box_control.js"></script>
     <script src="./KPI_dynamic_input.js"></script>
     <script src="./KPI_row_status_control.js"></script>
-    <script src="./KPI_id_filter_control.js"></script>
     <script src="./KPI_score_calculation.js"></script>
+    <!-- <script src="./KPI_id_filter_control.js"></script> -->
+
 </body>
 
 </html>

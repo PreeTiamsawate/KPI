@@ -15,8 +15,8 @@ const controlHeaderDropdowns = function() {
 
 
 
-    gradedNumber.innerText = `(${gradedData.length})` //From pagination script
-    notGradedNumber.innerText = `(${notGradedData.length})` //From pagination script
+    gradedNumber.innerText = `(${gradedDataInit.length})` //From pagination script
+    notGradedNumber.innerText = `(${notGradedDataInit.length})` //From pagination script
 
 
     filterBtn.addEventListener('click', function() {
