@@ -27,10 +27,10 @@
                 <div>
                     <img src="./kpi_image/thai logo.png">
                     <span>
-                        แบบประเมินผลการปฏิบัติงานของพนักงาน ประจำไตรมาศ 2 ปี 2565
+                        แบบประเมินศักยภาพของพนักงาน "Competency" ประจำไตรมาส 2 ปี 2565
                     </span>
                     <div>
-                        ( <span class="QUARTER_YEAR">Q2/2022</span> )
+                        (<span class="QUARTER_YEAR">Q2/2022</span>)
                     </div>
 
 
@@ -165,7 +165,7 @@
                             </th>
                             <th rowspan="2">
                                 <div class="w3-dropdown-hover">
-                                    Total Competency 100%
+                                    Weighted Competency (%)
                                     <div class="w3-dropdown-content">
                                         <img src="./kpi_image/total_score_weights.png">
                                     </div>
@@ -428,7 +428,7 @@
             var data = pagination(state.querySet, state.page, state.rows)
             var myList = data.querySet
 
-            for (var i = 1 in myList) {
+            for (var i in myList) {
                 //Keep in mind we are using "Template Litterals to create rows"
                 var row = `<tr row-status="">
                             <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
@@ -539,14 +539,15 @@
                             </td>
                         </tr>
               `
+                console.log("i: ", i)
                 table.append(row)
                 let n = Number(i) + 1
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE1}]`).attr("selected", "selected")
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.result_orientation_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE2}]`).attr("selected", "selected")
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.flexibility_and_adaptability_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE3}]`).attr("selected", "selected")
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.make_it_happen_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE1}]`).attr("selected", "selected")
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.provide_solutions_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE2}]`).attr("selected", "selected")
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.inspire_people_score > div > select > option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE3}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE1}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.result_orientation_score option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE2}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.flexibility_and_adaptability_score option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE3}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.make_it_happen_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE1}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.provide_solutions_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE2}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.inspire_people_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE3}]`).attr("selected", "selected")
             }
 
             pageButtons(data.pages)

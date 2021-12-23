@@ -397,6 +397,10 @@ td>.w3-dropdown-hover>.w3-dropdown-content li:not(:last-child) {
     overflow: hidden;
 }
 
+.grading-tbody tr>td:nth-of-type(3):hover {
+    white-space: normal;
+}
+
 td.score>div {
     height: 120%;
     width: 100%;
