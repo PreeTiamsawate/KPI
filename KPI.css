@@ -80,7 +80,7 @@ nav {
 
 .filter-boxes {
     height: 32.5px;
-    width: 230px;
+    width: 250px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -336,12 +336,13 @@ th>.w3-dropdown-hover>.w3-dropdown-content {
     /* border: 1px solid #330066; */
     border-radius: 5px;
     /* padding: 15px; */
-    margin-left: -350px;
+    margin-left: -500px;
+    padding-bottom: 15px;
 }
 
 th>.w3-dropdown-hover>.w3-dropdown-content>img {
-    width: 450px;
-    height: 250px;
+    width: 600px;
+    height: 350px;
 }
 
 td>.w3-dropdown-hover {

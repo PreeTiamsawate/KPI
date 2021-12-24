@@ -2,10 +2,20 @@ const commentBoxControl = function() {
     const commentIcons = document.querySelectorAll("td.score > div > .w3-dropdown-click");
     const commentBoxes = document.querySelectorAll("td.score > div > .w3-dropdown-content");
     const boxParents = document.querySelectorAll("td.score > div");
+    const scoreSelects = document.querySelectorAll("td.score > div > select");
+    for (const scoreSelect of scoreSelects) {
+        scoreSelect.addEventListener('click', function() {
+            const commentBox = this.nextElementSibling.nextElementSibling;
+            const boxParent = this.parentElement;
+            commentBox.classList.remove("w3-show")
+            boxParent.style.border = "none";
+        })
+    }
 
     for (const commentIcon of commentIcons) {
         commentIcon.addEventListener('click', function() {
             const commentBox = this.nextElementSibling;
+            const scoreSelect = this.previousElementSibling;
             const boxParent = this.parentElement;
             if (commentBox.className.indexOf("w3-show") == -1) {
                 for (const otherBox of commentBoxes) {
@@ -16,6 +26,14 @@ const commentBoxControl = function() {
                             otherParent.style.border = "none";
                         }
                     }
+                }
+
+                if (scoreSelect.value == "0") {
+                    commentBox.disabled = true
+                    commentBox.setAttribute("placeholder", "จงกรอกคะแนนก่อนกรอกคำอธิบายประกอบการประเมิน !")
+                } else {
+                    commentBox.disabled = false
+                    commentBox.setAttribute("placeholder", "คำอธิบายประกอบการประเมิน")
                 }
                 commentBox.className += " w3-show";
                 boxParent.style.border = "1px solid #330066";

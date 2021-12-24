@@ -27,12 +27,9 @@
                 <div>
                     <img src="./kpi_image/thai logo.png">
                     <span>
-                        แบบประเมินศักยภาพของพนักงาน "Competency" ประจำไตรมาส 2 ปี 2565
-                    </span>
-                    <div>
+                        แบบประเมินศักยภาพของพนักงาน "Competency" ประจำไตรมาส 2 ปี 2565      
                         (<span class="QUARTER_YEAR">Q2/2022</span>)
-                    </div>
-
+                    </span>
 
                 </div>
                 <div>
@@ -167,7 +164,7 @@
                                 <div class="w3-dropdown-hover">
                                     Weighted Competency (%)
                                     <div class="w3-dropdown-content">
-                                        <img src="./kpi_image/total_score_weights.png">
+                                        <img src="./kpi_image/total_score_weights2x.png">
                                     </div>
                                 </div>
 
@@ -289,7 +286,7 @@
         const rawData = dummyKPI;
         const gradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
         const notGradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
-
+        let dataById = rawData
         var state = {
             'querySet': rawData, //data json
             'page': 1, //start page
@@ -302,11 +299,20 @@
         const useFilterBtn = document.querySelector('#use-filter-button')
         const cancelFormBtn = document.querySelector("#cancel-form-btn")
         const searchInput = document.querySelector("#search-id");
+        const callBasicFunctions = function() {
+            commentBoxControl()
+            dynamicInputControl()
+            assignRowStatus()
+            rowStatusBySelect()
+            rowStatusByComment()
+            calculateScores()
+            calculateScoresByInput()
+        }
 
-        searchInput.addEventListener('keydown', function() {
+        searchInput.addEventListener('input', function() {
             console.log(this.value)
             let filterValue = this.value;
-            let dataById = []
+
             if (filterValue != "") {
                 dataById = rawData.filter(data => data.APPRAISAL_EMPLOYEE_ID.includes(filterValue) || data.APPRAISAL_EMPLOYEE_NAME.toUpperCase().includes(filterValue.toUpperCase()))
             } else {
@@ -315,12 +321,8 @@
 
             $('.grading-tbody').empty()
             buildTable(dataById)
-            commentBoxControl()
-            dynamicInputControl()
-            assignRowStatus()
-            rowStatusByInput()
-            calculateScores()
-            calculateScoresByInput()
+            callBasicFunctions()
+
         })
         buildTable(rawData)
 
@@ -365,8 +367,6 @@
                 maxRight = pages
             }
 
-
-
             for (var page = maxLeft; page <= maxRight; page++) {
                 wrapper.innerHTML += `<button value=${page} class="page btn">${page}</button>`
             }
@@ -387,31 +387,16 @@
                 $(`button[value = ${state.page}]`).css({
                     border: "1px solid #330066"
                 })
-                buildTable(rawData)
-                commentBoxControl()
-                dynamicInputControl()
-                assignRowStatus()
-                rowStatusByInput()
-                calculateScores()
-                calculateScoresByInput()
+                buildTable(dataById)
+                callBasicFunctions()
             })
 
         }
-
-
-
         useFilterBtn.addEventListener('click', function(e) {
-
-
             e.preventDefault();
             $('.grading-tbody').empty()
-            buildTable(rawData)
-            commentBoxControl()
-            dynamicInputControl()
-            assignRowStatus()
-            rowStatusByInput()
-            calculateScores()
-            calculateScoresByInput()
+            buildTable(dataById)
+            callBasicFunctions()
 
             dropdownForm.className = dropdownForm.className.replace(" w3-show", "");
             filterBtn.addEventListener("mouseover", btnHoverActive)
@@ -428,13 +413,8 @@
                 filterRadio.checked = false
             }
             $('.grading-tbody').empty()
-            buildTable(rawData)
-            commentBoxControl()
-            dynamicInputControl()
-            assignRowStatus()
-            rowStatusByInput()
-            calculateScores()
-            calculateScoresByInput()
+            buildTable(dataById)
+            callBasicFunctions()
         })
 
 
@@ -452,10 +432,10 @@
                 state.querySet = Data;
             }
 
-
-
-
             console.log("screenedData :", state.querySet.length)
+            if (state.querySet.length <= (state.page - 1) * state.rows + 1) {
+                state.page = 1
+            }
             var data = pagination(state.querySet, state.page, state.rows)
             var myList = data.querySet
 
@@ -570,7 +550,6 @@
                             </td>
                         </tr>
               `
-                console.log("i: ", i)
                 table.append(row)
                 let n = Number(i) + 1
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE1}]`).attr("selected", "selected")
