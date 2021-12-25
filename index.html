@@ -58,8 +58,67 @@
                                     <label for="not-graded">ยังไม่ให้คะแนน</label>
                                     <span class="NOT_GRADED_NUMBER">(900)</span>
                                 </div>
-
                             </div>
+                            <div>
+                                <div class="level-checkboxes">
+                                    <div>
+                                        <input type="checkbox" value="1" id="lv1">
+                                        <label for="lv1">Lv.1</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="2" id="lv2">
+                                        <label for="lv2">Lv.2</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="3" id="lv3">
+                                        <label for="lv3">Lv.3</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="4" id="lv4">
+                                        <label for="lv4">Lv.4</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="5" id="lv5">
+                                        <label for="lv5">Lv.5</label>
+
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="6" id="lv6">
+                                        <label for="lv6">Lv.6</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="7" id="lv7">
+                                        <label for="lv7">Lv.7</label>
+                                    </div>
+                                </div>
+                                <div class="level-checkboxes">
+                                    <div>
+                                        <input type="checkbox" value="8" id="lv8">
+                                        <label for="lv8">Lv.8</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="9" id="lv9">
+                                        <label for="lv9">Lv.9</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="10" id="lv10">
+                                        <label for="lv10">Lv.10</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="11" id="lv11">
+                                        <label for="lv11">Lv.11</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="13" id="lv13">
+                                        <label for="lv13">Lv.13</label>
+                                    </div>
+                                    <div>
+                                        <input type="checkbox" value="14" id="lv14">
+                                        <label for="lv14">Lv.14</label>
+                                    </div>
+                                </div>
+                            </div>
+
                             <div>
                                 <button type="submit" id="use-filter-button">
                                     นำไปใช้
@@ -143,13 +202,15 @@
                         <col>
                         <col>
                         <col>
+                        <col>
                     </colgroup>
                     <!-- Table Header ========================================= -->
                     <thead>
                         <tr>
-                            <th rowspan="2" colspan="3">
-                                รายละเอียดพนักงาน <br> ( ระดับ/เลขประจำตัว/ชื่อ-นามสกุล )
+                            <th rowspan="1" colspan="3">
+                                รายละเอียดพนักงาน
                             </th>
+                            <th></th>
                             <th colspan="4" height="50">
                                 Core Competency
                             </th>
@@ -170,7 +231,12 @@
 
                             </th>
                         </tr>
+
                         <tr>
+                            <td> Lv</td>
+                            <td>ID</td>
+                            <td>Name-Surname</td>
+                            <td></td>
                             <td height="70">
                                 <div class="w3-dropdown-hover">
                                     Service Orientation
@@ -296,6 +362,7 @@
         const dropdownForm = document.querySelector(".filter-boxes").querySelector(".w3-dropdown-content");
         const filterBtn = document.querySelector("#filter-btn");
         const filterRadios = document.querySelectorAll(".filter-boxes input[type='radio']")
+        const levelCheckboxes = document.querySelectorAll(".filter-boxes input[type='checkbox']")
         const useFilterBtn = document.querySelector('#use-filter-button')
         const cancelFormBtn = document.querySelector("#cancel-form-btn")
         const searchInput = document.querySelector("#search-id");
@@ -412,6 +479,9 @@
             for (const filterRadio of filterRadios) {
                 filterRadio.checked = false
             }
+            for (const levelCheckbox of levelCheckboxes) {
+                levelCheckbox.checked = false
+            }
             $('.grading-tbody').empty()
             buildTable(dataById)
             callBasicFunctions()
@@ -445,6 +515,7 @@
                             <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
                             <td class="EMPLOYEE_ID">${myList[i].APPRAISAL_EMPLOYEE_ID}</td>
                             <td class="EMPLOYEE_FULLNAME">${myList[i].APPRAISAL_EMPLOYEE_NAME}</td>
+                            <td></td>
                             <td class="service_orientation_score score">
                                 <div>
                                     <select name="">
