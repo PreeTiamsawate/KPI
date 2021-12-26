@@ -1061,7 +1061,7 @@ const dummyKPI = [{
     {
         "APPRAISAL_LEVEL": 11,
         "APPRAISAL_EMPLOYEE_ID": "45732",
-        "APPRAISAL_EMPLOYEE_NAME": "นาย กฤตนัย สมิทธิยาภากร",
+        "APPRAISAL_EMPLOYEE_NAME": "นาย ปรีดิ์ เทียมเศวต",
         "APPRAISAL_COMPETENCY_LSCORE1": 0,
         "APPRAISAL_COMPETENCY_LSCORE2": 0,
         "APPRAISAL_COMPETENCY_LSCORE3": 0,
@@ -9702,8 +9702,17 @@ const dummyKPI = [{
 
 ]
 let i = 1
+const allLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14]
 for (let dummy of dummyKPI) {
     dummy.APPRAISAL_EMPLOYEE_NAME = i + dummy.APPRAISAL_EMPLOYEE_NAME
-        // console.log(dummy.APPRAISAL_EMPLOYEE_NAME)
     i++
+    dummy.APPRAISAL_LEVEL = allLevels[Math.floor(Math.random() * allLevels.length)];
+    if (dummy.APPRAISAL_COMPETENCY_TOTAL == 0) {
+        dummy.COMMENT_COMPETENCY_LSCORE1 = ""
+        dummy.COMMENT_COMPETENCY_LSCORE2 = ""
+        dummy.COMMENT_COMPETENCY_LSCORE3 = ""
+        dummy.COMMENT_COMPETENCY_CSCORE1 = ""
+        dummy.COMMENT_COMPETENCY_CSCORE2 = ""
+        dummy.COMMENT_COMPETENCY_CSCORE3 = ""
+    }
 }
