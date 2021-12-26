@@ -351,13 +351,13 @@ nav {
 #GRADE_TABLE colgroup col:nth-of-type(12),
 #GRADE_TABLE colgroup col:nth-of-type(13) {
     /* Score cols */
-    width: 7.44%;
+    width: 7.14%;
 }
 
 #GRADE_TABLE colgroup col:nth-of-type(14),
 #GRADE_TABLE colgroup col:nth-of-type(15) {
     /* Total Score cols */
-    width: 7%;
+    width: 7.3%;
 }
 
 #GRADE_TABLE thead tr:nth-of-type(1) {
