@@ -397,7 +397,7 @@
             if (checkedLevelValues.length > 0) {
                 filteredData = filteredData.filter(data => checkedLevelValues.includes(data.APPRAISAL_LEVEL))
             }
-
+            searchInput.value = ""
             $('.grading-tbody').empty()
             buildTable(filteredData)
             callBasicFunctions()
