@@ -30,7 +30,7 @@ const commentBoxControl = function() {
 
                 if (scoreSelect.value == "0") {
                     commentBox.disabled = true
-                    commentBox.setAttribute("placeholder", "จงกรอกคะแนนก่อนกรอกคำอธิบายประกอบการประเมิน !")
+                    commentBox.setAttribute("placeholder", "กรุณาใส่คะแนนก่อนจึงจะสามารถกรอกคำอธิบายประกอบการประเมินได้")
                 } else {
                     commentBox.disabled = false
                     commentBox.setAttribute("placeholder", "คำอธิบายประกอบการประเมิน")
