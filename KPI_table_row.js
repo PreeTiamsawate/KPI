@@ -106,5 +106,6 @@ var row = `<tr row-status="">
                 <td class="total_competency_percent grand_total ">
                     <input name="COMPETENCY_TOTAL100[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_TOTAL100}" type="text " readonly>
                 </td>
+                <input type="hidden" name="ORIGINAL_SCORE[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].ORIGINAL_SCORE}">
             </tr>
-        `//It ends here :)
+            ` //It ends here :)

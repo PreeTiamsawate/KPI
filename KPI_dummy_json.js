@@ -9715,4 +9715,7 @@ for (let dummy of dummyKPI) {
         dummy.COMMENT_COMPETENCY_CSCORE2 = ""
         dummy.COMMENT_COMPETENCY_CSCORE3 = ""
     }
+
+    dummy.ORIGINAL_SCORE = 0
 }
+console.log(dummyKPI)
