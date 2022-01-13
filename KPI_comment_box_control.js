@@ -53,10 +53,15 @@ const commentBoxControl = function() {
         const commentIcon = commentBox.previousElementSibling;
         if (commentBox.innerText !== "" || commentBox.value !== "") {
             commentIcon.setAttribute("src", "./kpi_image/Icon-filled-comment.svg")
+
         }
         commentBox.addEventListener('input', function() {
             if (this.value !== "" || commentBox.innerText !== "") {
                 commentIcon.setAttribute("src", "./kpi_image/Icon-filled-comment.svg")
+                if (commentBox.value.includes('|')) {
+                    commentBox.value = commentBox.value.replace('|', '');
+                    alert(" | is not allowed  ")
+                }
             } else if (this.value === "" || commentBox.innerText === "") {
                 commentIcon.setAttribute("src", "./kpi_image/Icon-empty-comment.svg")
             }

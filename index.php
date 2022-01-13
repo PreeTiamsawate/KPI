@@ -1,6 +1,29 @@
+<?php
+session_start();
+if (isset($_POST['pid']) && ($_POST['pid'] != '')) {
+    if ($_POST['pid'] == 'null') { // Not logged in ThaiSquare
+        header('location: expired.html');
+    } else {
+        $_SESSION['user']['pid'] = $_POST['pid'];
+        $_SESSION['user']['eid'] = $_POST['eid'];
+        $_SESSION['user']['name'] = $_POST['name'];
+    }
+} else {
+    // For testing only
+    $_SESSION['user']['pid'] = 'tg26539'; //OS 26539; //QV 15929; //30666; //16443;
+    $_SESSION['user']['eid'] = 26539;
+    $_SESSION['user']['name'] = 'Alpha Tester';
+}
+// Year & Period
+$_SESSION['period'] = 'Q4';
+$_SESSION['year'] = 2021;
+
+if (!(isset($_SESSION['user']))) {
+    header('location: expired.html');
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -27,15 +50,15 @@
                 <div>
                     <img src="./kpi_image/thai logo.png">
                     <span>
-                        แบบประเมินศักยภาพของพนักงาน "Competency" ประจำไตรมาส 2 ปี 2565      
-                        (<span class="QUARTER_YEAR">Q2/2022</span>)
+                        แบบประเมินศักยภาพของพนักงาน "Competency" ประจำไตรมาส <?php echo substr($_SESSION['period'], 1, 1); ?> ปี <?php echo $_SESSION['year']+543; ?>
+                        (<span class="QUARTER_YEAR"><?php echo $_SESSION['period']; ?>/<?php echo $_SESSION['year']; ?></span>)
                     </span>
 
                 </div>
                 <div>
                     <img src="./kpi_image/Icon awesome-user-circle.svg" class="USER_IMAGE">
-                    <span class="USER_ID">12345</span>
-                    <span class="USER_FULL_NAME">XXXXXX XXXXXXXXX</span>
+                    <span class="USER_ID"><?php echo $_SESSION['user']['eid']; ?></span>
+                    <span class="USER_FULL_NAME"><?php echo $_SESSION['user']['name']; ?></span>
                 </div>
             </div>
 
@@ -87,12 +110,12 @@
                                 <div>
                                     <input type="radio" id="graded" name="graded_number_filter">
                                     <label for="graded">ให้คะแนนแล้ว</label>
-                                    <span class="GRADED_NUMBER">(100)</span>
+                                    <span class="GRADED_NUMBER" id="GRADED_NUMBER">(100)</span>
                                 </div>
                                 <div>
                                     <input type="radio" id="not-graded" name="graded_number_filter">
                                     <label for="not-graded">ยังไม่ให้คะแนน</label>
-                                    <span class="NOT_GRADED_NUMBER">(900)</span>
+                                    <span class="NOT_GRADED_NUMBER" id="NOT_GRADED_NUMBER">(900)</span>
                                 </div>
                             </div>
                             <div>
@@ -157,15 +180,14 @@
 
                             <div>
                                 <button type="submit" id="use-filter-button">
-                                    เลือก
+                                    นำไปใช้
                                 </button>
                                 <button id="cancel-form-btn">
-                                    ล้างตัวเลือก
+                                    ยกเลิก
                                 </button>
 
                             </div>
                         </div>
-
                     </form>
 
                     <div id="search-box">
@@ -173,20 +195,12 @@
                             <img src="./kpi_image/Icon ionic-ios-search.svg" alt="">
                         </label>
                         <input type="text" placeholder="search ID or Name" id="search-id">
-
-
                     </div>
-
                 </div>
-
-
-
             </nav>
-
         </header>
-
         <main>
-            <form action="" method="">
+            <form name="form1" id="form1">
                 <table id="GRADE_TABLE">
                     <colgroup>
                         <col>
@@ -234,7 +248,7 @@
                         </tr>
 
                         <tr>
-                            <td> Lv</td>
+                            <td>Lv</td>
                             <td>ID</td>
                             <td>Name-Surname</td>
                             <td></td>
@@ -324,36 +338,89 @@
                                 Total
                             </td>
                         </tr>
-
                     </thead>
-
                     <!-- Table Body ================================================================ -->
                     <tbody class="grading-tbody">
-
-
-
                     </tbody>
-
-
                 </table>
                 <button type="submit" id="submitPage">Submit This Page</button>
+                <input type="hidden" id="numGraded" name="numGraded">
+                <input type="hidden" id="totalRows" name="totalRows">
             </form>
-
             <div id="pagination-wrapper"></div>
-
         </main>
-
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <!-- Delete KPI_dummy_json.js below when connected to database!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-    <script src="./KPI_dummy_json.js"></script>
+    <!--script src="./KPI_dummy_json2.js"></script-->
     <script>
+        $(document).ready(function () {
+            $("#form1").on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: "updatescore.php",
+                    data: new FormData(this),
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function(response){
+                        //console.log(JSON.stringify(response));
+                        response.score.forEach((item, index) => {
+                            console.log(`${index} : ID=${item.ID} Score=${item.score}`);
+                            $(`#ORIGINAL_SCORE_${item.ID}`).val(item.score);
+                            // *** เอา APPRAISAL_COMPETENCY_TOTAL ใส่กลับไปใน filteredData ***;
+                            for(let data of filteredData ){
+                                if(data.APPRAISAL_EMPLOYEE_ID == item.ID ){
+                                    data.APPRAISAL_COMPETENCY_TOTAL = item.competency_total 
+                                }
+                            }
+                            //console.log($(`#ORIGINAL_SCORE_${item.ID}`).val());
+                        });
+                        $('#GRADED_NUMBER').html(response.gradedRows);
+                        $('#NOT_GRADED_NUMBER').html(response.notGradedRows);
+                        $('#numGraded').val(response.gradedRows);
+                        $('#totalRows').val(response.totalRows);
+                        //updateGradedNumbers(filteredData);
+                        //Reset rows color
+                        const greenRows = document.querySelectorAll("tr[row-status='newly-filled']")
+                        const submitBtn = document.querySelector('#submitPage');
+                        const paginationWrapper = document.querySelector("#pagination-wrapper")
+                        const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
+                        for(const greenRow of greenRows){
+                            greenRow.style.backgroundColor = "#FFFFFF";
+                            greenRow.setAttribute("row-status", "fully-filled")
+                        }
+                        submitBtn.style.backgroundColor = "#FFFFFF";
+                        paginationWrapper.style.backgroundColor = "transparent";
+                        paginationWrapper.style.cursor = "pointer"
+                        for (const paginationBtn of paginationBtns) {
+                            paginationBtn.disabled = false
+                        }
+                        alert(response.message);
+                    },
+                    error: function(request, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            });
+        });
+        var req = new XMLHttpRequest();
+        req.open("GET", "getappraisal.php", false);
+        req.send(null);
+        var unpackedData = JSON.parse(req.response);
+        const dummyKPI = unpackedData.data;
+        //$('#GRADED_NUMBER').html(unpackedData.gradedRows);
+        //$('#NOT_GRADED_NUMBER').html(unpackedData.notGradedRows);
+        //$('#numGraded').val(unpackedData.gradedRows);
+        //$('#totalRows').val(unpackedData.totalRows);
         const rawData = dummyKPI;
         const gradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
         const notGradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
-        let filteredData = rawData
+        let filteredData = rawData;
 
         const updateGradedNumbers = function(data) {
             let gradedFilteredData = data.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
@@ -362,7 +429,10 @@
             const notGradedNumber = document.querySelector("span.NOT_GRADED_NUMBER")
             gradedNumber.innerText = `(${gradedFilteredData.length})`
             notGradedNumber.innerText = `(${notGradedFilteredData.length})`
-            console.log("DATA LENGHT: " + data.length)
+            $("#numGraded").val(gradedFilteredData.length)
+            $("#totalRows").val(data.length)
+            console.log("GRADED: " + gradedFilteredData.length)
+            console.log("DATA LENGTH: " + data.length)
         }
 
         var state = {
@@ -408,8 +478,6 @@
             if (checkedLevelValues.length > 0) {
                 filteredData = filteredData.filter(data => checkedLevelValues.includes(data.APPRAISAL_LEVEL))
             }
-
-            // console.log(filteredData)
             searchInput.value = ""
             $('.grading-tbody').empty()
             buildTable(filteredData)
@@ -507,7 +575,7 @@
             }
 
             if (state.page != pages) {
-                wrapper.innerHTML += `<button value=${pages} class="page btn">Last(${pages}) &#187;</button>`
+                wrapper.innerHTML += `<button value=${pages} class="page btn">Last &#187;</button>`
             }
             $(`button[value = ${state.page}]`).css({
                 border: "1px solid #330066"
@@ -527,8 +595,6 @@
         function buildTable(Data) {
             var table = $('.grading-tbody')
             console.log("state.page to build: ", state.page)
-
-
             console.log("screenedData :", Data.length)
             if (Data.length <= (state.page - 1) * state.rows + 1) {
                 state.page = 1
@@ -539,116 +605,117 @@
             for (var i in myList) {
                 //Keep in mind we are using "Template Litterals to create rows"
                 var row = `<tr row-status="">
-                            <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
-                            <td class="EMPLOYEE_ID">${myList[i].APPRAISAL_EMPLOYEE_ID}</td>
-                            <td class="EMPLOYEE_FULLNAME">${myList[i].APPRAISAL_EMPLOYEE_NAME}</td>
-                            <td></td>
-                            <td class="service_orientation_score score">
-                                <div>
-                                    <select name="CSCORE1[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE1_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]"" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE1} </textarea>
+                <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
+                <td class="EMPLOYEE_ID">${myList[i].APPRAISAL_EMPLOYEE_ID}</td>
+                <td class="EMPLOYEE_FULLNAME">${myList[i].APPRAISAL_EMPLOYEE_NAME}</td>
+                <td></td>
+                <td class="service_orientation_score score">
+                    <div>
+                        <select name="CSCORE1[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                        <textarea name="CSCORE1_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]"" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE1}</textarea>
 
-                                </div>
-                            </td>
-                            <td class=" result_orientation_score score ">
-                                <div>
-                                    <select name="CSCORE2[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE2_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE2}</textarea>
-                                </div>
-                            </td>
-                            <td class="flexibility_and_adaptability_score score ">
-                                <div>
-                                    <select name="CSCORE3[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE3_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE3}</textarea>
+                    </div>
+                </td>
+                <td class=" result_orientation_score score ">
+                    <div>
+                        <select name="CSCORE2[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                        <textarea name="CSCORE2_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE2}</textarea>
+                    </div>
+                </td>
+                <td class="flexibility_and_adaptability_score score ">
+                    <div>
+                        <select name="CSCORE3[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                        <textarea name="CSCORE3_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE3}</textarea>
 
-                                </div>
-                            </td>
-                            <td class="core_competency_total total ">
-                                <input name="CSCORE_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_CTOTAL}" type="text" readonly>
-                            </td>
-                            <td></td>
-                            <td class="make_it_happen_score score ">
-                                <div>
-                                    <select name="LSCORE1[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE1_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE1} </textarea>
+                    </div>
+                </td>
+                <td class="core_competency_total total ">
+                    <input name="CSCORE_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_CTOTAL}" type="text" readonly>
+                </td>
+                <td></td>
+                <td class="make_it_happen_score score ">
+                    <div>
+                        <select name="LSCORE1[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                        <textarea name="LSCORE1_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE1}</textarea>
 
-                                </div>
-                            </td>
-                            <td class="provide_solutions_score score ">
-                                <div>
-                                    <select name="LSCORE2[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE2_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE2}</textarea>
+                    </div>
+                </td>
+                <td class="provide_solutions_score score ">
+                    <div>
+                        <select name="LSCORE2[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                        <textarea name="LSCORE2_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE2}</textarea>
 
-                                </div>
-                            </td>
-                            <td class="inspire_people_score score ">
-                                <div>
-                                    <select name="LSCORE3[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
-                                        <option value="0">0</option>
-                                        <option value="1">1</option>
-                                        <option value="2">2</option>
-                                        <option value="3">3</option>
-                                        <option value="4">4</option>
-                                        <option value="5">5</option>
-                                    </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE3_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE3}</textarea>
+                    </div>
+                </td>
+                <td class="inspire_people_score score ">
+                    <div>
+                        <select name="LSCORE3[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                            <option value="0">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                        <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                        <textarea name="LSCORE3_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE3}</textarea>
 
-                                </div>
-                            </td>
-                            <td class="leadership_competency_total total ">
-                                <input name="LSCORE_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_LTOTAL}" type="text " readonly>
-                            </td>
+                    </div>
+                </td>
+                <td class="leadership_competency_total total">
+                    <input name="LSCORE_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_LTOTAL}" type="text " readonly>
+                </td>
 
-                            <td class="raw_total grand_total ">
-                                <input name="COMPETENCY_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_TOTAL}" type="text " readonly>
-                            </td>
-                            <td class="total_competency_percent grand_total ">
-                                <input name="COMPETENCY_TOTAL100[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_TOTAL100}" type="text " readonly>
-                            </td>
-                            <input type="hidden" name="ORIGINAL_SCORE[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].ORIGINAL_SCORE}">
-                        </tr>
-              `
+                <td class="raw_total grand_total">
+                    <input name="COMPETENCY_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_TOTAL}" type="text " readonly>
+                </td>
+                <td class="total_competency_percent grand_total">
+                    <input name="COMPETENCY_TOTAL100[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_TOTAL100}" type="text " readonly>
+                    <input name="APPRAISAL_EMPLOYEE_ID[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_EMPLOYEE_ID}" id="APPRAISAL_EMPLOYEE_ID[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_EMPLOYEE_ID}" type="hidden">
+                    <input name="ORIGINAL_SCORE[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].ORIGINAL_SCORE}" id="ORIGINAL_SCORE_${myList[i].APPRAISAL_EMPLOYEE_ID}" value="${myList[i].ORIGINAL_SCORE}" type="hidden">
+                </td>
+            </tr>
+        `
                 table.append(row)
                 let n = Number(i) + 1
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE1}]`).attr("selected", "selected")
@@ -658,21 +725,15 @@
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.provide_solutions_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE2}]`).attr("selected", "selected")
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.inspire_people_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE3}]`).attr("selected", "selected")
             }
-
             pageButtons(Data, data.pages)
-
         }
     </script>
-    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script> -->
+
     <script src="./KPI_dropdown_control.js "></script>
     <script src="./KPI_comment_box_control.js"></script>
     <script src="./KPI_dynamic_input.js"></script>
     <script src="./KPI_row_status_control.js"></script>
     <script src="./KPI_score_calculation.js"></script>
-    <script src="./KPI_row_status_submit.js"></script>
     <!-- <script src="./KPI_id_filter_control.js"></script> -->
-
-
 </body>
-
 </html>

@@ -12,9 +12,6 @@ const controlHeaderDropdowns = function() {
     const gradedNumber = document.querySelector("span.GRADED_NUMBER")
     const notGradedNumber = document.querySelector("span.NOT_GRADED_NUMBER")
 
-
-
-
     gradedNumber.innerText = `(${gradedDataInit.length})` //From pagination script
     notGradedNumber.innerText = `(${notGradedDataInit.length})` //From pagination script
 
