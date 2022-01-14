@@ -6,7 +6,7 @@ const btnHoverOff = function() {
 }
 const controlHeaderDropdowns = function() {
     const filterBtn = document.querySelector("#filter-btn");
-    const dropdownForm = document.querySelector(".filter-boxes").querySelector(".w3-dropdown-content");
+    const dropdownForm = document.querySelector(".filter-boxes").querySelector("#filter-form");
 
 
     const gradedNumber = document.querySelector("span.GRADED_NUMBER")

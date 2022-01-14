@@ -33,7 +33,7 @@ const commentBoxControl = function() {
                     commentBox.setAttribute("placeholder", "กรุณาใส่คะแนนก่อนจึงจะสามารถกรอกคำอธิบายประกอบการประเมินได้")
                 } else {
                     commentBox.disabled = false
-                    commentBox.setAttribute("placeholder", "คำอธิบายประกอบการประเมิน")
+                    commentBox.setAttribute("placeholder", "คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)")
                 }
                 commentBox.className += " w3-show";
                 boxParent.style.border = "1px solid #330066";

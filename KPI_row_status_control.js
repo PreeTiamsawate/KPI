@@ -34,10 +34,10 @@ const assignRowStatus = function() {
             gradingRow.style.backgroundColor = "#F3F3F3";
         }
     }
-    const purpleRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
+    const orangeRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
 
-    if (purpleRows.length > 0) {
-        submitPageBtn.style.backgroundColor = "#FFF0DC";
+    if (orangeRows.length > 0) {
+        submitPageBtn.style.backgroundColor = "#FCAC50";
         submitPageBtn.style.cursor = "not-allowed"
         submitPageBtn.disabled = true
         paginationWrapper.style.backgroundColor = "#FFF0DC";
@@ -47,7 +47,7 @@ const assignRowStatus = function() {
         }
 
     } else {
-        submitPageBtn.style.backgroundColor = "#FFFFFF";
+        submitPageBtn.style.backgroundColor = "#330066";
         submitPageBtn.style.cursor = "pointer"
         submitPageBtn.disabled = false
         paginationWrapper.style.backgroundColor = "transparent";
@@ -95,10 +95,10 @@ const rowStatusBySelect = function() {
             }
 
 
-            const purpleRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
+            const orangeRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
             const greenRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'newly-filled']")
-            if (purpleRows.length > 0) {
-                submitPageBtn.style.backgroundColor = "#FFF0DC";
+            if (orangeRows.length > 0) {
+                submitPageBtn.style.backgroundColor = "#FCAC50";
                 submitPageBtn.style.cursor = "not-allowed"
                 submitPageBtn.disabled = true
                 paginationWrapper.style.backgroundColor = "#FFF0DC";
@@ -108,7 +108,7 @@ const rowStatusBySelect = function() {
                 }
 
             } else if (greenRows.length > 0) {
-                submitPageBtn.style.backgroundColor = "#E3FFE1";
+                submitPageBtn.style.backgroundColor = "#58CC51";
                 submitPageBtn.style.cursor = "pointer"
                 submitPageBtn.disabled = false
                 paginationWrapper.style.backgroundColor = "transparent";
@@ -118,7 +118,7 @@ const rowStatusBySelect = function() {
                 }
 
             } else {
-                submitPageBtn.style.backgroundColor = "#FFFFFF";
+                submitPageBtn.style.backgroundColor = "#330066";
                 submitPageBtn.style.cursor = "pointer"
                 submitPageBtn.disabled = false
                 paginationWrapper.style.backgroundColor = "transparent";
@@ -173,9 +173,9 @@ const rowStatusByComment = function() {
 
             }
 
-            const purpleRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
+            const orangeRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
             const greenRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'newly-filled']")
-            if (purpleRows.length > 0) {
+            if (orangeRows.length > 0) {
                 submitPageBtn.style.backgroundColor = "#FFF0DC";
                 submitPageBtn.style.cursor = "not-allowed"
                 submitPageBtn.disabled = true
@@ -186,7 +186,7 @@ const rowStatusByComment = function() {
                 }
 
             } else if (greenRows.length > 0) {
-                submitPageBtn.style.backgroundColor = "#E3FFE1";
+                submitPageBtn.style.backgroundColor = "#58CC51";
                 submitPageBtn.style.cursor = "pointer"
                 submitPageBtn.disabled = false
                 paginationWrapper.style.backgroundColor = "transparent";
@@ -196,7 +196,7 @@ const rowStatusByComment = function() {
                 }
 
             } else {
-                submitPageBtn.style.backgroundColor = "#FFFFFF";
+                submitPageBtn.style.backgroundColor = "#330066";
                 submitPageBtn.style.cursor = "pointer"
                 submitPageBtn.disabled = false
                 paginationWrapper.style.backgroundColor = "transparent";

@@ -101,10 +101,11 @@ if (!(isset($_SESSION['user']))) {
                     </div>
                 </div>
                 <div class="filter-boxes">
-                    <div id="filter-btn" class="w3-dropdown-click">
+                    <div id="filter-btn" class="w3-dropdown-click w3-dropdown-hover">
                         <img src="./kpi_image/Icon material-filter-list.svg">
+                        <div class="w3-dropdown-content " id="filter-defination"> Filter </div>
                     </div>
-                    <form action="" class="w3-dropdown-content">
+                    <form action="" id="filter-form" class="w3-dropdown-content">
                         <div>
                             <div>
                                 <div>
@@ -180,10 +181,10 @@ if (!(isset($_SESSION['user']))) {
 
                             <div>
                                 <button type="submit" id="use-filter-button">
-                                    นำไปใช้
+                                    เลือก
                                 </button>
                                 <button id="cancel-form-btn">
-                                    ยกเลิก
+                                    ล้างตัวเลือก
                                 </button>
 
                             </div>
@@ -223,7 +224,7 @@ if (!(isset($_SESSION['user']))) {
                     <thead>
                         <tr>
                             <th rowspan="1" colspan="3">
-                                รายละเอียดพนักงาน
+                                Personnel Information
                             </th>
                             <th></th>
                             <th colspan="4" height="50">
@@ -347,7 +348,34 @@ if (!(isset($_SESSION['user']))) {
                 <input type="hidden" id="numGraded" name="numGraded">
                 <input type="hidden" id="totalRows" name="totalRows">
             </form>
-            <div id="pagination-wrapper"></div>
+            <div class="grid-container ">
+                <div class="grid-item-1">
+                    <button type="submit" id="submitPage">Submit This Page</button>
+                </div>
+                <div class="grid-item-2">
+                    <div id="pagination-wrapper"></div>
+                </div>
+                <div class="grid-item-3">
+                    <div id="page-index-wraper"></div>
+                </div>
+                <div class="grid-item-4">
+                    <div id="rating-container">
+                        <div>Please tell us how we're doing</div>
+                        <a href="" target="_blank">
+                            <button>
+                                <div>Rate your experience</div>
+                                <div>
+                                    <img src="./kpi_image/Icon awesome-star.svg">
+                                    <img src="./kpi_image/Icon awesome-star.svg">
+                                    <img src="./kpi_image/Icon awesome-star.svg">
+                                    <img src="./kpi_image/Icon awesome-star.svg">
+                                    <img src="./kpi_image/Icon awesome-star.svg">
+                                </div>
+                            </button>
+                        </a>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -441,7 +469,7 @@ if (!(isset($_SESSION['user']))) {
             'rows': 20, //number of rows showed
             'window': 10, //number of pagination buttons
         }
-        const dropdownForm = document.querySelector(".filter-boxes").querySelector(".w3-dropdown-content");
+        const dropdownForm = document.querySelector(".filter-boxes").querySelector("#filter-form");
         const filterBtn = document.querySelector("#filter-btn");
         const filterRadios = document.querySelectorAll(".filter-boxes input[type='radio']")
         const levelCheckboxes = document.querySelectorAll(".filter-boxes input[type='checkbox']")
@@ -570,11 +598,11 @@ if (!(isset($_SESSION['user']))) {
                 wrapper.innerHTML += `<button value=${page} class="page btn">${page}</button>`
             }
 
-            if (state.page != 1) {
+            if (state.page != 1 && maxLeft > 1)) {
                 wrapper.innerHTML = `<button value=${1} class="page btn">&#171; First</button>` + wrapper.innerHTML
             }
 
-            if (state.page != pages) {
+            if (state.page != pages && pages > maxRight) {
                 wrapper.innerHTML += `<button value=${pages} class="page btn">Last &#187;</button>`
             }
             $(`button[value = ${state.page}]`).css({
@@ -620,7 +648,7 @@ if (!(isset($_SESSION['user']))) {
                             <option value="5">5</option>
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                        <textarea name="CSCORE1_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]"" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE1}</textarea>
+                        <textarea name="CSCORE1_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]"" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_CSCORE1}</textarea>
 
                     </div>
                 </td>
@@ -635,7 +663,7 @@ if (!(isset($_SESSION['user']))) {
                             <option value="5">5</option>
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                        <textarea name="CSCORE2_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE2}</textarea>
+                        <textarea name="CSCORE2_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_CSCORE2}</textarea>
                     </div>
                 </td>
                 <td class="flexibility_and_adaptability_score score ">
@@ -649,7 +677,7 @@ if (!(isset($_SESSION['user']))) {
                             <option value="5">5</option>
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                        <textarea name="CSCORE3_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_CSCORE3}</textarea>
+                        <textarea name="CSCORE3_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_CSCORE3}</textarea>
 
                     </div>
                 </td>
@@ -668,7 +696,7 @@ if (!(isset($_SESSION['user']))) {
                             <option value="5">5</option>
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                        <textarea name="LSCORE1_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE1}</textarea>
+                        <textarea name="LSCORE1_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_LSCORE1}</textarea>
 
                     </div>
                 </td>
@@ -683,7 +711,7 @@ if (!(isset($_SESSION['user']))) {
                             <option value="5">5</option>
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                        <textarea name="LSCORE2_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE2}</textarea>
+                        <textarea name="LSCORE2_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_LSCORE2}</textarea>
 
                     </div>
                 </td>
@@ -698,7 +726,7 @@ if (!(isset($_SESSION['user']))) {
                             <option value="5">5</option>
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                        <textarea name="LSCORE3_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" placeholder="คำอธิบายประกอบการประเมิน">${myList[i].COMMENT_COMPETENCY_LSCORE3}</textarea>
+                        <textarea name="LSCORE3_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_LSCORE3}</textarea>
 
                     </div>
                 </td>

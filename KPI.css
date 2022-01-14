@@ -279,6 +279,19 @@ nav {
     padding: 19px 29px;
 }
 
+#filter-defination {
+    width: 10px !important;
+    height: auto;
+    text-align: center;
+    font: normal normal 300 14px/18px Prompt;
+    letter-spacing: 0px;
+    color: #000000;
+    background-color: transparent !important;
+    text-align: center;
+    opacity: 1;
+    margin-top: -50px;
+}
+
 .w3-dropdown-hover>img {
     border-radius: 5px;
 }
@@ -537,19 +550,51 @@ td.grand_total>input {
     letter-spacing: 0px;
 }
 
+
+/* bottom grid============= */
+
+.grid-container {
+    margin-top: 30px;
+    display: grid;
+    grid-template-columns: auto 210px;
+    grid-template-rows: repeat(3, 50px);
+    grid-template-areas: "content-1 sidebar" "content-2 sidebar" "content-3 sidebar";
+}
+
+.grid-container>div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.grid-item-1 {
+    grid-area: content-1;
+}
+
+.grid-item-2 {
+    grid-area: content-2;
+}
+
+.grid-item-3 {
+    grid-area: content-3;
+}
+
+.grid-item-4 {
+    grid-area: sidebar;
+}
+
 #submitPage {
     display: inline-block;
-    margin-left: calc(100% - 178px);
     width: 178px;
     height: 34px;
-    border: 1px solid #330066;
     border-radius: 5px;
-    background-color: #FFFFFF;
+    background: #330066 0% 0% no-repeat padding-box;
+    opacity: 1;
     text-align: center;
     font: normal normal normal 16px/18px Prompt;
     letter-spacing: 0px;
-    color: #330066;
-    margin-top: 20px;
+    color: #FFFFFF;
 }
 
 #pagination-wrapper {
@@ -561,7 +606,7 @@ td.grand_total>input {
     height: 50px;
     min-width: 400px;
     text-align: center;
-    margin: 10px 0 50px 0;
+    border-radius: 5px;
     /* background: transparent; */
 }
 
@@ -571,4 +616,45 @@ td.grand_total>input {
     font: normal normal normal 16px/18px Prompt;
     letter-spacing: 0px;
     color: #330066;
+}
+
+#rating-container {
+    height: 100px;
+    width: 207px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    font: normal normal normal 12px/18px Prompt;
+    letter-spacing: 0px;
+    color: #330066;
+}
+
+#rating-container a {
+    text-decoration: none;
+}
+
+#rating-container button {
+    width: 207px;
+    height: 53px;
+    border: 1px solid #330066;
+    border-radius: 10px;
+    opacity: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    justify-content: center;
+    align-items: center;
+    background-color: #FFFFFF;
+}
+
+#rating-container button:hover {
+    background-color: rgb(243, 243, 243);
+}
+
+#rating-container button>div:nth-of-type(2) {
+    width: 126px;
+    display: flex;
+    justify-content: space-between;
 }
