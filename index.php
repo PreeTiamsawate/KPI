@@ -616,7 +616,9 @@ if (!(isset($_SESSION['user']))) {
                 })
                 buildTable(data)
                 callBasicFunctions()
+                
             })
+            index.innerHTML = `Page ${state.page} of ${pages}`
 
         }
 
