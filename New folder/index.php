@@ -344,7 +344,7 @@ if (!(isset($_SESSION['user']))) {
                     <tbody class="grading-tbody">
                     </tbody>
                 </table>
-                
+                <button type="submit" id="submitPage">Submit This Page</button>
                 <input type="hidden" id="numGraded" name="numGraded">
                 <input type="hidden" id="totalRows" name="totalRows">
             </form>
@@ -573,7 +573,7 @@ if (!(isset($_SESSION['user']))) {
 
         function pageButtons(data, pages) {
             var wrapper = document.getElementById('pagination-wrapper')
-            var index = document.getElementById('page-index-wraper')
+
             wrapper.innerHTML = ``
             console.log('Pages: ', pages)
             console.log("state.page: ", state.page)

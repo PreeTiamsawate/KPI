@@ -86,12 +86,12 @@
                         <div>
                             <div>
                                 <div>
-                                    <input type="radio" id="graded" name="graded_number_filter">
+                                    <input class="grade-checkbox" type="checkbox" id="graded" name="graded_number_filter">
                                     <label for="graded">ให้คะแนนแล้ว</label>
                                     <span class="GRADED_NUMBER">(100)</span>
                                 </div>
-                                <div>
-                                    <input type="radio" id="not-graded" name="graded_number_filter">
+                                <div> 
+                                    <input class="grade-checkbox" type="checkbox" id="not-graded" name="graded_number_filter">
                                     <label for="not-graded">ยังไม่ให้คะแนน</label>
                                     <span class="NOT_GRADED_NUMBER">(900)</span>
                                 </div>
@@ -99,58 +99,58 @@
                             <div>
                                 <div class="level-checkboxes">
                                     <div>
-                                        <input type="checkbox" value="1" id="lv1">
+                                        <input class="level-checkbox" type="checkbox" value="1" id="lv1">
                                         <label for="lv1">Lv.1</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="2" id="lv2">
+                                        <input class="level-checkbox" type="checkbox" value="2" id="lv2">
                                         <label for="lv2">Lv.2</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="3" id="lv3">
+                                        <input class="level-checkbox" type="checkbox" value="3" id="lv3">
                                         <label for="lv3">Lv.3</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="4" id="lv4">
+                                        <input class="level-checkbox" type="checkbox" value="4" id="lv4">
                                         <label for="lv4">Lv.4</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="5" id="lv5">
+                                        <input class="level-checkbox" type="checkbox" value="5" id="lv5">
                                         <label for="lv5">Lv.5</label>
 
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="6" id="lv6">
+                                        <input class="level-checkbox" type="checkbox" value="6" id="lv6">
                                         <label for="lv6">Lv.6</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="7" id="lv7">
+                                        <input class="level-checkbox" type="checkbox" value="7" id="lv7">
                                         <label for="lv7">Lv.7</label>
                                     </div>
                                 </div>
                                 <div class="level-checkboxes">
                                     <div>
-                                        <input type="checkbox" value="8" id="lv8">
+                                        <input class="level-checkbox" type="checkbox" value="8" id="lv8">
                                         <label for="lv8">Lv.8</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="9" id="lv9">
+                                        <input class="level-checkbox" type="checkbox" value="9" id="lv9">
                                         <label for="lv9">Lv.9</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="10" id="lv10">
+                                        <input class="level-checkbox" type="checkbox" value="10" id="lv10">
                                         <label for="lv10">Lv.10</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="11" id="lv11">
+                                        <input class="level-checkbox" type="checkbox" value="11" id="lv11">
                                         <label for="lv11">Lv.11</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="13" id="lv13">
+                                        <input class="level-checkbox" type="checkbox" value="13" id="lv13">
                                         <label for="lv13">Lv.13</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="14" id="lv14">
+                                        <input class="level-checkbox" type="checkbox" value="14" id="lv14">
                                         <label for="lv14">Lv.14</label>
                                     </div>
                                 </div>
@@ -337,9 +337,38 @@
 
 
                 </table>
+                <div class="grid-container ">
+                    <div class="grid-item-1">
+                        <button type="submit" id="submitPage">Submit This Page</button>
+                    </div>
+                    <div class="grid-item-2">
+                        <div id="pagination-wrapper"></div>
+                    </div>
+                    <div class="grid-item-3">
+                        <div id="page-index-wraper"></div>
+                    </div>
+                    <div class="grid-item-4">
+                        <div id="rating-container">
+                            <div>Please tell us how we're doing</div>
+                            <a href="" target="_blank">
+                                <button>
+                                    <div>Rate your experience</div>
+                                    <div>
+                                        <img src="./kpi_image/Icon awesome-star.svg">
+                                        <img src="./kpi_image/Icon awesome-star.svg">
+                                        <img src="./kpi_image/Icon awesome-star.svg">
+                                        <img src="./kpi_image/Icon awesome-star.svg">
+                                        <img src="./kpi_image/Icon awesome-star.svg">
+                                    </div>
+                                </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
 
             </form>
-            <div class="grid-container ">
+            <!-- <div class="grid-container ">
                 <div class="grid-item-1">
                     <button type="submit" id="submitPage">Submit This Page</button>
                 </div>
@@ -368,7 +397,7 @@
 
                     </div>
                 </div>
-            </div>
+            </div> -->
 
 
 
@@ -385,6 +414,7 @@
         const gradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
         const notGradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
         let filteredData = rawData
+        let filteredByLevelData = rawData
 
         const updateGradedNumbers = function(data) {
             let gradedFilteredData = data.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
@@ -404,8 +434,8 @@
         }
         const dropdownForm = document.querySelector(".filter-boxes").querySelector("#filter-form");
         const filterBtn = document.querySelector("#filter-btn");
-        const filterRadios = document.querySelectorAll(".filter-boxes input[type='radio']")
-        const levelCheckboxes = document.querySelectorAll(".filter-boxes input[type='checkbox']")
+        const filterRadios = document.querySelectorAll(".filter-boxes .grade-checkbox")
+        const levelCheckboxes = document.querySelectorAll(".filter-boxes .level-checkbox")
         const useFilterBtn = document.querySelector('#use-filter-button')
         const cancelFormBtn = document.querySelector("#cancel-form-btn")
         const searchInput = document.querySelector("#search-id");
@@ -417,7 +447,7 @@
                 rowStatusByComment()
                 calculateScores()
                 calculateScoresByInput()
-                updateGradedNumbers(filteredData)
+                updateGradedNumbers(filteredByLevelData)
             }
             // for (const levelCheckbox of levelCheckboxes) {
             //     console.log(levelCheckbox.checked)
@@ -427,18 +457,26 @@
             e.preventDefault();
             let checkedLevelBoxes = Array.from(levelCheckboxes).filter(levelCheckbox => levelCheckbox.checked)
             let checkedLevelValues = checkedLevelBoxes.map(levelCheckbox => Number(levelCheckbox.value))
-            console.log(checkedLevelValues)
-            if (filterRadios[0].checked) {
+            console.log(filterRadios[0].checked)
+            if (filterRadios[0].checked && !filterRadios[1].checked) {
                 filteredData = gradedDataInit;
+                console.log("true, false")
 
-            } else if (filterRadios[1].checked) {
+            } else if (!filterRadios[0].checked && filterRadios[1].checked) {
                 filteredData = notGradedDataInit;
-            } else {
+                console.log("false, true")
+            } else  {
                 filteredData = rawData;
+                console.log("true, true")
             }
+          
             if (checkedLevelValues.length > 0) {
                 filteredData = filteredData.filter(data => checkedLevelValues.includes(data.APPRAISAL_LEVEL))
+                filteredByLevelData = rawData.filter(data => checkedLevelValues.includes(data.APPRAISAL_LEVEL))
+            }else{
+                filteredByLevelData = rawData
             }
+            
 
             // console.log(filteredData)
             searchInput.value = ""
@@ -464,6 +502,7 @@
                 levelCheckbox.checked = false
             }
             filteredData = rawData
+            filteredByLevelData = rawData
             searchInput.value = ""
             $('.grading-tbody').empty()
             buildTable(filteredData)

@@ -1,0 +1,19 @@
+<svg id="score_definitions" data-name="score definitions" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="262" height="32" viewBox="0 0 262 32">
+  <defs>
+    <linearGradient id="linear-gradient" y1="0.5" x2="1" y2="0.5" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#fec1c1"/>
+      <stop offset="0.485" stop-color="#f8f8a6"/>
+      <stop offset="1" stop-color="#84ffb5"/>
+    </linearGradient>
+  </defs>
+  <g id="score_parameter" data-name="score parameter" transform="translate(0)">
+    <rect id="Rectangle_25" data-name="Rectangle 25" width="262" height="32" rx="5" transform="translate(0)" fill="url(#linear-gradient)"/>
+    <path id="Icon_material-mood-bad" data-name="Icon material-mood-bad" d="M10.992,3A8,8,0,1,0,19,11,8,8,0,0,0,10.992,3ZM11,17.4A6.4,6.4,0,1,1,17.4,11,6.4,6.4,0,0,1,11,17.4Zm2.8-7.2A1.2,1.2,0,1,0,12.6,9,1.2,1.2,0,0,0,13.8,10.2Zm-5.6,0A1.2,1.2,0,1,0,7,9,1.2,1.2,0,0,0,8.2,10.2ZM11,12.6a4.4,4.4,0,0,0-4.088,2.8h8.176A4.4,4.4,0,0,0,11,12.6Z" transform="translate(17 5)" fill="#444"/>
+    <path id="Icon_ionic-md-happy" data-name="Icon ionic-md-happy" d="M11.375,3.375a8,8,0,1,0,8,8A8,8,0,0,0,11.375,3.375Zm0,14.4a6.4,6.4,0,1,1,6.4-6.4A6.419,6.419,0,0,1,11.375,17.775Zm2.8-7.2a1.2,1.2,0,1,0-1.2-1.2A1.178,1.178,0,0,0,14.175,10.575Zm-5.6,0a1.2,1.2,0,1,0-1.2-1.2A1.178,1.178,0,0,0,8.575,10.575Zm2.8,5.2a4.359,4.359,0,0,0,4.08-2.8H7.295A4.359,4.359,0,0,0,11.375,15.775Z" transform="translate(216.625 4.625)" fill="#444"/>
+    <text id="_1" data-name="1" transform="translate(53 7)" fill="#444" font-size="12" font-family="Prompt-Regular, Prompt"><tspan x="-2" y="13">1</tspan></text>
+    <text id="_2" data-name="2" transform="translate(86 7)" fill="#444" font-size="12" font-family="Prompt-Regular, Prompt"><tspan x="-3" y="13">2</tspan></text>
+    <text id="_3" data-name="3" transform="translate(120 7)" fill="#444" font-size="12" font-family="Prompt-Regular, Prompt"><tspan x="-3" y="13">3</tspan></text>
+    <text id="_4" data-name="4" transform="translate(153 7)" fill="#444" font-size="12" font-family="Prompt-Regular, Prompt"><tspan x="-3" y="13">4</tspan></text>
+    <text id="_5" data-name="5" transform="translate(187 7)" fill="#444" font-size="12" font-family="Prompt-Regular, Prompt"><tspan x="-3" y="13">5</tspan></text>
+  </g>
+</svg>
