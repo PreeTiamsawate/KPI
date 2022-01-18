@@ -410,12 +410,11 @@
     <!-- Delete KPI_dummy_json.js below when connected to database!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
     <script src="./KPI_dummy_json.js"></script>
     <script>
-        const rawData = dummyKPI;
+        let rawData = dummyKPI;
         const gradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
         const notGradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
         let filteredData = rawData
-        let filteredByLevelData = rawData
-
+     
         const updateGradedNumbers = function(data) {
             let gradedFilteredData = data.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
             let notGradedFilteredData = data.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
@@ -447,37 +446,29 @@
                 rowStatusByComment()
                 calculateScores()
                 calculateScoresByInput()
-                updateGradedNumbers(filteredByLevelData)
             }
-            // for (const levelCheckbox of levelCheckboxes) {
-            //     console.log(levelCheckbox.checked)
-            // }
+         
 
         useFilterBtn.addEventListener('click', function(e) {
             e.preventDefault();
             let checkedLevelBoxes = Array.from(levelCheckboxes).filter(levelCheckbox => levelCheckbox.checked)
             let checkedLevelValues = checkedLevelBoxes.map(levelCheckbox => Number(levelCheckbox.value))
-            console.log(filterRadios[0].checked)
+          
             if (filterRadios[0].checked && !filterRadios[1].checked) {
                 filteredData = gradedDataInit;
-                console.log("true, false")
+              
 
             } else if (!filterRadios[0].checked && filterRadios[1].checked) {
                 filteredData = notGradedDataInit;
-                console.log("false, true")
+                
             } else  {
                 filteredData = rawData;
-                console.log("true, true")
             }
           
             if (checkedLevelValues.length > 0) {
                 filteredData = filteredData.filter(data => checkedLevelValues.includes(data.APPRAISAL_LEVEL))
-                filteredByLevelData = rawData.filter(data => checkedLevelValues.includes(data.APPRAISAL_LEVEL))
-            }else{
-                filteredByLevelData = rawData
             }
             
-
             // console.log(filteredData)
             searchInput.value = ""
             $('.grading-tbody').empty()
@@ -502,7 +493,6 @@
                 levelCheckbox.checked = false
             }
             filteredData = rawData
-            filteredByLevelData = rawData
             searchInput.value = ""
             $('.grading-tbody').empty()
             buildTable(filteredData)

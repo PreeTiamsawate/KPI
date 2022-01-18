@@ -109,12 +109,12 @@ if (!(isset($_SESSION['user']))) {
                         <div>
                             <div>
                                 <div>
-                                    <input type="radio" id="graded" name="graded_number_filter">
+                                    <input class="grade-checkbox" type="checkbox" id="graded" name="graded_number_filter">
                                     <label for="graded">ให้คะแนนแล้ว</label>
                                     <span class="GRADED_NUMBER" id="GRADED_NUMBER">(100)</span>
                                 </div>
                                 <div>
-                                    <input type="radio" id="not-graded" name="graded_number_filter">
+                                    <input class="grade-checkbox" type="checkbox" id="not-graded" name="graded_number_filter">
                                     <label for="not-graded">ยังไม่ให้คะแนน</label>
                                     <span class="NOT_GRADED_NUMBER" id="NOT_GRADED_NUMBER">(900)</span>
                                 </div>
@@ -122,58 +122,58 @@ if (!(isset($_SESSION['user']))) {
                             <div>
                                 <div class="level-checkboxes">
                                     <div>
-                                        <input type="checkbox" value="1" id="lv1">
+                                        <input class="level-checkbox" type="checkbox" value="1" id="lv1">
                                         <label for="lv1">Lv.1</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="2" id="lv2">
+                                        <input class="level-checkbox" type="checkbox" value="2" id="lv2">
                                         <label for="lv2">Lv.2</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="3" id="lv3">
+                                        <input class="level-checkbox" type="checkbox" value="3" id="lv3">
                                         <label for="lv3">Lv.3</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="4" id="lv4">
+                                        <input class="level-checkbox" type="checkbox" value="4" id="lv4">
                                         <label for="lv4">Lv.4</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="5" id="lv5">
+                                        <input class="level-checkbox" type="checkbox" value="5" id="lv5">
                                         <label for="lv5">Lv.5</label>
 
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="6" id="lv6">
+                                        <input class="level-checkbox" type="checkbox" value="6" id="lv6">
                                         <label for="lv6">Lv.6</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="7" id="lv7">
+                                        <input class="level-checkbox" type="checkbox" value="7" id="lv7">
                                         <label for="lv7">Lv.7</label>
                                     </div>
                                 </div>
                                 <div class="level-checkboxes">
                                     <div>
-                                        <input type="checkbox" value="8" id="lv8">
+                                        <input class="level-checkbox" type="checkbox" value="8" id="lv8">
                                         <label for="lv8">Lv.8</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="9" id="lv9">
+                                        <input class="level-checkbox" type="checkbox" value="9" id="lv9">
                                         <label for="lv9">Lv.9</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="10" id="lv10">
+                                        <input class="level-checkbox" type="checkbox" value="10" id="lv10">
                                         <label for="lv10">Lv.10</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="11" id="lv11">
+                                        <input class="level-checkbox" type="checkbox" value="11" id="lv11">
                                         <label for="lv11">Lv.11</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="13" id="lv13">
+                                        <input class="level-checkbox" type="checkbox" value="13" id="lv13">
                                         <label for="lv13">Lv.13</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" value="14" id="lv14">
+                                        <input class="level-checkbox" type="checkbox" value="14" id="lv14">
                                         <label for="lv14">Lv.14</label>
                                     </div>
                                 </div>
@@ -401,7 +401,7 @@ if (!(isset($_SESSION['user']))) {
                             console.log(`${index} : ID=${item.ID} Score=${item.score}`);
                             $(`#ORIGINAL_SCORE_${item.ID}`).val(item.score);
                             // *** เอา APPRAISAL_COMPETENCY_TOTAL ใส่กลับไปใน filteredData ***;
-                            for(let data of filteredData ){
+                            for(let data of rawData ){
                                 if(data.APPRAISAL_EMPLOYEE_ID == item.ID ){
                                     data.APPRAISAL_COMPETENCY_TOTAL = item.competency_total 
                                 }
@@ -412,7 +412,7 @@ if (!(isset($_SESSION['user']))) {
                         $('#NOT_GRADED_NUMBER').html(response.notGradedRows);
                         $('#numGraded').val(response.gradedRows);
                         $('#totalRows').val(response.totalRows);
-                        //updateGradedNumbers(filteredData);
+                        //updateGradedNumbers(rawData);
                         //Reset rows color
                         const greenRows = document.querySelectorAll("tr[row-status='newly-filled']")
                         const submitBtn = document.querySelector('#submitPage');
@@ -445,7 +445,7 @@ if (!(isset($_SESSION['user']))) {
         //$('#NOT_GRADED_NUMBER').html(unpackedData.notGradedRows);
         //$('#numGraded').val(unpackedData.gradedRows);
         //$('#totalRows').val(unpackedData.totalRows);
-        const rawData = dummyKPI;
+        let rawData = dummyKPI;
         const gradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
         const notGradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
         let filteredData = rawData;
@@ -471,8 +471,8 @@ if (!(isset($_SESSION['user']))) {
         }
         const dropdownForm = document.querySelector(".filter-boxes").querySelector("#filter-form");
         const filterBtn = document.querySelector("#filter-btn");
-        const filterRadios = document.querySelectorAll(".filter-boxes input[type='radio']")
-        const levelCheckboxes = document.querySelectorAll(".filter-boxes input[type='checkbox']")
+        const filterRadios = document.querySelectorAll(".filter-boxes .grade-checkbox")
+        const levelCheckboxes = document.querySelectorAll(".filter-boxes .level-checkbox")
         const useFilterBtn = document.querySelector('#use-filter-button')
         const cancelFormBtn = document.querySelector("#cancel-form-btn")
         const searchInput = document.querySelector("#search-id");
@@ -484,28 +484,30 @@ if (!(isset($_SESSION['user']))) {
                 rowStatusByComment()
                 calculateScores()
                 calculateScoresByInput()
-                updateGradedNumbers(filteredData)
             }
-            // for (const levelCheckbox of levelCheckboxes) {
-            //     console.log(levelCheckbox.checked)
-            // }
+   
 
         useFilterBtn.addEventListener('click', function(e) {
             e.preventDefault();
             let checkedLevelBoxes = Array.from(levelCheckboxes).filter(levelCheckbox => levelCheckbox.checked)
             let checkedLevelValues = checkedLevelBoxes.map(levelCheckbox => Number(levelCheckbox.value))
-            console.log(checkedLevelValues)
-            if (filterRadios[0].checked) {
+          
+            if (filterRadios[0].checked && !filterRadios[1].checked) {
                 filteredData = gradedDataInit;
+              
 
-            } else if (filterRadios[1].checked) {
+            } else if (!filterRadios[0].checked && filterRadios[1].checked) {
                 filteredData = notGradedDataInit;
-            } else {
+                
+            } else  {
                 filteredData = rawData;
             }
+          
             if (checkedLevelValues.length > 0) {
                 filteredData = filteredData.filter(data => checkedLevelValues.includes(data.APPRAISAL_LEVEL))
             }
+            
+            // console.log(filteredData)
             searchInput.value = ""
             $('.grading-tbody').empty()
             buildTable(filteredData)
