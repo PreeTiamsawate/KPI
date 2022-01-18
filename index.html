@@ -16,6 +16,7 @@
     <!-- Local css -->
     <link rel="stylesheet" href="./KPI.css">
     <title>แบบประเมินผลการปฏิบัติงานของพนักงาน</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js" integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
 </head>
 
 <body>
@@ -186,8 +187,8 @@
 
         </header>
 
-        <main>
-            <form action="" method="">
+        <main id="to-print">
+            <form  action="" method="">
                 <table id="GRADE_TABLE">
                     <colgroup>
                         <col>
@@ -368,36 +369,7 @@
 
 
             </form>
-            <!-- <div class="grid-container ">
-                <div class="grid-item-1">
-                    <button type="submit" id="submitPage">Submit This Page</button>
-                </div>
-                <div class="grid-item-2">
-                    <div id="pagination-wrapper"></div>
-                </div>
-                <div class="grid-item-3">
-                    <div id="page-index-wraper"></div>
-                </div>
-                <div class="grid-item-4">
-                    <div id="rating-container">
-                        <div>Please tell us how we're doing</div>
-                        <a href="" target="_blank">
-                            <button>
-                                <div>Rate your experience</div>
-                                <div>
-                                    <img src="./kpi_image/Icon awesome-star.svg">
-                                    <img src="./kpi_image/Icon awesome-star.svg">
-                                    <img src="./kpi_image/Icon awesome-star.svg">
-                                    <img src="./kpi_image/Icon awesome-star.svg">
-                                    <img src="./kpi_image/Icon awesome-star.svg">
-                                </div>
-                            </button>
-                        </a>
-
-
-                    </div>
-                </div>
-            </div> -->
+            <button id="to-pdf">Print PDF</button>
 
 
 
@@ -732,7 +704,23 @@
     <script src="./KPI_row_status_control.js"></script>
     <script src="./KPI_score_calculation.js"></script>
     <script src="./KPI_row_status_submit.js"></script>
-    <!-- <script src="./KPI_id_filter_control.js"></script> -->
+    
+    <script src="./KPI_print_pdf.js"></script>
+    <script>
+        let htmlPDF = document.getElementById("to-print");
+        let exportPDF = document.getElementById("to-pdf");
+        var opt = {
+            margin:       0.5,
+            filename:     'myfile.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            };
+
+// // New Promise-based usage:
+// html2pdf().set(opt).from(htmlPDF).save();
+        exportPDF.onclick = (e) => html2pdf(htmlPDF, opt);
+    </script>
 
 
 </body>
