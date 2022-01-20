@@ -16,7 +16,7 @@
     <!-- Local css -->
     <link rel="stylesheet" href="./KPI.css">
     <title>แบบประเมินผลการปฏิบัติงานของพนักงาน</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js" integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.8.0/html2pdf.bundle.min.js" integrity="sha512-w3u9q/DeneCSwUDjhiMNibTRh/1i/gScBVp2imNVAMCt6cUHIw6xzhzcPFIaL3Q1EbI2l+nu17q2aLJJLo4ZYg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -91,7 +91,7 @@
                                     <label for="graded">ให้คะแนนแล้ว</label>
                                     <span class="GRADED_NUMBER">(100)</span>
                                 </div>
-                                <div> 
+                                <div>
                                     <input class="grade-checkbox" type="checkbox" id="not-graded" name="graded_number_filter">
                                     <label for="not-graded">ยังไม่ให้คะแนน</label>
                                     <span class="NOT_GRADED_NUMBER">(900)</span>
@@ -188,7 +188,7 @@
         </header>
 
         <main id="to-print">
-            <form  action="" method="">
+            <form action="" method="">
                 <table id="GRADE_TABLE">
                     <colgroup>
                         <col>
@@ -369,7 +369,7 @@
 
 
             </form>
-            <button id="to-pdf">Print PDF</button>
+            <!-- <button id="to-pdf">Print PDF</button> -->
 
 
 
@@ -386,7 +386,7 @@
         const gradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
         const notGradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
         let filteredData = rawData
-     
+
         const updateGradedNumbers = function(data) {
             let gradedFilteredData = data.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
             let notGradedFilteredData = data.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
@@ -411,36 +411,36 @@
         const cancelFormBtn = document.querySelector("#cancel-form-btn")
         const searchInput = document.querySelector("#search-id");
         const callBasicFunctions = function() {
-                commentBoxControl()
-                dynamicInputControl()
-                assignRowStatus()
-                rowStatusBySelect()
-                rowStatusByComment()
-                calculateScores()
-                calculateScoresByInput()
-            }
-         
+            commentBoxControl()
+            dynamicInputControl()
+            assignRowStatus()
+            rowStatusBySelect()
+            rowStatusByComment()
+            calculateScores()
+            calculateScoresByInput()
+        }
+
 
         useFilterBtn.addEventListener('click', function(e) {
             e.preventDefault();
             let checkedLevelBoxes = Array.from(levelCheckboxes).filter(levelCheckbox => levelCheckbox.checked)
             let checkedLevelValues = checkedLevelBoxes.map(levelCheckbox => Number(levelCheckbox.value))
-          
+
             if (filterRadios[0].checked && !filterRadios[1].checked) {
                 filteredData = gradedDataInit;
-              
+
 
             } else if (!filterRadios[0].checked && filterRadios[1].checked) {
                 filteredData = notGradedDataInit;
-                
-            } else  {
+
+            } else {
                 filteredData = rawData;
             }
-          
+
             if (checkedLevelValues.length > 0) {
                 filteredData = filteredData.filter(data => checkedLevelValues.includes(data.APPRAISAL_LEVEL))
             }
-            
+
             // console.log(filteredData)
             searchInput.value = ""
             $('.grading-tbody').empty()
@@ -704,21 +704,30 @@
     <script src="./KPI_row_status_control.js"></script>
     <script src="./KPI_score_calculation.js"></script>
     <script src="./KPI_row_status_submit.js"></script>
-    
+
     <script src="./KPI_print_pdf.js"></script>
     <script>
         let htmlPDF = document.getElementById("to-print");
         let exportPDF = document.getElementById("to-pdf");
         var opt = {
-            margin:       0.5,
-            filename:     'myfile.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
+            margin: 0.5,
+            filename: 'myfile.pdf',
+            image: {
+                type: 'jpeg',
+                quality: 0.98
+            },
+            html2canvas: {
+                scale: 2
+            },
+            jsPDF: {
+                unit: 'in',
+                format: 'letter',
+                orientation: 'portrait'
+            }
+        };
 
-// // New Promise-based usage:
-// html2pdf().set(opt).from(htmlPDF).save();
+        // // New Promise-based usage:
+        // html2pdf().set(opt).from(htmlPDF).save();
         exportPDF.onclick = (e) => html2pdf(htmlPDF, opt);
     </script>
 
