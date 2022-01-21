@@ -241,7 +241,7 @@ if (!(isset($_SESSION['user']))) {
                                 <div class="w3-dropdown-hover">
                                     Weighted Competency (%)
                                     <div class="w3-dropdown-content">
-                                        <img src="./kpi_image/total_score_weights2x.png">
+                                        <img src="./kpi_image/total_competency_description.png">
                                     </div>
                                 </div>
 
@@ -359,21 +359,14 @@ if (!(isset($_SESSION['user']))) {
                     <div id="page-index-wraper"></div>
                 </div>
                 <div class="grid-item-4">
-                    <div id="rating-container">
-                        <div>Please tell us how we're doing</div>
-                        <a href="" target="_blank">
-                            <button>
-                                <div>Rate your experience</div>
-                                <div>
-                                    <img src="./kpi_image/Icon awesome-star.svg">
-                                    <img src="./kpi_image/Icon awesome-star.svg">
-                                    <img src="./kpi_image/Icon awesome-star.svg">
-                                    <img src="./kpi_image/Icon awesome-star.svg">
-                                    <img src="./kpi_image/Icon awesome-star.svg">
-                                </div>
-                            </button>
-                        </a>
+                    <div id="no-grade-btn" class="w3-dropdown-hover">
+                        <a href="https://forms.office.com/r/qU6KHmMNsA" target="_blank"> ไม่ต้องการประเมิน    </a>
+                        <p class="w3-dropdown-content">
+                            <b>พนักงานกลุ่มที่ไม่ต้องประเมินผลการปฏิบัติงาน </b> <br> คือ พนักงานที่มีวันลา 45 วัน นับรวมวันหยุดในไตรมาสนั้นๆ เช่น พนักงานลาหยุดประเภทต่างๆ ดังนี้ ลาป่วย ลาคลอด ลาเลี้ยงดูบุตร การลาหยุดไม่รับเงินเดือน (Leave without
+                            Pay) นักบิน Non-Active ที่ไม่ได้ช่วยงานสำนักงาน เป็นต้น <br> <br> ทั้งนี้ พนักงานที่เกษียณ หรือลาออกระหว่างไตรมาส ต้องทำการประเมินผลเพื่อบันทึกไว้เป็นหลักฐานสำหรับการบริหารจัดการทรัพยากรบุคคลต่อไป
+                        </p>
                     </div>
+                    
                 </div>
             </div>
         </main>

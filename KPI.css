@@ -430,7 +430,7 @@ th>.w3-dropdown-hover:hover {
 }
 
 th>.w3-dropdown-hover>.w3-dropdown-content {
-    margin-top: 30px;
+    margin-top: 10px;
     background: #FFFFFF 0% 0% no-repeat padding-box;
     /* border: 1px solid #330066; */
     border-radius: 5px;
@@ -441,7 +441,7 @@ th>.w3-dropdown-hover>.w3-dropdown-content {
 
 th>.w3-dropdown-hover>.w3-dropdown-content>img {
     width: 600px;
-    height: 350px;
+    height: 500px;
 }
 
 td>.w3-dropdown-hover {
@@ -582,6 +582,7 @@ td.grand_total>input {
 
 .grid-item-4 {
     grid-area: sidebar;
+    gap: 10px;
 }
 
 #submitPage {
@@ -630,14 +631,42 @@ td.grand_total>input {
     font: normal normal normal 12px/18px Prompt;
     letter-spacing: 0px;
     color: #330066;
-    margin-bottom: 80px;
+    /* margin-bottom: 80px; */
+}
+
+#no-grade-btn {
+    width: 170px;
+    height: 34px;
+    border: 1px solid #330066;
+    border-radius: 5px;
+    text-align: center;
+    font: normal normal normal 16px/30px Prompt;
+    letter-spacing: 0px;
+    margin-bottom: 95px;
+}
+
+#no-grade-btn>a {
+    text-decoration: none;
+    color: #330066;
+}
+
+#no-grade-btn>p {
+    width: 500px;
+    height: 250px;
+    padding: 15px;
+    text-align: left;
+    background: #FFFFFF 0% 0% no-repeat padding-box;
+    border: 1px solid #330066;
+    border-radius: 5px;
+    margin: -300px 0 0 -330px;
+    font: normal normal normal 14px/30px Prompt;
+}
+
+#no-grade-btn>a:hover {
+    background-color: rgb(243, 243, 243);
 }
 
 #rating-container a {
-    text-decoration: none;
-}
-
-#rating-container button {
     width: 207px;
     height: 53px;
     border: 1px solid #330066;
@@ -649,13 +678,15 @@ td.grand_total>input {
     justify-content: center;
     align-items: center;
     background-color: #FFFFFF;
+    color: #330066;
+    text-decoration: none;
 }
 
-#rating-container button:hover {
+#rating-container a:hover {
     background-color: rgb(243, 243, 243);
 }
 
-#rating-container button>div:nth-of-type(2) {
+#rating-container a>div:nth-of-type(2) {
     width: 126px;
     display: flex;
     justify-content: space-between;
