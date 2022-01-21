@@ -358,11 +358,21 @@
                                 Pay) นักบิน Non-Active ที่ไม่ได้ช่วยงานสำนักงาน เป็นต้น <br> <br> ทั้งนี้ พนักงานที่เกษียณ หรือลาออกระหว่างไตรมาส ต้องทำการประเมินผลเพื่อบันทึกไว้เป็นหลักฐานสำหรับการบริหารจัดการทรัพยากรบุคคลต่อไป
                             </p>
                         </div>
-
-
-
-
-
+                        <!-- <div id="rating-container">
+                            <div>Please tell us how we're doing</div>
+                            <a href="" target="_blank">
+                                
+                                    <div>Rate your experience</div>
+                                    <div>
+                                        <img src="./kpi_image/Icon awesome-star.svg">
+                                        <img src="./kpi_image/Icon awesome-star.svg">
+                                        <img src="./kpi_image/Icon awesome-star.svg">
+                                        <img src="./kpi_image/Icon awesome-star.svg">
+                                        <img src="./kpi_image/Icon awesome-star.svg">
+                                    </div>
+    
+                            </a>
+                        </div> -->
 
                     </div>
                 </div>
@@ -691,6 +701,29 @@
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.make_it_happen_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE1}]`).attr("selected", "selected")
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.provide_solutions_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE2}]`).attr("selected", "selected")
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.inspire_people_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE3}]`).attr("selected", "selected")
+
+                // let employeeLv = myList[i].APPRAISAL_LEVEL;
+                // if (employeeLv >= 1 && employeeLv <= 7) {
+                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.make_it_happen_score`)
+                //         .html("-" + `<input type="hidden" name="LSCORE1[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
+                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.provide_solutions_score`)
+                //         .html("-" + `<input type="hidden" name="LSCORE2[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
+                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.inspire_people_score`)
+                //         .html("-" + `<input type="hidden" name="LSCORE3[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
+                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.leadership_competency_total`)
+                //         .html("-" + `<input type="hidden" name="LSCORE_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
+                // } else if (employeeLv >= 11 && employeeLv <= 14) {
+                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score`)
+                //         .html("-" + `<input type="hidden" name="CSCORE1[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
+                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.result_orientation_score`)
+                //         .html("-" + `<input type="hidden" name="CSCORE2[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
+                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.flexibility_and_adaptability_score`)
+                //         .html("-" + `<input type="hidden" name="CSCORE3[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
+                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.core_competency_total`)
+                //         .html("-" + `<input type="hidden" name="CSCORE_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
+                // }
+
+
             }
 
             pageButtons(Data, data.pages)
@@ -705,7 +738,7 @@
     <script src="./KPI_score_calculation.js"></script>
     <script src="./KPI_row_status_submit.js"></script>
 
-    <script src="./KPI_print_pdf.js"></script>
+    <!-- <script src="./KPI_print_pdf.js"></script>
     <script>
         let htmlPDF = document.getElementById("to-print");
         let exportPDF = document.getElementById("to-pdf");
@@ -729,7 +762,7 @@
         // // New Promise-based usage:
         // html2pdf().set(opt).from(htmlPDF).save();
         exportPDF.onclick = (e) => html2pdf(htmlPDF, opt);
-    </script>
+    </script> -->
 
 
 </body>

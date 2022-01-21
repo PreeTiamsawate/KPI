@@ -10,8 +10,8 @@ if (isset($_POST['pid']) && ($_POST['pid'] != '')) {
     }
 } else {
     // For testing only
-    $_SESSION['user']['pid'] = 'tg26539'; //OS 26539; //QV 15929; //30666; //16443;
-    $_SESSION['user']['eid'] = 26539;
+    $_SESSION['user']['pid'] = 'tg30666'; //OS 26539; //QV 15929; //30666; //16443;
+    $_SESSION['user']['eid'] = 30666;
     $_SESSION['user']['name'] = 'Alpha Tester';
 }
 // Year & Period
@@ -241,7 +241,7 @@ if (!(isset($_SESSION['user']))) {
                                 <div class="w3-dropdown-hover">
                                     Weighted Competency (%)
                                     <div class="w3-dropdown-content">
-                                        <img src="./kpi_image/total_competency_description.png">
+                                    <img src="./kpi_image/total_competency_description.png">
                                     </div>
                                 </div>
 
@@ -344,31 +344,29 @@ if (!(isset($_SESSION['user']))) {
                     <tbody class="grading-tbody">
                     </tbody>
                 </table>
-                
+                <div class="grid-container ">
+                    <div class="grid-item-1">
+                        <button type="submit" id="submitPage">Submit This Page</button>
+                    </div>
+                    <div class="grid-item-2">
+                        <div id="pagination-wrapper"></div>
+                    </div>
+                    <div class="grid-item-3">
+                        <div id="page-index-wraper"></div>
+                    </div>
+                    <div class="grid-item-4">
+                        <div id="no-grade-btn" class="w3-dropdown-hover">
+                            <a href="https://forms.office.com/r/qU6KHmMNsA" target="_blank"> ไม่ต้องการประเมิน    </a>
+                            <p class="w3-dropdown-content">
+                                <b>พนักงานกลุ่มที่ไม่ต้องประเมินผลการปฏิบัติงาน </b> <br> คือ พนักงานที่มีวันลา 45 วัน นับรวมวันหยุดในไตรมาสนั้นๆ เช่น พนักงานลาหยุดประเภทต่างๆ ดังนี้ ลาป่วย ลาคลอด ลาเลี้ยงดูบุตร การลาหยุดไม่รับเงินเดือน (Leave without
+                                Pay) นักบิน Non-Active ที่ไม่ได้ช่วยงานสำนักงาน เป็นต้น <br> <br> ทั้งนี้ พนักงานที่เกษียณ หรือลาออกระหว่างไตรมาส ต้องทำการประเมินผลเพื่อบันทึกไว้เป็นหลักฐานสำหรับการบริหารจัดการทรัพยากรบุคคลต่อไป
+                            </p>
+                        </div>
+                    </div>
+                </div>
                 <input type="hidden" id="numGraded" name="numGraded">
                 <input type="hidden" id="totalRows" name="totalRows">
             </form>
-            <div class="grid-container ">
-                <div class="grid-item-1">
-                    <button type="submit" id="submitPage">Submit This Page</button>
-                </div>
-                <div class="grid-item-2">
-                    <div id="pagination-wrapper"></div>
-                </div>
-                <div class="grid-item-3">
-                    <div id="page-index-wraper"></div>
-                </div>
-                <div class="grid-item-4">
-                    <div id="no-grade-btn" class="w3-dropdown-hover">
-                        <a href="https://forms.office.com/r/qU6KHmMNsA" target="_blank"> ไม่ต้องการประเมิน    </a>
-                        <p class="w3-dropdown-content">
-                            <b>พนักงานกลุ่มที่ไม่ต้องประเมินผลการปฏิบัติงาน </b> <br> คือ พนักงานที่มีวันลา 45 วัน นับรวมวันหยุดในไตรมาสนั้นๆ เช่น พนักงานลาหยุดประเภทต่างๆ ดังนี้ ลาป่วย ลาคลอด ลาเลี้ยงดูบุตร การลาหยุดไม่รับเงินเดือน (Leave without
-                            Pay) นักบิน Non-Active ที่ไม่ได้ช่วยงานสำนักงาน เป็นต้น <br> <br> ทั้งนี้ พนักงานที่เกษียณ หรือลาออกระหว่างไตรมาส ต้องทำการประเมินผลเพื่อบันทึกไว้เป็นหลักฐานสำหรับการบริหารจัดการทรัพยากรบุคคลต่อไป
-                        </p>
-                    </div>
-                    
-                </div>
-            </div>
         </main>
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -393,6 +391,7 @@ if (!(isset($_SESSION['user']))) {
                         response.score.forEach((item, index) => {
                             console.log(`${index} : ID=${item.ID} Score=${item.score}`);
                             $(`#ORIGINAL_SCORE_${item.ID}`).val(item.score);
+                            $(`#ORIGINAL_COMMENT_${item.ID}`).val(item.original_comment);
                             // *** เอา APPRAISAL_COMPETENCY_TOTAL ใส่กลับไปใน filteredData ***;
                             for(let data of rawData ){
                                 if(data.APPRAISAL_EMPLOYEE_ID == item.ID ){
@@ -401,11 +400,11 @@ if (!(isset($_SESSION['user']))) {
                             }
                             //console.log($(`#ORIGINAL_SCORE_${item.ID}`).val());
                         });
-                        $('#GRADED_NUMBER').html(response.gradedRows);
-                        $('#NOT_GRADED_NUMBER').html(response.notGradedRows);
-                        $('#numGraded').val(response.gradedRows);
-                        $('#totalRows').val(response.totalRows);
-                        //updateGradedNumbers(rawData);
+                        //$('#GRADED_NUMBER').html(response.gradedRows);
+                        //$('#NOT_GRADED_NUMBER').html(response.notGradedRows);
+                        //$('#numGraded').val(response.gradedRows);
+                        //$('#totalRows').val(response.totalRows);
+                        updateGradedNumbers(rawData);
                         //Reset rows color
                         const greenRows = document.querySelectorAll("tr[row-status='newly-filled']")
                         const submitBtn = document.querySelector('#submitPage');
@@ -434,10 +433,10 @@ if (!(isset($_SESSION['user']))) {
         req.send(null);
         var unpackedData = JSON.parse(req.response);
         const dummyKPI = unpackedData.data;
-        //$('#GRADED_NUMBER').html(unpackedData.gradedRows);
-        //$('#NOT_GRADED_NUMBER').html(unpackedData.notGradedRows);
-        //$('#numGraded').val(unpackedData.gradedRows);
-        //$('#totalRows').val(unpackedData.totalRows);
+        $('#GRADED_NUMBER').html(unpackedData.gradedRows);
+        $('#NOT_GRADED_NUMBER').html(unpackedData.notGradedRows);
+        $('#numGraded').val(unpackedData.gradedRows);
+        $('#totalRows').val(unpackedData.totalRows);
         let rawData = dummyKPI;
         const gradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
         const notGradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
@@ -593,7 +592,7 @@ if (!(isset($_SESSION['user']))) {
                 wrapper.innerHTML += `<button value=${page} class="page btn">${page}</button>`
             }
 
-            if (state.page != 1 && maxLeft > 1)) {
+            if (state.page != 1 && maxLeft > 1) {
                 wrapper.innerHTML = `<button value=${1} class="page btn">&#171; First</button>` + wrapper.innerHTML
             }
 
@@ -737,7 +736,8 @@ if (!(isset($_SESSION['user']))) {
                 <td class="total_competency_percent grand_total">
                     <input name="COMPETENCY_TOTAL100[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_TOTAL100}" type="text " readonly>
                     <input name="APPRAISAL_EMPLOYEE_ID[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_EMPLOYEE_ID}" id="APPRAISAL_EMPLOYEE_ID[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_EMPLOYEE_ID}" type="hidden">
-                    <input name="ORIGINAL_SCORE[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].ORIGINAL_SCORE}" id="ORIGINAL_SCORE_${myList[i].APPRAISAL_EMPLOYEE_ID}" value="${myList[i].ORIGINAL_SCORE}" type="hidden">
+                    <input name="ORIGINAL_SCORE[${myList[i].APPRAISAL_EMPLOYEE_ID}]" id="ORIGINAL_SCORE_${myList[i].APPRAISAL_EMPLOYEE_ID}" value="${myList[i].ORIGINAL_SCORE}" type="hidden">
+                    <input name="ORIGINAL_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" id="ORIGINAL_COMMENT_${myList[i].APPRAISAL_EMPLOYEE_ID}" value="${myList[i].ORIGINAL_COMMENT}" type="hidden">
                 </td>
             </tr>
         `
