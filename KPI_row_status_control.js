@@ -74,14 +74,10 @@ const setDefaultBtns = function() {
 }
 const assignRowStatus = function() {
     const gradingRows = document.querySelectorAll("tbody.grading-tbody > tr")
-    const submitPageBtn = document.querySelector("#submitPage")
-    const paginationWrapper = document.querySelector("#pagination-wrapper")
-    const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
     for (const gradingRow of gradingRows) {
         const rowSelects = gradingRow.querySelectorAll("td.score > div > select");
         const rowComments = gradingRow.querySelectorAll("td.score > div > textarea");
         let valueCount = 0
-        let commentCount = 0
         for (const rowSelect of rowSelects) {
             if (rowSelect.value != "0")
                 valueCount++
@@ -90,7 +86,7 @@ const assignRowStatus = function() {
             if (rowComment.value != "")
                 commentCount++
         }
-        // console.log("comments in row", commentCount)
+
 
         if (valueCount === rowSelects.length) {
             gradingRow.setAttribute("row-status", "fully-filled")
@@ -99,11 +95,7 @@ const assignRowStatus = function() {
         } else if (valueCount !== rowSelects.length && valueCount !== 0) {
             gradingRow.setAttribute("row-status", "being-filled")
             gradingRow.style.backgroundColor = "#FFF0DC";
-        }
-        // else if (valueCount === 0 && commentCount > 0) {
-        //     gradingRow.setAttribute("row-status", "being-filled")
-        //     gradingRow.style.backgroundColor = "#FFF0DC";} 
-        else if (valueCount === 0) {
+        } else if (valueCount === 0) {
             gradingRow.setAttribute("row-status", "")
             gradingRow.style.backgroundColor = "#F3F3F3";
         }
@@ -121,10 +113,6 @@ const rowStatusBySelect = function() {
     const scoreSelects = document.querySelectorAll("td.score > div > select")
     for (const scoreSelect of scoreSelects) {
         scoreSelect.addEventListener('change', function() {
-
-            const submitPageBtn = document.querySelector("#submitPage")
-            const paginationWrapper = document.querySelector("#pagination-wrapper")
-            const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
             const currentGradingRow = this.parentElement.parentElement.parentElement;
             const rowCommentBoxs = currentGradingRow.querySelectorAll("td.score > div > textarea")
             const rowSelects = currentGradingRow.querySelectorAll("td.score > div > select");
@@ -153,9 +141,6 @@ const rowStatusBySelect = function() {
                 }
             }
 
-
-            // const orangeRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
-            const greenRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'newly-filled']")
             if (allStatus().isRedThere) {
                 setRedBtns()
             } else if (allStatus().isOrangeThere) {
@@ -181,9 +166,6 @@ const rowStatusByComment = function() {
         }
         const equals = (a, b) => JSON.stringify(a) === JSON.stringify(b);
         commentBox.addEventListener('input', function() {
-            const submitPageBtn = document.querySelector("#submitPage")
-            const paginationWrapper = document.querySelector("#pagination-wrapper")
-            const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
             const currentGradingRow = this.parentElement.parentElement.parentElement;
             const currentGradingRowAtt = currentGradingRow.getAttribute("row-status")
             const currentScoreSelects = currentGradingRow.querySelectorAll("td.score > div > select")
@@ -209,9 +191,6 @@ const rowStatusByComment = function() {
                 }
 
             }
-
-            const orangeRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
-            const greenRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'newly-filled']")
             if (allStatus().isRedThere) {
                 setRedBtns()
             } else if (allStatus().isOrangeThere) {
@@ -228,9 +207,6 @@ const rowStatusByComment = function() {
 rowStatusByComment()
 const commentRequired = function() {
     const scoreSelects = document.querySelectorAll("td.score > div > select");
-    const submitPageBtn = document.querySelector("#submitPage")
-    const paginationWrapper = document.querySelector("#pagination-wrapper")
-    const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
     for (const scoreSelect of scoreSelects) {
         const containerCell = scoreSelect.parentElement;
         const commentBox = containerCell.querySelector("textarea");
