@@ -78,6 +78,7 @@ const assignRowStatus = function() {
         const rowSelects = gradingRow.querySelectorAll("td.score > div > select");
         const rowComments = gradingRow.querySelectorAll("td.score > div > textarea");
         let valueCount = 0
+        let commentCount = 0
         for (const rowSelect of rowSelects) {
             if (rowSelect.value != "0")
                 valueCount++
