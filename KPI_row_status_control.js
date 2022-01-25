@@ -1,3 +1,77 @@
+const allStatus = function() {
+    const orangeRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
+    const greenRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'newly-filled']")
+    const redCells = document.querySelectorAll("td.score > div > select[select-status = 'edge-score']")
+    let isOrangeThere = false
+    let isGreenThere = false
+    let isRedThere = false
+    if (orangeRows.length > 0) {
+        isOrangeThere = true
+    }
+    if (greenRows.length > 0) {
+        isGreenThere = true
+    }
+    if (redCells.length > 0) {
+        isRedThere = true
+    }
+    return { isOrangeThere, isGreenThere, isRedThere }
+}
+const setRedBtns = function() {
+    const submitPageBtn = document.querySelector("#submitPage")
+    const paginationWrapper = document.querySelector("#pagination-wrapper")
+    const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
+    submitPageBtn.style.backgroundColor = "#ff6961"
+    submitPageBtn.style.cursor = "not-allowed"
+    submitPageBtn.disabled = true
+    paginationWrapper.style.backgroundColor = "rgba(255,105,97,0.2)"
+    paginationWrapper.style.cursor = "not-allowed"
+    for (const paginationBtn of paginationBtns) {
+        paginationBtn.disabled = true
+    }
+}
+const setOrangeBtns = function() {
+    const submitPageBtn = document.querySelector("#submitPage")
+    const paginationWrapper = document.querySelector("#pagination-wrapper")
+    const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
+    submitPageBtn.style.backgroundColor = "#FCAC50";
+    submitPageBtn.style.cursor = "not-allowed"
+    submitPageBtn.disabled = true
+    paginationWrapper.style.backgroundColor = "#FFF0DC";
+    paginationWrapper.style.cursor = "not-allowed"
+    for (const paginationBtn of paginationBtns) {
+        paginationBtn.disabled = true
+    }
+}
+
+const setGreenBtns = function() {
+    const submitPageBtn = document.querySelector("#submitPage")
+    const paginationWrapper = document.querySelector("#pagination-wrapper")
+    const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
+    submitPageBtn.style.backgroundColor = "#58CC51";
+    submitPageBtn.style.cursor = "pointer"
+    submitPageBtn.disabled = false
+    paginationWrapper.style.backgroundColor = "transparent";
+    paginationWrapper.style.cursor = "not-allowed"
+    for (const paginationBtn of paginationBtns) {
+        paginationBtn.disabled = true
+    }
+}
+
+
+
+const setDefaultBtns = function() {
+    const submitPageBtn = document.querySelector("#submitPage")
+    const paginationWrapper = document.querySelector("#pagination-wrapper")
+    const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
+    submitPageBtn.style.backgroundColor = "#330066";
+    submitPageBtn.style.cursor = "pointer"
+    submitPageBtn.disabled = false
+    paginationWrapper.style.backgroundColor = "transparent";
+    paginationWrapper.style.cursor = "pointer"
+    for (const paginationBtn of paginationBtns) {
+        paginationBtn.disabled = false
+    }
+}
 const assignRowStatus = function() {
     const gradingRows = document.querySelectorAll("tbody.grading-tbody > tr")
     const submitPageBtn = document.querySelector("#submitPage")
@@ -36,25 +110,10 @@ const assignRowStatus = function() {
     }
     const orangeRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
 
-    if (orangeRows.length > 0) {
-        submitPageBtn.style.backgroundColor = "#FCAC50";
-        submitPageBtn.style.cursor = "not-allowed"
-        submitPageBtn.disabled = true
-        paginationWrapper.style.backgroundColor = "#FFF0DC";
-        paginationWrapper.style.cursor = "not-allowed"
-        for (const paginationBtn of paginationBtns) {
-            paginationBtn.disabled = true
-        }
-
+    if (allStatus().isOrangeThere) {
+        setOrangeBtns()
     } else {
-        submitPageBtn.style.backgroundColor = "#330066";
-        submitPageBtn.style.cursor = "pointer"
-        submitPageBtn.disabled = false
-        paginationWrapper.style.backgroundColor = "transparent";
-        paginationWrapper.style.cursor = "pointer"
-        for (const paginationBtn of paginationBtns) {
-            paginationBtn.disabled = false
-        }
+        setDefaultBtns()
     }
 }
 assignRowStatus()
@@ -95,39 +154,17 @@ const rowStatusBySelect = function() {
             }
 
 
-            const orangeRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
+            // const orangeRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
             const greenRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'newly-filled']")
-            if (orangeRows.length > 0) {
-                submitPageBtn.style.backgroundColor = "#FCAC50";
-                submitPageBtn.style.cursor = "not-allowed"
-                submitPageBtn.disabled = true
-                paginationWrapper.style.backgroundColor = "#FFF0DC";
-                paginationWrapper.style.cursor = "not-allowed"
-                for (const paginationBtn of paginationBtns) {
-                    paginationBtn.disabled = true
-                }
-
-            } else if (greenRows.length > 0) {
-                submitPageBtn.style.backgroundColor = "#58CC51";
-                submitPageBtn.style.cursor = "pointer"
-                submitPageBtn.disabled = false
-                paginationWrapper.style.backgroundColor = "transparent";
-                paginationWrapper.style.cursor = "not-allowed"
-                for (const paginationBtn of paginationBtns) {
-                    paginationBtn.disabled = true
-                }
-
+            if (allStatus().isRedThere) {
+                setRedBtns()
+            } else if (allStatus().isOrangeThere) {
+                setOrangeBtns()
+            } else if (allStatus().isGreenThere) {
+                setGreenBtns()
             } else {
-                submitPageBtn.style.backgroundColor = "#330066";
-                submitPageBtn.style.cursor = "pointer"
-                submitPageBtn.disabled = false
-                paginationWrapper.style.backgroundColor = "transparent";
-                paginationWrapper.style.cursor = "pointer"
-                for (const paginationBtn of paginationBtns) {
-                    paginationBtn.disabled = false
-                }
+                setDefaultBtns()
             }
-
         })
     }
 }
@@ -175,38 +212,72 @@ const rowStatusByComment = function() {
 
             const orangeRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'being-filled']")
             const greenRows = document.querySelectorAll("tbody.grading-tbody > tr[row-status = 'newly-filled']")
-            if (orangeRows.length > 0) {
-                submitPageBtn.style.backgroundColor = "#FFF0DC";
-                submitPageBtn.style.cursor = "not-allowed"
-                submitPageBtn.disabled = true
-                paginationWrapper.style.backgroundColor = "#FFF0DC";
-                paginationWrapper.style.cursor = "not-allowed"
-                for (const paginationBtn of paginationBtns) {
-                    paginationBtn.disabled = true
-                }
-
-            } else if (greenRows.length > 0) {
-                submitPageBtn.style.backgroundColor = "#58CC51";
-                submitPageBtn.style.cursor = "pointer"
-                submitPageBtn.disabled = false
-                paginationWrapper.style.backgroundColor = "transparent";
-                paginationWrapper.style.cursor = "not-allowed"
-                for (const paginationBtn of paginationBtns) {
-                    paginationBtn.disabled = true
-                }
-
+            if (allStatus().isRedThere) {
+                setRedBtns()
+            } else if (allStatus().isOrangeThere) {
+                setOrangeBtns()
+            } else if (allStatus().isGreenThere) {
+                setGreenBtns()
             } else {
-                submitPageBtn.style.backgroundColor = "#330066";
-                submitPageBtn.style.cursor = "pointer"
-                submitPageBtn.disabled = false
-                paginationWrapper.style.backgroundColor = "transparent";
-                paginationWrapper.style.cursor = "pointer"
-                for (const paginationBtn of paginationBtns) {
-                    paginationBtn.disabled = false
-                }
+                setDefaultBtns()
             }
 
         })
     }
 }
 rowStatusByComment()
+const commentRequired = function() {
+    const scoreSelects = document.querySelectorAll("td.score > div > select");
+    const submitPageBtn = document.querySelector("#submitPage")
+    const paginationWrapper = document.querySelector("#pagination-wrapper")
+    const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
+    for (const scoreSelect of scoreSelects) {
+        const containerCell = scoreSelect.parentElement;
+        const commentBox = containerCell.querySelector("textarea");
+        const commentBoxIcon = containerCell.querySelector("img");
+        const blockProperties = function() {
+            alert("สำหรับคะแนน 1 และ 5 ผู้ประเมินต้องใส่ความคิดเห็น")
+            scoreSelect.setAttribute("select-status", "edge-score")
+            commentBoxIcon.style.border = "3px solid #ff6961"
+            commentBoxIcon.style.borderRadius = "5px"
+        }
+        const unblockProperties = function() {
+            scoreSelect.setAttribute("select-status", "")
+            commentBoxIcon.style.border = "none"
+        }
+
+        scoreSelect.addEventListener("change", function() {
+            if ((scoreSelect.value == "1" || scoreSelect.value == "5") && commentBox.value == "") {
+                blockProperties()
+            } else {
+                unblockProperties()
+            }
+            if (allStatus().isRedThere) {
+                setRedBtns()
+            } else if (allStatus().isOrangeThere) {
+                setOrangeBtns()
+            } else if (allStatus().isGreenThere) {
+                setGreenBtns()
+            } else {
+                setDefaultBtns()
+            }
+        })
+        commentBox.addEventListener("input", function() {
+            if ((scoreSelect.value == "1" || scoreSelect.value == "5") && commentBox.value == "") {
+                blockProperties()
+            } else {
+                unblockProperties()
+            }
+            if (allStatus().isRedThere) {
+                setRedBtns()
+            } else if (allStatus().isOrangeThere) {
+                setOrangeBtns()
+            } else if (allStatus().isGreenThere) {
+                setGreenBtns()
+            } else {
+                setDefaultBtns()
+            }
+        })
+    }
+}
+commentRequired()

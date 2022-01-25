@@ -10,6 +10,14 @@ const commentBoxControl = function() {
             commentBox.classList.remove("w3-show")
             boxParent.style.border = "none";
         })
+        scoreSelect.addEventListener('change', function() {
+            const commentBox = this.nextElementSibling.nextElementSibling;
+            const commentIcon = this.nextElementSibling;
+            if (this.value == "0") {
+                commentIcon.setAttribute("src", "./kpi_image/Icon-empty-comment.svg")
+                commentBox.innerText = ""
+            }
+        })
     }
 
     for (const commentIcon of commentIcons) {
@@ -30,7 +38,9 @@ const commentBoxControl = function() {
 
                 if (scoreSelect.value == "0") {
                     commentBox.disabled = true
+                    commentBox.innerText = ""
                     commentBox.setAttribute("placeholder", "กรุณาใส่คะแนนก่อนจึงจะสามารถกรอกคำอธิบายประกอบการประเมินได้")
+
                 } else {
                     commentBox.disabled = false
                     commentBox.setAttribute("placeholder", "คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)")

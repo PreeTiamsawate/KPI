@@ -37,3 +37,30 @@
 
 //     }
 // })
+
+submitPageBtn.style.backgroundColor = "#FCAC50";
+submitPageBtn.style.cursor = "not-allowed"
+submitPageBtn.disabled = true
+paginationWrapper.style.backgroundColor = "#FFF0DC";
+paginationWrapper.style.cursor = "not-allowed"
+for (const paginationBtn of paginationBtns) {
+    paginationBtn.disabled = true
+}
+
+submitPageBtn.style.backgroundColor = "#330066";
+submitPageBtn.style.cursor = "pointer"
+submitPageBtn.disabled = false
+paginationWrapper.style.backgroundColor = "transparent";
+paginationWrapper.style.cursor = "pointer"
+for (const paginationBtn of paginationBtns) {
+    paginationBtn.disabled = false
+}
+
+submitPageBtn.style.backgroundColor = "#58CC51";
+submitPageBtn.style.cursor = "pointer"
+submitPageBtn.disabled = false
+paginationWrapper.style.backgroundColor = "transparent";
+paginationWrapper.style.cursor = "not-allowed"
+for (const paginationBtn of paginationBtns) {
+    paginationBtn.disabled = true
+}

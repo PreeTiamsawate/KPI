@@ -379,7 +379,8 @@
 
 
             </form>
-            <!-- <button id="to-pdf">Print PDF</button> -->
+
+            <button onclick="window.print()">Print this page</button>
 
 
 
@@ -426,6 +427,7 @@
             assignRowStatus()
             rowStatusBySelect()
             rowStatusByComment()
+            commentRequired()
             calculateScores()
             calculateScoresByInput()
         }
@@ -738,8 +740,8 @@
     <script src="./KPI_score_calculation.js"></script>
     <script src="./KPI_row_status_submit.js"></script>
 
-    <!-- <script src="./KPI_print_pdf.js"></script>
-    <script>
+    <!-- <script src="./KPI_print_pdf.js"></script> -->
+    <!-- <script>
         let htmlPDF = document.getElementById("to-print");
         let exportPDF = document.getElementById("to-pdf");
         var opt = {
