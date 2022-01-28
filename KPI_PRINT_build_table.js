@@ -24,9 +24,6 @@ const buildTablePrint = function(data) {
 
         table.innerHTML = table.innerHTML + row
     }
-
-}
-const dynamicScoreControl = function() {
     const levelCells = document.querySelectorAll('tbody.grading-tbody > tr > td:nth-of-type(1)');
     for (const levelCell of levelCells) {
         const employeeLv = Number(levelCell.innerText)
@@ -65,4 +62,5 @@ const dynamicScoreControl = function() {
             coreTotalCell.innerHTML = "-"
         }
     }
+
 }
