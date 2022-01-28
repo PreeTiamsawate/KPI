@@ -1,0 +1,16 @@
+<svg id="Ref._score" data-name="Ref. score" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="163" height="29" viewBox="0 0 163 29">
+  <defs>
+    <linearGradient id="linear-gradient" x1="1" y1="0.5" x2="-1.696" y2="0.373" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#f3f3f3"/>
+      <stop offset="1" stop-color="#d0cece"/>
+    </linearGradient>
+  </defs>
+  <rect id="Rectangle_62" data-name="Rectangle 62" width="163" height="29" rx="5" fill="url(#linear-gradient)"/>
+  <path id="Icon_material-mood-bad" data-name="Icon material-mood-bad" d="M10.528,3a7.536,7.536,0,1,0,7.543,7.536A7.532,7.532,0,0,0,10.528,3Zm.008,13.564a6.028,6.028,0,1,1,6.028-6.028A6.027,6.027,0,0,1,10.536,16.564Zm2.637-6.782a1.13,1.13,0,1,0-1.13-1.13A1.129,1.129,0,0,0,13.173,9.782Zm-5.275,0a1.13,1.13,0,1,0-1.13-1.13A1.129,1.129,0,0,0,7.9,9.782Zm2.637,2.261A4.142,4.142,0,0,0,6.685,14.68h7.7A4.142,4.142,0,0,0,10.536,12.043Z" transform="translate(5.477 5.274)" fill="#444"/>
+  <path id="Icon_ionic-md-happy" data-name="Icon ionic-md-happy" d="M10.911,3.375a7.536,7.536,0,1,0,7.536,7.536A7.534,7.534,0,0,0,10.911,3.375Zm0,13.564a6.028,6.028,0,1,1,6.029-6.028A6.046,6.046,0,0,1,10.911,16.939Zm2.637-6.782a1.13,1.13,0,1,0-1.13-1.13A1.11,1.11,0,0,0,13.548,10.157Zm-5.275,0a1.13,1.13,0,1,0-1.13-1.13A1.11,1.11,0,0,0,8.273,10.157Zm2.637,4.9a4.106,4.106,0,0,0,3.843-2.638H7.067A4.106,4.106,0,0,0,10.911,15.055Z" transform="translate(137.123 4.899)" fill="#444"/>
+  <text id="_1" data-name="1" transform="translate(33 11)" fill="#444" font-size="12" font-family="Helvetica"><tspan x="-3" y="9">1</tspan></text>
+  <text id="_2" data-name="2" transform="translate(54 11)" fill="#444" font-size="12" font-family="Helvetica"><tspan x="-3" y="9">2</tspan></text>
+  <text id="_3" data-name="3" transform="translate(75 11)" fill="#444" font-size="12" font-family="Helvetica"><tspan x="-3" y="9">3</tspan></text>
+  <text id="_4" data-name="4" transform="translate(95 11)" fill="#444" font-size="12" font-family="Helvetica"><tspan x="-3" y="9">4</tspan></text>
+  <text id="_5" data-name="5" transform="translate(114 11)" fill="#444" font-size="12" font-family="Helvetica"><tspan x="-3" y="9">5</tspan></text>
+</svg>

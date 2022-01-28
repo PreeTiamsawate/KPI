@@ -407,12 +407,6 @@ thead {
     border-bottom: 1px solid #B4B4B4;
 }
 
-
-/* #GRADE_TABLE th:nth-of-type(2),
-#GRADE_TABLE tr:nth-of-type(2) td:nth-of-type(4) {
-    border-right: 1px solid #B4B4B4;
-} */
-
 #GRADE_TABLE thead>tr:nth-of-type(2) {
     text-align: center;
     font: normal normal 400 14px/16px Prompt;
@@ -556,9 +550,9 @@ td.grand_total>input {
 .grid-container {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: auto 210px;
+    grid-template-columns: 210px auto 210px;
     grid-template-rows: repeat(3, 50px);
-    grid-template-areas: "content-1 sidebar" "content-2 sidebar" "content-3 sidebar";
+    grid-template-areas: "leftbar content-1 sidebar" "leftbar content-2 sidebar" "leftbar content-3 sidebar";
 }
 
 .grid-container>div {
@@ -582,6 +576,11 @@ td.grand_total>input {
 
 .grid-item-4 {
     grid-area: sidebar;
+    gap: 10px;
+}
+
+.grid-item-5 {
+    grid-area: leftbar;
     gap: 10px;
 }
 
@@ -645,7 +644,19 @@ td.grand_total>input {
     margin-bottom: 95px;
 }
 
-#no-grade-btn>a {
+#preview-btn {
+    width: 90px;
+    height: 34px;
+    border: 1px solid #330066;
+    border-radius: 5px;
+    text-align: center;
+    font: normal normal normal 16px/30px Prompt;
+    letter-spacing: 0px;
+    margin-bottom: 95px;
+}
+
+#no-grade-btn>a,
+#preview-btn>a {
     text-decoration: none;
     color: #330066;
 }
