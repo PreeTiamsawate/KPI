@@ -230,4 +230,9 @@ main {
     .print-btn-container {
         display: none;
     }
+    .grading-tbody::before {
+        content: "";
+        display: block;
+        border-top: 1px solid white;
+    }
 }
