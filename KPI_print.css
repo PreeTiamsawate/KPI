@@ -226,6 +226,10 @@ main {
     text-decoration: underline;
 }
 
+.not-graded-watermark {
+    color: #afafaf;
+}
+
 @media print {
     .print-btn-container {
         display: none;

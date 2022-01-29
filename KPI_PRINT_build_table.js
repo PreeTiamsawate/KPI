@@ -40,16 +40,13 @@ const buildTablePrint = function(data) {
         const totalScoreCell = parentRow.querySelector('td.raw_total')
         const totalPercentCell = parentRow.querySelector('td.total_competency_percent')
         if (totalScoreCell.innerText == "0") {
-            makeItCell.innerHTML = ""
-            provideCell.innerHTML = ""
-            inspireCell.innerHTML = ""
-            leaderTotalCell.innerHTML = ""
-            serviceCell.innerHTML = ""
-            resultCell.innerHTML = ""
-            flexibilityCell.innerHTML = ""
-            coreTotalCell.innerHTML = ""
-            totalScoreCell.innerHTML = ""
-            totalPercentCell.innerHTML = ""
+            const badCells = [resultCell, flexibilityCell, coreTotalCell, makeItCell, provideCell, inspireCell, leaderTotalCell, totalScoreCell, totalPercentCell]
+            for (let badCell of badCells) {
+                parentRow.removeChild(badCell)
+            }
+            serviceCell.setAttribute("colspan", "9")
+            serviceCell.classList.add("not-graded-watermark")
+            serviceCell.innerText = "ยังไม่ได้รับการประเมินศักยภาพ"
         } else if (employeeLv >= 1 && employeeLv <= 7) {
             makeItCell.innerHTML = "-"
             provideCell.innerHTML = "-"
