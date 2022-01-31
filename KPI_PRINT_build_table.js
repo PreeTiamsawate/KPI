@@ -23,6 +23,7 @@ const buildTablePrint = function(data) {
     `
 
         table.innerHTML = table.innerHTML + row
+
     }
     const levelCells = document.querySelectorAll('tbody.grading-tbody > tr > td:nth-of-type(1)');
     for (const levelCell of levelCells) {

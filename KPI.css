@@ -550,7 +550,7 @@ td.grand_total>input {
 .grid-container {
     margin-top: 30px;
     display: grid;
-    grid-template-columns: 210px auto 210px;
+    grid-template-columns: 270px auto 270px;
     grid-template-rows: repeat(3, 50px);
     grid-template-areas: "leftbar content-1 sidebar" "leftbar content-2 sidebar" "leftbar content-3 sidebar";
 }
@@ -634,7 +634,7 @@ td.grand_total>input {
 }
 
 #no-grade-btn {
-    width: 170px;
+    width: 90px;
     height: 34px;
     border: 1px solid #330066;
     border-radius: 5px;
@@ -669,7 +669,7 @@ td.grand_total>input {
     background: #FFFFFF 0% 0% no-repeat padding-box;
     border: 1px solid #330066;
     border-radius: 5px;
-    margin: -300px 0 0 -330px;
+    margin: -320px 0 0 -330px;
     font: normal normal normal 14px/30px Prompt;
 }
 
