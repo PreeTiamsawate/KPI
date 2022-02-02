@@ -353,13 +353,21 @@ $_SESSION['year'] = 2021;
                     <div class="grid-item-3">
                         <div id="page-index-wraper"></div>
                     </div>
-                    <div class="grid-item-4">
-                        <div id="no-grade-btn" class="w3-dropdown-hover">
-                            <a href="https://forms.office.com/r/qU6KHmMNsA" target="_blank"> ไม่ต้องการประเมิน    </a>
+                    <div class="grid-item-4 w3-dropdown-hover">
+                        หากท่านมีพนักงานที่ไม่ต้องรับการประเมินฯ
+                        <div id="no-grade-btn" class="">
+
+                            <a href="https://forms.office.com/r/qU6KHmMNsA" target="_blank"> 
+                                คลิกที่นี่   </a>
                             <p class="w3-dropdown-content">
-                                <b>พนักงานกลุ่มที่ไม่ต้องประเมินผลการปฏิบัติงาน </b> <br> คือ พนักงานที่มีวันลา 45 วัน นับรวมวันหยุดในไตรมาสนั้นๆ เช่น พนักงานลาหยุดประเภทต่างๆ ดังนี้ ลาป่วย ลาคลอด ลาเลี้ยงดูบุตร การลาหยุดไม่รับเงินเดือน (Leave without
+                                <b>พนักงานกลุ่มที่ไม่ต้องประเมินผลการปฏิบัติงาน </b> <br> คือ พนักงานที่มีวันลา 45 วัน นับรวมวันหยุดในไตรมาสนั้นๆ เช่น พนักงานลาหยุดประเภทต่างๆ ดังนี้ ลาป่วย ลาคลอด ลาเลี้ยงดูบุตร การลาหยุดไม่รับเงินเดือน (Leave without
                                 Pay) นักบิน Non-Active ที่ไม่ได้ช่วยงานสำนักงาน เป็นต้น <br> <br> ทั้งนี้ พนักงานที่เกษียณ หรือลาออกระหว่างไตรมาส ต้องทำการประเมินผลเพื่อบันทึกไว้เป็นหลักฐานสำหรับการบริหารจัดการทรัพยากรบุคคลต่อไป
                             </p>
+                        </div>
+                    </div>
+                    <div class="grid-item-5">
+                        <div id="preview-btn">
+                            <a href="./print.html" target="_blank">Print Preview</a>
                         </div>
                     </div>
                 </div>
