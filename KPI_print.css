@@ -3,6 +3,14 @@
     /* overflow: visible; */
 }
 
+
+/* <!-- Google font - Promy --> */
+
+@font-face {
+    font-family: "Prompt";
+    src: url(./Prompt-Medium.ttf) format('woff');
+}
+
 html,
 body {
     width: 100%;

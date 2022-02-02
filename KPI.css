@@ -8,6 +8,20 @@ img {
 }
 
 
+/* <!-- Google font - Promy --> */
+
+@font-face {
+    font-family: "Prompt";
+    src: url(./Prompt-Medium.ttf) format('woff');
+}
+
+
+/* @font-face {
+    font-family: "Prompt";
+    src: url(./prompt-cufonfonts/Prompt-Bold.ttf);
+} */
+
+
 /* body {
     font-size: 14px;
   } */
@@ -645,7 +659,7 @@ td.grand_total>input {
 }
 
 #preview-btn {
-    width: 90px;
+    width: 120px;
     height: 34px;
     border: 1px solid #330066;
     border-radius: 5px;
