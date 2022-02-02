@@ -398,7 +398,7 @@ if (!(isset($_SESSION['user']))) {
                                     data.APPRAISAL_COMPETENCY_TOTAL = item.competency_total 
                                 }
                             }
-                            //console.log($(`#ORIGINAL_SCORE_${item.ID}`).val());
+                            //   console.log($(`#ORIGINAL_SCORE_${item.ID}`).val());
                         });
                         //$('#GRADED_NUMBER').html(response.gradedRows);
                         //$('#NOT_GRADED_NUMBER').html(response.notGradedRows);
