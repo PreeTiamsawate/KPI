@@ -45,7 +45,7 @@ const buildTablePrint = function(data) {
             for (let badCell of badCells) {
                 parentRow.removeChild(badCell)
             }
-            serviceCell.setAttribute("colspan", "9")
+            serviceCell.setAttribute("colspan", "10")
             serviceCell.classList.add("not-graded-watermark")
             serviceCell.innerText = "ยังไม่ได้รับการประเมินศักยภาพ"
         } else if (employeeLv >= 1 && employeeLv <= 7) {
