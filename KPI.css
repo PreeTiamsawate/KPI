@@ -28,7 +28,7 @@
          padding: 0px;
          /* overflow-x: hidden; */
          background-color: #fbf8f8;
-         font-family: 'Prompt', sans-serif;
+         /* font-family: 'Prompt', sans-serif; */
          height: auto;
          min-height: 100vh;
          z-index: -1;

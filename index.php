@@ -1,5 +1,8 @@
 <?php
 session_start();
+if (isset($_GET['cmd']) && ($_GET['cmd'] == 'logout')) {
+    session_destroy();
+}
 if (isset($_POST['pid']) && ($_POST['pid'] != '')) {
     if ($_POST['pid'] == 'null') { // Not logged in ThaiSquare
         header('location: expired.html');
@@ -8,19 +11,15 @@ if (isset($_POST['pid']) && ($_POST['pid'] != '')) {
         $_SESSION['user']['eid'] = $_POST['eid'];
         $_SESSION['user']['name'] = $_POST['name'];
     }
-} else {
-    // For testing only
-    $_SESSION['user']['pid'] = 'tg30666'; //OS 26539; //QV 15929; //30666; //16443;
-    $_SESSION['user']['eid'] = 30666;
-    $_SESSION['user']['name'] = 'Alpha Tester';
+}
+if (!isset($_SESSION['user'])) {
+    //header('location: demo.html'); //NOT WORKING ON THIS SERVER???
+    echo "<script type='text/javascript'>window.location.href = 'demo.html';</script>";
+    exit();
 }
 // Year & Period
 $_SESSION['period'] = 'Q4';
 $_SESSION['year'] = 2021;
-
-if (!(isset($_SESSION['user']))) {
-    header('location: expired.html');
-}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -29,13 +28,13 @@ if (!(isset($_SESSION['user']))) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS for Bootstrap5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="./assets/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <!-- W3 CSS Link" -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="./assets/w3.css">
     <!-- Google font - Promy -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <!--link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Prompt:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet"-->
     <!-- Local css -->
     <link rel="stylesheet" href="./KPI.css">
     <title>แบบประเมินผลการปฏิบัติงานของพนักงาน</title>
@@ -56,7 +55,7 @@ if (!(isset($_SESSION['user']))) {
 
                 </div>
                 <div>
-                    <img src="./kpi_image/Icon awesome-user-circle.svg" class="USER_IMAGE">
+                <a href="demo.html"><img src="./kpi_image/Icon awesome-user-circle.svg" class="USER_IMAGE"></a>
                     <span class="USER_ID"><?php echo $_SESSION['user']['eid']; ?></span>
                     <span class="USER_FULL_NAME"><?php echo $_SESSION['user']['name']; ?></span>
                 </div>
@@ -259,7 +258,7 @@ if (!(isset($_SESSION['user']))) {
                                     <div class="w3-dropdown-content">
                                         <h6>Service Orientation</h6>
                                         <ul>
-                                            <li>สามารถตอบสนองต่อความต้องการของลูกค้าทั้งภายในและให้เกิดความพึงพอใจ</li>
+                                            <li>สามารถตอบสนองต่อความต้องการของลูกค้าทั้งภายในและภายนอกให้เกิดความพึงพอใจ</li>
                                             <li>มีทัศนคติเชิงบวกต่อการให้บริการและการเป็นตัวอย่างที่ดี</li>
                                             <li>เสนอแนะวิธีการปรับปรุงการให้บริการ เพื่อให้เกิดประสิทธิภาพมากยิ่งขึ้น</li>
                                         </ul>
@@ -288,6 +287,7 @@ if (!(isset($_SESSION['user']))) {
                                         <ul>
                                             <li>ยอมรับและสนับสนุนการเปลี่ยนแปลงในสิ่งใหม่ๆ ที่เป็นประโยชน์ต่อองค์กร</li>
                                             <li>ปรับตัวเข้ากับสถานการณ์ที่เปลี่ยนแปลงได้อย่างรวดเร็ว</li>
+                                            <li>แก้ไขวิธีการ หรือหาวิธีการใหม่ๆ ในการทำงาน เพื่อให้เกิดการเปลี่ยนแปลงในเชิงสร้างสรรค์</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -354,13 +354,21 @@ if (!(isset($_SESSION['user']))) {
                     <div class="grid-item-3">
                         <div id="page-index-wraper"></div>
                     </div>
-                    <div class="grid-item-4">
-                        <div id="no-grade-btn" class="w3-dropdown-hover">
-                            <a href="https://forms.office.com/r/qU6KHmMNsA" target="_blank"> ไม่ต้องการประเมิน    </a>
+                    <div class="grid-item-4 w3-dropdown-hover">
+                        หากท่านมีพนักงานที่ไม่ต้องรับการประเมินฯ
+                        <div id="no-grade-btn" class="">
+
+                            <a href="https://forms.office.com/r/qU6KHmMNsA" target="_blank"> 
+                                คลิกที่นี่   </a>
                             <p class="w3-dropdown-content">
-                                <b>พนักงานกลุ่มที่ไม่ต้องประเมินผลการปฏิบัติงาน </b> <br> คือ พนักงานที่มีวันลา 45 วัน นับรวมวันหยุดในไตรมาสนั้นๆ เช่น พนักงานลาหยุดประเภทต่างๆ ดังนี้ ลาป่วย ลาคลอด ลาเลี้ยงดูบุตร การลาหยุดไม่รับเงินเดือน (Leave without
+                                <b>พนักงานกลุ่มที่ไม่ต้องประเมินผลการปฏิบัติงาน </b> <br> คือ พนักงานที่มีวันลา 45 วัน นับรวมวันหยุดในไตรมาสนั้นๆ เช่น พนักงานลาหยุดประเภทต่างๆ ดังนี้ ลาป่วย ลาคลอด ลาเลี้ยงดูบุตร การลาหยุดไม่รับเงินเดือน (Leave without
                                 Pay) นักบิน Non-Active ที่ไม่ได้ช่วยงานสำนักงาน เป็นต้น <br> <br> ทั้งนี้ พนักงานที่เกษียณ หรือลาออกระหว่างไตรมาส ต้องทำการประเมินผลเพื่อบันทึกไว้เป็นหลักฐานสำหรับการบริหารจัดการทรัพยากรบุคคลต่อไป
                             </p>
+                        </div>
+                    </div>
+                    <div class="grid-item-5">
+                        <div id="preview-btn">
+                            <a href="./print.php" target="_blank">Print Preview</a>
                         </div>
                     </div>
                 </div>
@@ -369,8 +377,10 @@ if (!(isset($_SESSION['user']))) {
             </form>
         </main>
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script-->
+    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script-->
+    <script src="./assets/jquery-3.6.0.min.js"></script>
+    <script src="./assets/bootstrap.min.js"></script>
 
     <!-- Delete KPI_dummy_json.js below when connected to database!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
     <!--script src="./KPI_dummy_json2.js"></script-->
@@ -389,16 +399,16 @@ if (!(isset($_SESSION['user']))) {
                     success: function(response){
                         //console.log(JSON.stringify(response));
                         response.score.forEach((item, index) => {
-                            console.log(`${index} : ID=${item.ID} Score=${item.score}`);
-                            $(`#ORIGINAL_SCORE_${item.ID}`).val(item.score);
-                            $(`#ORIGINAL_COMMENT_${item.ID}`).val(item.original_comment);
+                            console.log(`${index} : ID=${item.ID} Score=${item.org_score}/${item.new_score} Comment=${item.org_comment}/${item.new_comment}`);
+                            $(`#ORIGINAL_SCORE_${item.ID}`).val(item.new_score);
+                            $(`#ORIGINAL_COMMENT_${item.ID}`).val(item.new_comment);
                             // *** เอา APPRAISAL_COMPETENCY_TOTAL ใส่กลับไปใน filteredData ***;
                             for(let data of rawData ){
                                 if(data.APPRAISAL_EMPLOYEE_ID == item.ID ){
                                     data.APPRAISAL_COMPETENCY_TOTAL = item.competency_total 
                                 }
                             }
-                            //   console.log($(`#ORIGINAL_SCORE_${item.ID}`).val());
+                            //console.log($(`#ORIGINAL_SCORE_${item.ID}`).val());
                         });
                         //$('#GRADED_NUMBER').html(response.gradedRows);
                         //$('#NOT_GRADED_NUMBER').html(response.notGradedRows);
@@ -433,10 +443,11 @@ if (!(isset($_SESSION['user']))) {
         req.send(null);
         var unpackedData = JSON.parse(req.response);
         const dummyKPI = unpackedData.data;
-        $('#GRADED_NUMBER').html(unpackedData.gradedRows);
-        $('#NOT_GRADED_NUMBER').html(unpackedData.notGradedRows);
-        $('#numGraded').val(unpackedData.gradedRows);
-        $('#totalRows').val(unpackedData.totalRows);
+        //$('#GRADED_NUMBER').html(unpackedData.gradedRows);
+        //$('#NOT_GRADED_NUMBER').html(unpackedData.notGradedRows);
+        //$('#numGraded').val(unpackedData.gradedRows);
+        //$('#totalRows').val(unpackedData.totalRows);
+        //updateGradedNumbers(rawData);
         let rawData = dummyKPI;
         const gradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL != 0)
         const notGradedDataInit = rawData.filter(data => data.APPRAISAL_COMPETENCY_TOTAL == 0)
@@ -469,6 +480,7 @@ if (!(isset($_SESSION['user']))) {
         const cancelFormBtn = document.querySelector("#cancel-form-btn")
         const searchInput = document.querySelector("#search-id");
         const callBasicFunctions = function() {
+                commentRequired()
                 commentBoxControl()
                 dynamicInputControl()
                 assignRowStatus()
@@ -645,7 +657,6 @@ if (!(isset($_SESSION['user']))) {
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                         <textarea name="CSCORE1_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]"" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_CSCORE1}</textarea>
-
                     </div>
                 </td>
                 <td class=" result_orientation_score score ">
@@ -674,7 +685,6 @@ if (!(isset($_SESSION['user']))) {
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                         <textarea name="CSCORE3_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_CSCORE3}</textarea>
-
                     </div>
                 </td>
                 <td class="core_competency_total total ">
@@ -693,7 +703,6 @@ if (!(isset($_SESSION['user']))) {
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                         <textarea name="LSCORE1_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_LSCORE1}</textarea>
-
                     </div>
                 </td>
                 <td class="provide_solutions_score score ">
@@ -708,7 +717,6 @@ if (!(isset($_SESSION['user']))) {
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                         <textarea name="LSCORE2_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_LSCORE2}</textarea>
-
                     </div>
                 </td>
                 <td class="inspire_people_score score ">
@@ -723,13 +731,11 @@ if (!(isset($_SESSION['user']))) {
                         </select>
                         <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                         <textarea name="LSCORE3_COMMENT[${myList[i].APPRAISAL_EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMMENT_COMPETENCY_LSCORE3}</textarea>
-
                     </div>
                 </td>
                 <td class="leadership_competency_total total">
                     <input name="LSCORE_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_LTOTAL}" type="text " readonly>
                 </td>
-
                 <td class="raw_total grand_total">
                     <input name="COMPETENCY_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="${myList[i].APPRAISAL_COMPETENCY_TOTAL}" type="text " readonly>
                 </td>

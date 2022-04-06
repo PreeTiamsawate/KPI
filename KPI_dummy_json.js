@@ -1,4 +1,4 @@
-const dummyKPI = [{
+let dummyKPI = [{
         "APPRAISAL_LEVEL": 7,
         "APPRAISAL_EMPLOYEE_ID": "42654",
         "APPRAISAL_EMPLOYEE_NAME": "นาย อาชว์ ชำนาญศิลป์ สุดยอดนักพัฒนา ลมุนพันธ์",
@@ -11886,4 +11886,5 @@ for (let dummy of dummyKPI) {
 
     dummy.ORIGINAL_SCORE = 0
 }
-console.log(dummyKPI)
+dummyKPI = dummyKPI.slice(0, 41);
+// console.log(dummyKPI)

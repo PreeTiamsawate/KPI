@@ -243,7 +243,7 @@
                                     <div class="w3-dropdown-content">
                                         <h6>Service Orientation</h6>
                                         <ul>
-                                            <li>สามารถตอบสนองต่อความต้องการของลูกค้าทั้งภายในและให้เกิดความพึงพอใจ</li>
+                                            <li>สามารถตอบสนองต่อความต้องการของลูกค้าทั้งภายในและภายนอกให้เกิดความพึงพอใจ</li>
                                             <li>มีทัศนคติเชิงบวกต่อการให้บริการและการเป็นตัวอย่างที่ดี</li>
                                             <li>เสนอแนะวิธีการปรับปรุงการให้บริการ เพื่อให้เกิดประสิทธิภาพมากยิ่งขึ้น</li>
                                         </ul>
@@ -272,6 +272,7 @@
                                         <ul>
                                             <li>ยอมรับและสนับสนุนการเปลี่ยนแปลงในสิ่งใหม่ๆ ที่เป็นประโยชน์ต่อองค์กร</li>
                                             <li>ปรับตัวเข้ากับสถานการณ์ที่เปลี่ยนแปลงได้อย่างรวดเร็ว</li>
+                                            <li>แก้ไขวิธีการ หรือหาวิธีการใหม่ๆ ในการทำงาน เพื่อให้เกิดการเปลี่ยนแปลงในเชิงสร้างสรรค์</li>
                                         </ul>
                                     </div>
                                 </div>
@@ -506,9 +507,11 @@
 
             var trimStart = (page - 1) * rows
             var trimEnd = trimStart + rows
+            console.log("Trim start: " + trimStart);
+            console.log("Trim end: " + trimEnd);
 
             var trimmedData = querySet.slice(trimStart, trimEnd)
-
+            console.log("Trimmed data:", trimmedData);
             var pages = Math.ceil(querySet.length / rows);
 
             console.log("querySet.length: ", querySet.length)
@@ -559,12 +562,14 @@
             $(`button[value = ${state.page}]`).css({
                 border: "1px solid #330066"
             })
-            $('.page').on('click', function() {
+            $('.page').on('click', function(e) {
                 $('.grading-tbody').empty()
                 state.page = Number($(this).val())
+                console.log("click state page: ", state.page);
                 $(`button[value = ${state.page}]`).css({
                     border: "1px solid #330066"
                 })
+
                 buildTable(data)
                 callBasicFunctions()
             })
@@ -573,12 +578,14 @@
         }
 
         function buildTable(Data) {
+
             var table = $('.grading-tbody')
             console.log("state.page to build: ", state.page)
 
 
             console.log("screenedData :", Data.length)
-            if (Data.length <= (state.page - 1) * state.rows + 1) {
+                // Here!
+            if (Data.length < (state.page - 1) * state.rows + 1) {
                 state.page = 1
             }
             var data = pagination(Data, state.page, state.rows)
@@ -767,7 +774,11 @@
         exportPDF.onclick = (e) => html2pdf(htmlPDF, opt);
     </script> -->
 
-
+    <style>
+        h1 {
+            color: red;
+        }
+    </style>
 </body>
 
 
