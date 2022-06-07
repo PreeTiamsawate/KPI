@@ -601,6 +601,7 @@
                             <td class="service_orientation_score score">
                                 <div>
                                     <select name="CSCORE1[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                                        <option value=""></option>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -615,6 +616,7 @@
                             <td class=" result_orientation_score score ">
                                 <div>
                                     <select name="CSCORE2[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                                        <option value=""></option>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -629,6 +631,7 @@
                             <td class="flexibility_and_adaptability_score score ">
                                 <div>
                                     <select name="CSCORE3[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                                        <option value=""></option>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -648,6 +651,7 @@
                             <td class="make_it_happen_score score ">
                                 <div>
                                     <select name="LSCORE1[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                                        <option value=""></option>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -663,6 +667,7 @@
                             <td class="provide_solutions_score score ">
                                 <div>
                                     <select name="LSCORE2[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                                        <option value=""></option>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -678,6 +683,7 @@
                             <td class="inspire_people_score score ">
                                 <div>
                                     <select name="LSCORE3[${myList[i].APPRAISAL_EMPLOYEE_ID}]">
+                                        <option value=""></option>
                                         <option value="0">0</option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -705,35 +711,21 @@
               `
                 table.append(row)
                 let n = Number(i) + 1
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE1}]`).attr("selected", "selected")
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.result_orientation_score option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE2}]`).attr("selected", "selected")
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.flexibility_and_adaptability_score option[value=${myList[i].APPRAISAL_COMPETENCY_CSCORE3}]`).attr("selected", "selected")
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.make_it_happen_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE1}]`).attr("selected", "selected")
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.provide_solutions_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE2}]`).attr("selected", "selected")
-                $(`.grading-tbody > tr:nth-of-type(${n}) > td.inspire_people_score option[value=${myList[i].APPRAISAL_COMPETENCY_LSCORE3}]`).attr("selected", "selected")
+                let csScore1 = myList[i].APPRAISAL_COMPETENCY_CSCORE1 == null ? '""' : myList[i].APPRAISAL_COMPETENCY_CSCORE1;
+                let csScore2 = myList[i].APPRAISAL_COMPETENCY_CSCORE2 == null ? '""' : myList[i].APPRAISAL_COMPETENCY_CSCORE2;
+                let csScore3 = myList[i].APPRAISAL_COMPETENCY_CSCORE3 == null ? '""' : myList[i].APPRAISAL_COMPETENCY_CSCORE3;
+                let lsScore1 = myList[i].APPRAISAL_COMPETENCY_LSCORE1 == null ? '""' : myList[i].APPRAISAL_COMPETENCY_LSCORE1;
+                let lsScore2 = myList[i].APPRAISAL_COMPETENCY_LSCORE2 == null ? '""' : myList[i].APPRAISAL_COMPETENCY_LSCORE2;
+                let lsScore3 = myList[i].APPRAISAL_COMPETENCY_LSCORE3 == null ? '""' : myList[i].APPRAISAL_COMPETENCY_LSCORE3;
 
-                // let employeeLv = myList[i].APPRAISAL_LEVEL;
-                // if (employeeLv >= 1 && employeeLv <= 7) {
-                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.make_it_happen_score`)
-                //         .html("-" + `<input type="hidden" name="LSCORE1[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
-                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.provide_solutions_score`)
-                //         .html("-" + `<input type="hidden" name="LSCORE2[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
-                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.inspire_people_score`)
-                //         .html("-" + `<input type="hidden" name="LSCORE3[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
-                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.leadership_competency_total`)
-                //         .html("-" + `<input type="hidden" name="LSCORE_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
-                // } else if (employeeLv >= 11 && employeeLv <= 14) {
-                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score`)
-                //         .html("-" + `<input type="hidden" name="CSCORE1[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
-                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.result_orientation_score`)
-                //         .html("-" + `<input type="hidden" name="CSCORE2[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
-                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.flexibility_and_adaptability_score`)
-                //         .html("-" + `<input type="hidden" name="CSCORE3[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
-                //     $(`.grading-tbody > tr:nth-of-type(${n}) > td.core_competency_total`)
-                //         .html("-" + `<input type="hidden" name="CSCORE_TOTAL[${myList[i].APPRAISAL_EMPLOYEE_ID}]" value="0">`);
-                // }
-
-
+                console.log("N: "+ n)
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score option[value=${csScore1}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.result_orientation_score option[value=${csScore2}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.flexibility_and_adaptability_score option[value=${csScore3}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.make_it_happen_score option[value=${lsScore1}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.provide_solutions_score option[value=${lsScore2}]`).attr("selected", "selected")
+                $(`.grading-tbody > tr:nth-of-type(${n}) > td.inspire_people_score option[value=${lsScore3}]`).attr("selected", "selected")
+    
             }
 
             pageButtons(Data, data.pages)

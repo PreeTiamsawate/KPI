@@ -80,7 +80,7 @@ const assignRowStatus = function() {
         let valueCount = 0
         let commentCount = 0
         for (const rowSelect of rowSelects) {
-            if (rowSelect.value != "0")
+            if (rowSelect.value != "")
                 valueCount++
         }
         for (const rowComment of rowComments) {
@@ -119,7 +119,7 @@ const rowStatusBySelect = function() {
             const rowSelects = currentGradingRow.querySelectorAll("td.score > div > select");
             let valueCount = 0
             for (const rowSelect of rowSelects) {
-                if (rowSelect.value != "0")
+                if (rowSelect.value != "")
                     valueCount++
             }
 
