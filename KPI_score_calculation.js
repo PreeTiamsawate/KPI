@@ -23,41 +23,64 @@ const calculateScores = function() {
 
         let coreTotal = serviceScore + resultScore + flexibilityScore;
         let leaderTotal = makeItScore + provideScore + inspireScore;
-        let rawTotal = coreTotal + leaderTotal;
+        
+       
+     
         let wtCoreTotal = 0
-        let wtLeaderTotal = 0
-        let wtCompetencyPercent = 0
-        let competencyPercentTotals ={};
-
+        let wtLeadTotal = 0
+        // let wtCompetencyPercent = 0
+        // let rawTotal = 0;
         
-
+        for(let weight of score_weights){
+            if(employeeLv == weight.LEVEL && weight.CATEGORY.toLowerCase()=='core'){
+                var coreWeight = weight.WEIGHT;
+                var coreFullScore = weight.FULL_SCORE ? weight.FULL_SCORE : 0
+                if(coreTotal !=0) wtCoreTotal = coreTotal * coreWeight / coreFullScore ;
+            }
+            if(employeeLv == weight.LEVEL && weight.CATEGORY.toLowerCase()=='lead'){
+                var leadWeight = weight.WEIGHT;
+                var leadFullScore = weight.FULL_SCORE ? weight.FULL_SCORE : 0
+                if(leaderTotal !=0) wtLeadTotal = leaderTotal * leadWeight / leadFullScore ;
+            }     
+        }
         
-        rawTotalInput.setAttribute("value", String(rawTotal))
-        const getTotalScores = function(coreWeight, leaderWeight) {
-            wtCoreTotal = coreTotal * coreWeight / 15;
-            wtLeaderTotal = leaderTotal * leaderWeight / 15
-            wtCompetencyPercent = (wtCoreTotal + wtLeaderTotal) * 100 / (coreWeight + leaderWeight)
-            return {wtCoreTotal, wtLeaderTotal,  wtCompetencyPercent}
-        }
+        var wtCompetencyPercent = (wtCoreTotal + wtLeadTotal) * 100 / (coreWeight + leadWeight)
+       
+        var rawTotal = wtCoreTotal + wtLeadTotal
+       
+        // const getTotalScores = function(coreWeight, leaderWeight) {
+        //     wtCoreTotal = coreTotal * coreWeight / 15;
+        //     wtLeaderTotal = leaderTotal * leaderWeight / 15
+        //     wtCompetencyPercent = (wtCoreTotal + wtLeaderTotal) * 100 / (coreWeight + leaderWeight)
+        //     rawTotal = wtCoreTotal + wtLeaderTotal;
+        //     return {wtCoreTotal, wtLeaderTotal, rawTotal, wtCompetencyPercent}
+        // }
 
-        if (employeeLv >= 1 && employeeLv <= 7) {
-            competencyPercentTotals  = getTotalScores(50, 0)
-        } else if (employeeLv >= 8 && employeeLv <= 9) {
-            competencyPercentTotals  = getTotalScores(20, 20)
-        } else if (employeeLv == 10) {
-            competencyPercentTotals  = getTotalScores(10, 20)
-        } else if (employeeLv == 11) {
-            competencyPercentTotals  = getTotalScores(0, 20)
-        } else if (employeeLv >= 13 && employeeLv <= 14) {
-            competencyPercentTotals  = getTotalScores(0, 10)
-        }
+        // if (employeeLv >= 1 && employeeLv <= 7) {
+        //     competencyPercentTotals  = getTotalScores(50, 0)
+        // } else if (employeeLv >= 8 && employeeLv <= 9) {
+        //     competencyPercentTotals  = getTotalScores(20, 20)
+        // } else if (employeeLv == 10) {
+        //     competencyPercentTotals  = getTotalScores(10, 20)
+        // } else if (employeeLv == 11) {
+        //     competencyPercentTotals  = getTotalScores(0, 20)
+        // } else if (employeeLv >= 13 && employeeLv <= 14) {
+        //     competencyPercentTotals  = getTotalScores(0, 10)
+        // }
         if (coreTotalInput) {
-            coreTotalInput.setAttribute("value", String(competencyPercentTotals.wtCoreTotal.toFixed(3)))
+            coreTotalInput.setAttribute("value", String(wtCoreTotal.toFixed(3)))
         }
         if (leaderTotalInput) {
-            leaderTotalInput.setAttribute("value", String(competencyPercentTotals.wtLeaderTotal.toFixed(3)))
+            leaderTotalInput.setAttribute("value", String(wtLeadTotal.toFixed(3)))
         }
-        competencyPercentTotalInput.setAttribute("value", String(competencyPercentTotals.wtCompetencyPercent.toFixed(3) ))
+        if (rawTotalInput) {
+            rawTotalInput.setAttribute("value", String(rawTotal.toFixed(3)))
+        }
+        if (competencyPercentTotalInput) {
+            competencyPercentTotalInput.setAttribute("value", String(wtCompetencyPercent.toFixed(3)))
+        }
+       
+        
 
         // console.log(employeeLv, serviceScore, resultScore, flexibilityScore, makeItScore, provideScore, inspireScore, coreTotal, leaderTotal, rawTotal, competencyPercentTotal)
     }

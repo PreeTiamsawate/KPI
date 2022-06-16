@@ -1,4 +1,4 @@
-let dummyKPI_new = [
+[
 	{
 		"APPRAISAL_LEVEL" : 9,
 		"EMPLOYEE_ID" : "15884",
@@ -690,24 +690,3 @@ let dummyKPI_new = [
 		"COMPETENCY_WT100" : 66.660
 	}
 ]
-
-
-// let i = 1
-const allLevels = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 13, 14]
-for (let dummy of dummyKPI_new) {
-    // dummy.EMPLOYEE_NAME = i + dummy.EMPLOYEE_NAME
-    // i++
-    dummy.APPRAISAL_LEVEL = allLevels[Math.floor(Math.random() * allLevels.length)];
-    // if (dummy.COMPETENCY_WT100 == 0) {
-    //     dummy.COMPETENCY_LEAD1 = ""
-    //     dummy.COMPETENCY_LEAD2 = ""
-    //     dummy.COMPETENCY_LEAD3 = ""
-    //     dummy.COMPETENCY_CORE1 = ""
-    //     dummy.COMPETENCY_CORE2 = ""
-    //     dummy.COMPETENCY_CORE3 = ""
-    // }
-
-    // dummy.ORIGINAL_SCORE = 0
-}
-// dummyKPI = dummyKPI.slice(0, 41);
-// console.log(dummyKPI)
