@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <!-- Local css -->
+     <!-- CSS for Bootstrap5 -->
+     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
     <link rel="stylesheet" href="./KPI_print.css">
     <title>รายงานผลการปฏิบัติงานของพนักงาน</title>
 </head>
@@ -29,7 +31,7 @@
             </div>
             <div>
                 <span class="USER_ID">12345</span>
-                <span class="USER_FULL_NAME">นาย อาชว์ ชำนาญศิลป์ สุดยอดนักพัฒนา ลมุนพันธ์</span>
+                <span class="USER_FULL_NAME">นาย อาชว์ ชำนาญศิลป์</span>
             </div>
         </div>
         <div class="score-def">
@@ -53,25 +55,25 @@
                 <col>
                 <col>
                 <col>
-                <col>
             </colgroup>
             <!-- Table Header ========================================= -->
             <thead>
                 <tr>
-                    <th rowspan="1" colspan="3">
+                    <th rowspan="1" colspan="4">
                         Personnel Information
                     </th>
                     <th></th>
-                    <th colspan="4" height="30">
+                    <th colspan="3" height="30">
                         Core Competency
                     </th>
                     <th></th>
-                    <th colspan="4">
+                    <th colspan="3">
                         Leadership Competency
                     </th>
-                    <th rowspan="2">
+                    <th rowspan="2" class="d-none">
                         Total
                     </th>
+                    <th rowspan="2"> </th>
                     <th rowspan="2">
                         Weighted Competency (%)
                     </th>
@@ -80,6 +82,7 @@
                 <tr>
                     <td>Lv</td>
                     <td>ID</td>
+                    <td>Function</td>
                     <td>Name-Surname</td>
                     <td></td>
                     <td height="50">
@@ -91,7 +94,7 @@
                     <td>
                         Flexibility and Adaptability
                     </td>
-                    <td>
+                    <td class="d-none">
                         Total
                     </td>
                     <td></td>
@@ -104,7 +107,7 @@
                     <td>
                         Inspire <br> People
                     </td>
-                    <td>
+                    <td class="d-none">
                         Total
                     </td>
                 </tr>
@@ -123,9 +126,9 @@
         <button onclick="window.print()"> <img src="./kpi_image/Icon metro-printer.svg"> <span>Print</span></button>
     </div>
     <!-- Delete KPI_dummy_json.js below when connected to database!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-    <script src="./KPI_dummy_json.js"></script>
+    <!-- <script src="./KPI_dummy_json.js"></script> -->
     <script src="./KPI_dummy_json_v2.js"></script>
-
+  
     <script src="./KPI_PRINT_build_table.js"></script>
     <script>
         buildTablePrint(dummyKPI_new)

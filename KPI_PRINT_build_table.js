@@ -6,19 +6,21 @@ const buildTablePrint = function(data) {
         var row = `<tr>
                         <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
                         <td class="EMPLOYEE_ID">${myList[i].EMPLOYEE_ID}</td>
+                        <td class="FUNCTION">${myList[i].FUNCTION}</td>
                         <td class="EMPLOYEE_FULLNAME">${myList[i].EMPLOYEE_NAME}</td>
                         <td></td>
-                        <td class="service_orientation_score score">${myList[i].COMPETENCY_CORE1}</td>
-                        <td class=" result_orientation_score score">${myList[i].COMPETENCY_CORE2}</td>
-                        <td class="flexibility_and_adaptability_score score">${myList[i].COMPETENCY_CORE3}</td>
-                        <td class="core_competency_total total">${myList[i].COMPETENCY_WT_CORE}</td>
+                        <td class="service_orientation_score score">${myList[i].COMPETENCY_CORE1 || 0}</td>
+                        <td class=" result_orientation_score score">${myList[i].COMPETENCY_CORE2 || 0}</td>
+                        <td class="flexibility_and_adaptability_score score">${myList[i].COMPETENCY_CORE3 || 0}</td>
+                        <td class="core_competency_total total d-none">${myList[i].COMPETENCY_WT_CORE || 0}</td>
                         <td></td>
-                        <td class="make_it_happen_score score">${myList[i].COMPETENCY_LEAD1}</td>
-                        <td class="provide_solutions_score score">${myList[i].COMPETENCY_LEAD2}</td>
-                        <td class="inspire_people_score score">${myList[i].COMPETENCY_LEAD3}</td>
-                        <td class="leadership_competency_total total">${myList[i].COMPETENCY_WT_LEAD}</td>
-                        <td class="raw_total grand_total ">${myList[i].COMPETENCY_WT_TOTAL}</td>
-                        <td class="total_competency_percent grand_total ">${myList[i].COMPETENCY_WT100}</td>
+                        <td class="make_it_happen_score score">${myList[i].COMPETENCY_LEAD1 || 0}</td>
+                        <td class="provide_solutions_score score">${myList[i].COMPETENCY_LEAD2 || 0}</td>
+                        <td class="inspire_people_score score">${myList[i].COMPETENCY_LEAD3 || 0}</td>
+                        <td class="leadership_competency_total total d-none">${myList[i].COMPETENCY_WT_LEAD || 0}</td>
+                        <td class="raw_total grand_total d-none">${myList[i].COMPETENCY_WT_TOTAL || 0}</td>
+                        <td></td>
+                        <td class="total_competency_percent grand_total ">${myList[i].COMPETENCY_WT100 || 0}</td>
                     </tr>
     `
 

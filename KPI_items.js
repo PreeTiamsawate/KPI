@@ -19,17 +19,17 @@ const item_6_des = kpi_item_6.querySelector('.w3-dropdown-content')
 const kpi_item_7 = document.querySelector('#item-7')
 
 
-const insertKpiItem = (itemCell, des, id)=>{
-    const item = kpiItems.find((item) => item.APPRAISAL_ITEMS_ID == id);
+const insertKpiItem = (itemCell, des, cat, seq)=>{
+    const item = kpiItems.find((item) => item.CATEGORY == cat && item.SEQ == seq);
     des.innerHTML = item.DESCRIPTION;
     itemCell.innerHTML =  item.TITLE
     itemCell.appendChild(des)
 }
-insertKpiItem(kpi_item_1,item_1_des,1)
-insertKpiItem(kpi_item_2,item_2_des,2)
-insertKpiItem(kpi_item_3,item_3_des,3)
-insertKpiItem(kpi_item_4,item_4_des,4)
-insertKpiItem(kpi_item_5,item_5_des,5)
-insertKpiItem(kpi_item_6,item_6_des,6)
+insertKpiItem(kpi_item_1,item_1_des,"CORE",1)
+insertKpiItem(kpi_item_2,item_2_des,"CORE",2)
+insertKpiItem(kpi_item_3,item_3_des,"CORE",3)
+insertKpiItem(kpi_item_4,item_4_des,"LEAD",1)
+insertKpiItem(kpi_item_5,item_5_des,"LEAD",2)
+insertKpiItem(kpi_item_6,item_6_des,"LEAD",3)
 
-kpi_item_7.innerHTML = kpiItems.find((item)=>item.APPRAISAL_ITEMS_ID == 7).DESCRIPTION;
+kpi_item_7.innerHTML = kpiItems.find((item)=>item.TITLE == "ระดับการให้คะแนน").DESCRIPTION;

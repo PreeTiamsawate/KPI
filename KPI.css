@@ -348,41 +348,45 @@
      
      #GRADE_TABLE colgroup col:nth-of-type(1) {
          /* Lv Col */
-         width: 2.5%;
+         width: 3.33%;
      }
      
      #GRADE_TABLE colgroup col:nth-of-type(2) {
          /* ID col */
-         width: 5.34%;
+         width: 6%;
      }
      
      #GRADE_TABLE colgroup col:nth-of-type(3) {
-         /* name -surname col */
-         width: 15.08%;
+         /* function col */
+         width: 11%;
      }
      
-     #GRADE_TABLE colgroup col:nth-of-type(9),
      #GRADE_TABLE colgroup col:nth-of-type(4) {
-         /* Spacing cols */
-         width: 1.6%;
+         /* name surname */
+         width: 23%;
      }
      
      #GRADE_TABLE colgroup col:nth-of-type(5),
+     #GRADE_TABLE colgroup col:nth-of-type(9),
+     #GRADE_TABLE colgroup col:nth-of-type(13){
+        /* spacing col  */
+        width: 2%;
+     }
+
+
      #GRADE_TABLE colgroup col:nth-of-type(6),
      #GRADE_TABLE colgroup col:nth-of-type(7),
      #GRADE_TABLE colgroup col:nth-of-type(8),
      #GRADE_TABLE colgroup col:nth-of-type(10),
      #GRADE_TABLE colgroup col:nth-of-type(11),
-     #GRADE_TABLE colgroup col:nth-of-type(12),
-     #GRADE_TABLE colgroup col:nth-of-type(13) {
+     #GRADE_TABLE colgroup col:nth-of-type(12) {
          /* Score cols */
-         width: 7.14%;
+         width: 7.33%;
      }
      
-     #GRADE_TABLE colgroup col:nth-of-type(14),
-     #GRADE_TABLE colgroup col:nth-of-type(15) {
-         /* Total Score cols */
-         width: 7.3%;
+     #GRADE_TABLE colgroup col:nth-of-type(14){
+         /* Total Score 100% cols */
+         width: 8.67%;
      }
      
      thead {
@@ -484,18 +488,29 @@
          letter-spacing: 0px;
          color: #000000;
      }
-     
      .grading-tbody tr>td:nth-of-type(3) {
+        text-align: center;
+        /* font: normal normal normal 20px/22px Prompt; */
+        white-space: nowrap;
+        overflow: hidden;
+    }
+    
+    .grading-tbody tr>td:nth-of-type(3):hover {
+        white-space: normal;
+    }
+     .grading-tbody tr>td:nth-of-type(4) {
          text-align: left;
-         font: normal normal normal 16px/18px Prompt;
+         /* font: normal normal normal 20px/22px Prompt; */
          white-space: nowrap;
          overflow: hidden;
      }
      
-     .grading-tbody tr>td:nth-of-type(3):hover {
+     .grading-tbody tr>td:nth-of-type(4):hover {
          white-space: normal;
      }
-     
+     .grading-tbody tr{
+        font: normal normal normal 18px/20px Prompt;
+     }
      td.score>div {
          height: 120%;
          width: 100%;
@@ -528,7 +543,7 @@
          background-color: white;
          text-align: center;
          border: none;
-         font: normal normal 600 16px/18px Prompt;
+         /* font: normal normal 600 16px/18px Prompt; */
          letter-spacing: 0px;
      }
      
@@ -537,7 +552,7 @@
          background-color: white;
          text-align: center;
          border: none;
-         font: normal normal 600 16px/18px Prompt;
+         /* font: normal normal 600 16px/18px Prompt; */
          letter-spacing: 0px;
      }
      /* bottom grid============= */

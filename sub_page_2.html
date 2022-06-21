@@ -153,7 +153,7 @@
             </nav>
 
         </header>
-        <nav class="d-none" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <nav class="" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
               
             </ol>
@@ -287,7 +287,7 @@
                 </table>
                 <div class="grid-container ">
                     <div class="grid-item-1">
-                        <button type="submit" id="submitPage">Submit This Page</button>
+                        <!-- <button type="submit" id="submitPage">Submit This Page</button> -->
                     </div>
                     <div class="grid-item-2">
                         <div id="pagination-wrapper"></div>
@@ -295,7 +295,7 @@
                     <div class="grid-item-3">
                         <div id="page-index-wraper"></div>
                     </div>
-                    <div class="grid-item-4 w3-dropdown-hover">
+                    <!-- <div class="grid-item-4 w3-dropdown-hover">
                         หากท่านมีพนักงานที่ไม่ต้องรับการประเมินฯ
                         <div id="no-grade-btn" class="">
 
@@ -306,23 +306,9 @@
                                 Pay) นักบิน Non-Active ที่ไม่ได้ช่วยงานสำนักงาน เป็นต้น <br> <br> ทั้งนี้ พนักงานที่เกษียณ หรือลาออกระหว่างไตรมาส ต้องทำการประเมินผลเพื่อบันทึกไว้เป็นหลักฐานสำหรับการบริหารจัดการทรัพยากรบุคคลต่อไป
                             </p>
                         </div>
-                        <!-- <div id="rating-container">
-                            <div>Please tell us how we're doing</div>
-                            <a href="" target="_blank">
-                                
-                                    <div>Rate your experience</div>
-                                    <div>
-                                        <img src="./kpi_image/Icon awesome-star.svg">
-                                        <img src="./kpi_image/Icon awesome-star.svg">
-                                        <img src="./kpi_image/Icon awesome-star.svg">
-                                        <img src="./kpi_image/Icon awesome-star.svg">
-                                        <img src="./kpi_image/Icon awesome-star.svg">
-                                    </div>
-    
-                            </a>
-                        </div> -->
+                  
 
-                    </div>
+                    </div> -->
                     <div class="grid-item-5">
                         <div id="preview-btn">
                             <a href="./print.html" target="_blank">Print Preview</a>
@@ -552,13 +538,13 @@
                 //Keep in mind we are using "Template Litterals to create rows"
                 var row = `<tr row-status="">
                             <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
-                            <td class="EMPLOYEE_ID" reason-code=${myList[i].COMPETENCY_REASON_CODE}><a class="employee-link" href="./sub_page_1.html">${myList[i].EMPLOYEE_ID}</a></td>
+                            <td class="EMPLOYEE_ID" reason-code=${myList[i].COMPETENCY_REASON_CODE}><a class="employee-link" href="./sub_page_3.html">${myList[i].EMPLOYEE_ID}</a></td>
                             <td class="FUNCTION">${myList[i].FUNCTION}</td>
                             <td class="EMPLOYEE_FULLNAME">${myList[i].EMPLOYEE_NAME}</td>
                             <td></td>
                             <td class="service_orientation_score score">
                                 <div>
-                                    <select name="CSCORE1[${myList[i].EMPLOYEE_ID}]">
+                                    <select disabled name="CSCORE1[${myList[i].EMPLOYEE_ID}]">
                                         <option value=""></option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -567,12 +553,12 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE1}</textarea>
+                                    <textarea readonly name="CSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE1}</textarea>
                                 </div>
                             </td>
                             <td class=" result_orientation_score score ">
                                 <div>
-                                    <select name="CSCORE2[${myList[i].EMPLOYEE_ID}]">
+                                    <select disabled name="CSCORE2[${myList[i].EMPLOYEE_ID}]">
                                         <option value=""></option>
                                    
                                         <option value="1">1</option>
@@ -582,12 +568,12 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE2}</textarea>
+                                    <textarea readonly  name="CSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE2}</textarea>
                                 </div>
                             </td>
                             <td class="flexibility_and_adaptability_score score ">
                                 <div>
-                                    <select name="CSCORE3[${myList[i].EMPLOYEE_ID}]">
+                                    <select disabled name="CSCORE3[${myList[i].EMPLOYEE_ID}]">
                                         <option value=""></option>
                                       
                                         <option value="1">1</option>
@@ -597,7 +583,7 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE3}</textarea>
+                                    <textarea readonly  name="CSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE3}</textarea>
 
                                 </div>
                             </td>
@@ -607,7 +593,7 @@
                             <td></td>
                             <td class="make_it_happen_score score ">
                                 <div>
-                                    <select name="LSCORE1[${myList[i].EMPLOYEE_ID}]">
+                                    <select disabled name="LSCORE1[${myList[i].EMPLOYEE_ID}]">
                                         <option value=""></option>
                                
                                         <option value="1">1</option>
@@ -617,13 +603,13 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD1}</textarea>
+                                    <textarea readonly  name="LSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD1}</textarea>
 
                                 </div>
                             </td>
                             <td class="provide_solutions_score score ">
                                 <div>
-                                    <select name="LSCORE2[${myList[i].EMPLOYEE_ID}]">
+                                    <select disabled name="LSCORE2[${myList[i].EMPLOYEE_ID}]">
                                         <option value=""></option>
                                   
                                         <option value="1">1</option>
@@ -633,13 +619,13 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD2}</textarea>
+                                    <textarea readonly  name="LSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD2}</textarea>
 
                                 </div>
                             </td>
                             <td class="inspire_people_score score ">
                                 <div>
-                                    <select name="LSCORE3[${myList[i].EMPLOYEE_ID}]">
+                                    <select disabled name="LSCORE3[${myList[i].EMPLOYEE_ID}]">
                                         <option value=""></option>
                             
                                         <option value="1">1</option>
@@ -649,20 +635,20 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD3}</textarea>
+                                    <textarea readonly  name="LSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD3}</textarea>
 
                                 </div>
                             </td>
                             <td class="leadership_competency_total total d-none">
-                                <input name="LSCORE_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_LEAD}" type="text " readonly>
+                                <input readonly  name="LSCORE_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_LEAD}" type="text " readonly>
                             </td>
 
                             <td class="raw_total grand_total d-none">
-                                <input name="COMPETENCY_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_TOTAL}" type="text " readonly>
+                                <input readonly  name="COMPETENCY_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_TOTAL}" type="text " readonly>
                             </td>
                             <td></td>
                             <td class="total_competency_percent grand_total ">
-                                <input name="COMPETENCY_TOTAL100[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT100}" type="text " readonly>
+                                <input readonly  name="COMPETENCY_TOTAL100[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT100}" type="text " readonly>
                             </td>
                             <input type="hidden" name="ORIGINAL_SCORE[${myList[i].EMPLOYEE_ID}]" value="${myList[i].ORIGINAL_SCORE}">
                         </tr>

@@ -2,9 +2,10 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 9,
 		"EMPLOYEE_ID" : "15884",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย จาตุรนต์ สุวรรณรัตน์",
 		"COMPETENCY_REASON_CODE" : "N",
-		"COMPETENCY_LEAD1" : 2,
+		"COMPETENCY_LEAD1" : 0.00,
 		"COMPETENCY_LEAD2" : 3,
 		"COMPETENCY_LEAD3" : 3,
 		"COMPETENCY_LEAD4" : null,
@@ -32,11 +33,12 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 9,
 		"EMPLOYEE_ID" : "16266",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาง วสุนธรา กุลเสวตร์",
 		"COMPETENCY_REASON_CODE" : "Y",
-		"COMPETENCY_LEAD1" : 3,
-		"COMPETENCY_LEAD2" : 3,
-		"COMPETENCY_LEAD3" : 3,
+		"COMPETENCY_LEAD1" : 0.00,
+		"COMPETENCY_LEAD2" : 3.00,
+		"COMPETENCY_LEAD3" : 4.00,
 		"COMPETENCY_LEAD4" : null,
 		"COMPETENCY_LEAD5" : null,
 		"COMPETENCY_REASON_LEAD1" : "",
@@ -55,18 +57,19 @@ let dummyKPI_new = [
 		"COMPETENCY_REASON_CORE3" : "",
 		"COMPETENCY_REASON_CORE4" : "",
 		"COMPETENCY_REASON_CORE5" : "",
-		"COMPETENCY_WT_CORE" : 12.000,
-		"COMPETENCY_WT_TOTAL" : 24.000,
-		"COMPETENCY_WT100" : 60.000
+		"COMPETENCY_WT_CORE" : 12.050,
+		"COMPETENCY_WT_TOTAL" : 24.040,
+		"COMPETENCY_WT100" : 60.500
 	},
 	{
 		"APPRAISAL_LEVEL" : 10,
 		"EMPLOYEE_ID" : "17713",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาง จันทร์เพ็ญ ลี้วิบูลย์ศิลป์",
 		"COMPETENCY_REASON_CODE" : "Y",
-		"COMPETENCY_LEAD1" : 3,
-		"COMPETENCY_LEAD2" : 3,
-		"COMPETENCY_LEAD3" : 3,
+		"COMPETENCY_LEAD1" : 0.00,
+		"COMPETENCY_LEAD2" : 0.00,
+		"COMPETENCY_LEAD3" : 0.00,
 		"COMPETENCY_LEAD4" : null,
 		"COMPETENCY_LEAD5" : null,
 		"COMPETENCY_REASON_LEAD1" : "",
@@ -74,10 +77,10 @@ let dummyKPI_new = [
 		"COMPETENCY_REASON_LEAD3" : "",
 		"COMPETENCY_REASON_LEAD4" : "",
 		"COMPETENCY_REASON_LEAD5" : "",
-		"COMPETENCY_WT_LEAD" : 12.000,
-		"COMPETENCY_CORE1" : 3,
-		"COMPETENCY_CORE2" : 3,
-		"COMPETENCY_CORE3" : 3,
+		"COMPETENCY_WT_LEAD" : null,
+		"COMPETENCY_CORE1" : null,
+		"COMPETENCY_CORE2" : null,
+		"COMPETENCY_CORE3" : null,
 		"COMPETENCY_CORE4" : null,
 		"COMPETENCY_CORE5" : null,
 		"COMPETENCY_REASON_CORE1" : "",
@@ -85,13 +88,14 @@ let dummyKPI_new = [
 		"COMPETENCY_REASON_CORE3" : "",
 		"COMPETENCY_REASON_CORE4" : "",
 		"COMPETENCY_REASON_CORE5" : "",
-		"COMPETENCY_WT_CORE" : 6.000,
-		"COMPETENCY_WT_TOTAL" : 18.000,
-		"COMPETENCY_WT100" : 60.000
+		"COMPETENCY_WT_CORE" : null,
+		"COMPETENCY_WT_TOTAL" : null,
+		"COMPETENCY_WT100" : null,
 	},
 	{
 		"APPRAISAL_LEVEL" : 10,
 		"EMPLOYEE_ID" : "17739",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาง จริยา เทียมประเสริฐ",
 		"COMPETENCY_REASON_CODE" : "N",
 		"COMPETENCY_LEAD1" : 3,
@@ -122,6 +126,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 10,
 		"EMPLOYEE_ID" : "21488",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาง วรรณนิการ์ ชวนประพันธ์",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : 3,
@@ -152,6 +157,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 8,
 		"EMPLOYEE_ID" : "26163",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาง ชัชนันท์ ดุ๊ก",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : 3,
@@ -182,6 +188,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 9,
 		"EMPLOYEE_ID" : "27385",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาง สุภลักษณ์ มังกร",
 		"COMPETENCY_REASON_CODE" : "N",
 		"COMPETENCY_LEAD1" : 3,
@@ -212,6 +219,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 7,
 		"EMPLOYEE_ID" : "27557",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาง อภิรญา พาคำ",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : null,
@@ -242,6 +250,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 6,
 		"EMPLOYEE_ID" : "30474",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นางสาว ศศิพรรณ ศิริเจริญ",
 		"COMPETENCY_REASON_CODE" :"Y",
 		"COMPETENCY_LEAD1" : null,
@@ -272,6 +281,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 8,
 		"EMPLOYEE_ID" : "38507",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นางสาว ณัฐต์ศุภางค์ ปิตะคาพันธ์",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : 4,
@@ -302,6 +312,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 5,
 		"EMPLOYEE_ID" : "38756",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นางสาว มัลลิกา ธานี",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : null,
@@ -332,6 +343,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 6,
 		"EMPLOYEE_ID" : "41262",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย ธนวัฒน์ ลิ้มธรเบญจพล",
 		"COMPETENCY_REASON_CODE" : "N",
 		"COMPETENCY_LEAD1" : null,
@@ -362,6 +374,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 7,
 		"EMPLOYEE_ID" : "42357",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นางสาว มณิชญา แก้วแดงเด่น",
 		"COMPETENCY_REASON_CODE" : "N",
 		"COMPETENCY_LEAD1" : null,
@@ -392,6 +405,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 7,
 		"EMPLOYEE_ID" : "44353",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย ธนกร หาญวิวัฒนกิจ",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : null,
@@ -422,6 +436,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 6,
 		"EMPLOYEE_ID" : "45681",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย รณชัย อำไพโภคา",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : null,
@@ -452,6 +467,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 7,
 		"EMPLOYEE_ID" : "45688",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย ปิติพงษ์ นิยมบัณฑิต",
 		"COMPETENCY_REASON_CODE" : "N",
 		"COMPETENCY_LEAD1" : null,
@@ -482,6 +498,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 7,
 		"EMPLOYEE_ID" : "45690",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย สุหฤท จุลละบุษปะ",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : null,
@@ -512,6 +529,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 7,
 		"EMPLOYEE_ID" : "45691",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย วันบุญ สุวัฒน์ศิริพล",
 		"COMPETENCY_REASON_CODE" : "N",
 		"COMPETENCY_LEAD1" : null,
@@ -542,6 +560,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 6,
 		"EMPLOYEE_ID" : "45732",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย ปรีดิ์ เทียมเศวต",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : null,
@@ -572,6 +591,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 6,
 		"EMPLOYEE_ID" : "45734",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย สรวิชญ์ เตชะวิเชียร",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : null,
@@ -602,6 +622,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 6,
 		"EMPLOYEE_ID" : "45750",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย กานต์ เหล่าเศรษฐานันท์",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : null,
@@ -632,6 +653,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 6,
 		"EMPLOYEE_ID" : "45865",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นาย ภูมิพัฒน์ วรรณประดิษฐ์",
 		"COMPETENCY_REASON_CODE" : "N",
 		"COMPETENCY_LEAD1" : null,
@@ -662,6 +684,7 @@ let dummyKPI_new = [
 	{
 		"APPRAISAL_LEVEL" : 5,
 		"EMPLOYEE_ID" : "45886",
+		"FUNCTION":"BKK-D5",
 		"EMPLOYEE_NAME" : "นางสาว จุณทิชา แฉ่งใจ",
 		"COMPETENCY_REASON_CODE" : "Y",
 		"COMPETENCY_LEAD1" : null,
