@@ -25,7 +25,7 @@ console.log(track)
 var employeeLinks = document.querySelectorAll('.employee-link');
 for (let empLink of employeeLinks) {
     empLink.addEventListener("click", (e) => {
-        var linkText = empLink.innerText;
+        var linkText = empLink.parentElement.parentElement.querySelector('.FUNCTION').innerText;
         var linkUrl = empLink.href;
         var nextPage = {
             page: linkText,

@@ -537,7 +537,16 @@
          border-radius: 5px;
          padding: 10px;
      }
-     
+     td.competency-note>img{
+        width: 16px;
+        height: 16px;
+        cursor: pointer;
+     }
+     td.competency-note>div{
+        background-color: white;
+        font-weight: 400;
+        font-size: 16px;
+     }
      td.total>input {
          width: 50%;
          background-color: white;
@@ -711,4 +720,8 @@
          width: 126px;
          display: flex;
          justify-content: space-between;
+     }
+
+     input.for-show-only{
+        color: #000000;
      }

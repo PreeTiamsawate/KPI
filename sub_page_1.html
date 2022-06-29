@@ -541,7 +541,10 @@
                             <td class="EMPLOYEE_ID" reason-code=${myList[i].COMPETENCY_REASON_CODE}><a class="employee-link" href="./sub_page_2.html">${myList[i].EMPLOYEE_ID}</a></td>
                             <td class="FUNCTION">${myList[i].FUNCTION}</td>
                             <td class="EMPLOYEE_FULLNAME">${myList[i].EMPLOYEE_NAME}</td>
-                            <td></td>
+                            <td class="competency-note" note-data="${myList[i].COMPETENCY_NOTE}">
+                                <img class="d-none" src="./kpi_image/icon-info.png" alt="i">
+                                <div class="d-none"></div>
+                            </td>
                             <td class="service_orientation_score score">
                                 <div>
                                     <select disabled name="CSCORE1[${myList[i].EMPLOYEE_ID}]">
@@ -683,7 +686,7 @@
     <!-- <script src="./KPI_row_status_control.js"></script> -->
     <script src="./KPI_score_calculation.js"></script>
     <!-- <script src="./KPI_row_status_submit.js"></script> -->
-    <script src="./KPI_items.js"></script>
+    <!-- <script src="./KPI_items.js"></script> -->
     <script src="./KPI_breadcrumb_control.js"></script>
 </body>
 

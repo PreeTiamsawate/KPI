@@ -17,6 +17,7 @@ const dynamicInputControl = function() {
         const leaderTotalCell = parentRow.querySelector('td.leadership_competency_total')
         const rawTotalCell = parentRow.querySelector('td.raw_total')
         const total100Cell = parentRow.querySelector('td.total_competency_percent')
+        const competencyNote= parentRow.querySelector('td.competency-note')
         if(reasonCode == "n"){
             makeItCell.innerHTML = "-" ;
             provideCell.innerHTML = "-" ;
@@ -38,6 +39,21 @@ const dynamicInputControl = function() {
             resultCell.innerHTML = "-" + `<input type="hidden" name="CSCORE2[${employeeId}]">`;
             flexibilityCell.innerHTML = "-" + `<input type="hidden" name="CSCORE3[${employeeId}]">`;
             coreTotalCell.innerHTML = "-" + `<input type="hidden" name="CSCORE_TOTAL[${employeeId}]">`;
+        }
+
+        if(competencyNote.getAttribute('note-data') != "null"){
+            const noteMark = competencyNote.querySelector('img');
+            const noteContainer = competencyNote.querySelector('div');
+            noteMark.classList.remove('d-none');
+            noteMark.addEventListener('mouseenter' ,()=>{
+                noteContainer.classList.remove('d-none');
+                noteContainer.innerText = competencyNote.getAttribute('note-data')
+                noteContainer.style.position = "absolute"
+            });
+            noteMark.addEventListener('mouseleave' ,()=>{
+                noteContainer.classList.add('d-none');
+                
+            });
         }
     }
 }

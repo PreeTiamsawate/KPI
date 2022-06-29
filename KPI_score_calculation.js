@@ -20,6 +20,7 @@ const calculateScores = function() {
         let coreTotalInput = gradingRow.querySelector("td.core_competency_total > input")
         let leaderTotalInput = gradingRow.querySelector("td.leadership_competency_total > input")
         let rawTotalInput = gradingRow.querySelector("td.raw_total > input")
+        let competencyPercentTotalInputReal = gradingRow.querySelector("input.real-input-total100")
 
         let coreTotal = serviceScore + resultScore + flexibilityScore;
         let leaderTotal = makeItScore + provideScore + inspireScore;
@@ -73,11 +74,15 @@ const calculateScores = function() {
         if (leaderTotalInput) {
             leaderTotalInput.setAttribute("value", String(wtLeadTotal.toFixed(3)))
         }
+       
         if (rawTotalInput) {
             rawTotalInput.setAttribute("value", String(rawTotal.toFixed(3)))
         }
         if (competencyPercentTotalInput) {
-            competencyPercentTotalInput.setAttribute("value", String(wtCompetencyPercent.toFixed(3)))
+            competencyPercentTotalInput.setAttribute("value", String(wtCompetencyPercent.toFixed(2)))
+        }
+        if (competencyPercentTotalInputReal) {
+            competencyPercentTotalInputReal.setAttribute("value", String(wtCompetencyPercent.toFixed(3)))
         }
        
         
