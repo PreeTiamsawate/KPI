@@ -1,6 +1,6 @@
 window.onload  = ()=>{
     const breadcrumb = document.querySelector('ol.breadcrumb');
-    console.log("Window onload!!!!")
+
     if (!sessionStorage.getItem('track')) {
         var track = [{
             page: "Home",
@@ -8,10 +8,6 @@ window.onload  = ()=>{
         }];
         const ran = Math.random();
         console.log("in if"+String(ran));
-        for(let page of track){
-            breadcrumb.innerHTML += `<li class="breadcrumb-item"><a href=${page.url}>${page.page}</a></li>`
-            // breadcrumb.append(list);
-        }
     } else {
         var track = JSON.parse(sessionStorage.getItem('track'));
         console.log("in else");
@@ -24,13 +20,12 @@ window.onload  = ()=>{
                 track = track.slice(0,index+1)
             }
         }
-        for(let page of track){
-            breadcrumb.innerHTML += `<li class="breadcrumb-item"><a href=${page.url}>${page.page}</a></li>`
-            // breadcrumb.append(list);
-        }
     }
   
-    
+    for(let page of track){
+        breadcrumb.innerHTML += `<li class="breadcrumb-item"><a href=${page.url}>${page.page}</a></li>`
+        // breadcrumb.append(list);
+    }
     
     console.log(sessionStorage.getItem('track'))
     console.log(track)
@@ -50,6 +45,10 @@ window.onload  = ()=>{
             // console.log(JSON.parse(sessionStorage.getItem('track')))
         })
     }
+}
+window.onpopstate= ()=>{
+    track.slice(-1);
+    sessionStorage.setItem('track', JSON.stringify(track));
 }
 
 
