@@ -309,11 +309,11 @@
                   
 
                     </div> -->
-                    <div class="grid-item-5">
+                    <!-- <div class="grid-item-5">
                         <div id="preview-btn">
                             <a href="./print.html" target="_blank">Print Preview</a>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
 
 
@@ -328,11 +328,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <!-- Delete KPI_dummy_json.js below when connected to database!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-    <!-- <script src="./KPI_dummy_json.js"></script> -->
-    <script src="./KPI_dummy_json_v2.js"></script>
-    <script src="./KPI_score_weight_dummy.js"></script>
-    <script src="./KPI_items_json.js"></script>
-    
+    <script src="./dummy_data/KPI_dummy_data_17854.js"></script>
+    <script src="./dummy_data/KPI_score_weight_dummy.js"></script>
+    <script src="./dummy_data/KPI_items_json.js"></script>
+
     <script>
         const score_weights = score_weight_dummy;
         const kpiItems = kpi_items_dummy;
@@ -369,7 +368,7 @@
         const callBasicFunctions = function() {
             commentBoxControl()
             dynamicInputControl()
-            assignRowStatus()
+            // assignRowStatus()
             rowStatusBySelect()
             rowStatusByComment()
             commentRequired()
@@ -538,10 +537,10 @@
                 //Keep in mind we are using "Template Litterals to create rows"
                 var row = `<tr row-status="">
                             <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
-                            <td class="EMPLOYEE_ID" reason-code=${myList[i].COMPETENCY_REASON_CODE}><a class="employee-link" href="./sub_page_3.html">${myList[i].EMPLOYEE_ID}</a></td>
+                            <td class="EMPLOYEE_ID"><a class="employee-link" href="${myList[i].SUB_EMPLOYEE_KPI_URL || ""}">${myList[i].EMPLOYEE_ID}</a></td>
                             <td class="FUNCTION">${myList[i].FUNCTION}</td>
                             <td class="EMPLOYEE_FULLNAME">${myList[i].EMPLOYEE_NAME}</td>
-                            <td class="competency-note" note-data="${myList[i].COMPETENCY_NOTE}">
+                            <td class="competency-note" note-data="${myList[i].COMPETENCY_REASON_NOTE}">
                                 <img class="d-none" src="./kpi_image/icon-info.png" alt="i">
                                 <div class="d-none"></div>
                             </td>

@@ -6,7 +6,7 @@ const dynamicInputControl = function() {
         const parentRow = levelCell.parentElement;
         const employeeIdCell = parentRow.querySelector('td.EMPLOYEE_ID')
         const employeeId = employeeIdCell.innerText
-        const reasonCode = employeeIdCell.getAttribute("reason-code").toLocaleLowerCase()
+      
         const serviceCell = parentRow.querySelector('td.service_orientation_score')
         const resultCell = parentRow.querySelector('td.result_orientation_score')
         const flexibilityCell = parentRow.querySelector('td.flexibility_and_adaptability_score')
@@ -18,7 +18,7 @@ const dynamicInputControl = function() {
         const rawTotalCell = parentRow.querySelector('td.raw_total')
         const total100Cell = parentRow.querySelector('td.total_competency_percent')
         const competencyNote= parentRow.querySelector('td.competency-note')
-        if(reasonCode == "n"){
+        if(competencyNote.getAttribute('note-data') != "null"){
             makeItCell.innerHTML = "-" ;
             provideCell.innerHTML = "-" ;
             inspireCell.innerHTML = "-";
