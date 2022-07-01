@@ -5,8 +5,10 @@ window.onload  = ()=>{
             page: "Home",
             url: window.location.href
         }];
+        console.log("in if");
     } else {
         var track = JSON.parse(sessionStorage.getItem('track'));
+        console.log("in else");
         for(let page of track){
             console.log(page.url)
             console.log(window.location.href)
