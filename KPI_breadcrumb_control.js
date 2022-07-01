@@ -1,5 +1,4 @@
-
-setTimeout(()=>{
+const breadcrumbControl = ()=>{
     if (!sessionStorage.getItem('track')) {
         var track = [{
             page: "Home",
@@ -40,5 +39,6 @@ setTimeout(()=>{
             // console.log(JSON.parse(sessionStorage.getItem('track')))
         })
     }
-},500)
+}
+breadcrumbControl();
 
