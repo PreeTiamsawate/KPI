@@ -46,9 +46,13 @@ window.onload  = ()=>{
         })
     }
 }
-window.onpopstate= ()=>{
-    track.slice(-1);
-    sessionStorage.setItem('track', JSON.stringify(track));
-}
+const currentHash = location.hash
+window.addEventListener('hashchange', function() {
+    if (location.hash.length < currentHash.length){
+        track.slice(-1);
+        sessionStorage.setItem('track', JSON.stringify(track));
+    }
+}, false);
+
 
 
