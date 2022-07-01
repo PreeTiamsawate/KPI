@@ -19,7 +19,7 @@ for(let page of track){
     breadcrumb.innerHTML += `<li class="breadcrumb-item"><a href=${page.url}>${page.page}</a></li>`
     // breadcrumb.append(list);
 }
-console.log(index)
+console.log(window.location.href)
 console.log(track)
 
 var employeeLinks = document.querySelectorAll('.employee-link');
