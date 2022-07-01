@@ -27,6 +27,7 @@ window.onload  = ()=>{
     }
     
     console.log(sessionStorage.getItem('track'))
+    console.log(track)
     
     var employeeLinks = document.querySelectorAll('.employee-link');
     for (let empLink of employeeLinks) {
