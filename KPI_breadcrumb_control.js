@@ -46,13 +46,18 @@ window.onload  = ()=>{
         })
     }
 }
-const currentHash = location.hash
-window.addEventListener('hashchange', function() {
-    if (location.hash.length < currentHash.length){
-        track.slice(-1);
-        sessionStorage.setItem('track', JSON.stringify(track));
-    }
-}, false);
+// window.addEventListener('popstate', function() {
+//     track.slice(-1);
+//     sessionStorage.setItem('track', JSON.stringify(track));
+//     sessionStorage.setItem('backtrack', "back");
+//     alert("Back was click")
+// });
+function preventBack() {
+    window.history.forward();
 
-
+}
+  
+setTimeout("preventBack()", 0);
+  
+window.onunload = function () { null };
 
