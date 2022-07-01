@@ -40,5 +40,18 @@ const breadcrumbControl = ()=>{
         })
     }
 }
+window.onload = ()=>{
+    const test1 = [1];
+    if(test1.length>0){
+        console.log("Window onload!!!!")
+    }
+}
+
+document.onload = ()=>{
+    const test2 = [1];
+    if(test2.length>0){
+        console.log("Document onload!!!!")
+    }
+}
 breadcrumbControl();
 
