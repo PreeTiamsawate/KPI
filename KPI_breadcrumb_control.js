@@ -26,7 +26,7 @@ window.onload  = ()=>{
         // breadcrumb.append(list);
     }
     
-    console.log(track)
+    console.log(sessionStorage.getItem('track'))
     
     var employeeLinks = document.querySelectorAll('.employee-link');
     for (let empLink of employeeLinks) {
