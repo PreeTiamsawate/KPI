@@ -5,7 +5,8 @@ window.onload  = ()=>{
             page: "Home",
             url: window.location.href
         }];
-        console.log("in if");
+        const ran = Math.random();
+        console.log("in if"+String(ran));
     } else {
         var track = JSON.parse(sessionStorage.getItem('track'));
         console.log("in else");
