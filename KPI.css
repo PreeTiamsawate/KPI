@@ -546,6 +546,12 @@
         background-color: white;
         font-weight: 400;
         font-size: 16px;
+        z-index: 1000;
+        background: #FFFFFF 0% 0% no-repeat padding-box;
+        border: 1px solid #330066;
+        border-radius: 5px;
+        padding: 10px;
+        margin-top: 20px;
      }
      td.total>input {
          width: 50%;
