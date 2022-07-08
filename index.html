@@ -340,9 +340,11 @@
         const score_weights = score_weight_dummy;
         const kpiItems = kpi_items_dummy;
         let rawData = dummyKPI_new;
-        // let rawData = [] ;
 
-
+        if(rawData.length == 0 ){
+            Swal.fire('ไม่มีข้อมูลผู้ถูกประเมิน')
+        }
+        
         const gradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 != null)
         const notGradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 == null)
         let filteredData = rawData

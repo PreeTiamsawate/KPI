@@ -96,3 +96,6 @@ let dummyKPI_new  = [
         "SUB_EMPLOYEE_KPI_URL": null
 	}
 ]
+dummyKPI_new.sort((a,b)=>{
+	return b.APPRAISAL_LEVEL - a.APPRAISAL_LEVEL;
+});

@@ -326,7 +326,7 @@
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
-
+    <script src="./sweetalert2.all.min.js"></script>
     <!-- Delete KPI_dummy_json.js below when connected to database!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
     <script src="./dummy_data/KPI_dummy_data_14540.js"></script>
     <script src="./dummy_data/KPI_score_weight_dummy.js"></script>
@@ -336,7 +336,9 @@
         const score_weights = score_weight_dummy;
         const kpiItems = kpi_items_dummy;
         let rawData = dummyKPI_new;
-
+        if(rawData.length == 0 ){
+            Swal.fire('ไม่มีข้อมูลผู้ถูกประเมิน')
+        }
 
         const gradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 != null)
         const notGradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 == null)

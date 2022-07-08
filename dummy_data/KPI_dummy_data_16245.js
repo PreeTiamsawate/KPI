@@ -29,7 +29,7 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 16.000,
 		"COMPETENCY_WT_TOTAL" : 30.670,
 		"COMPETENCY_WT100" : 76.680,
-        "SUB_EMPLOYEE_KPI_URL": null
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
 	},
 	{
 		"APPRAISAL_LEVEL" : 9,
@@ -61,7 +61,7 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 16.000,
 		"COMPETENCY_WT_TOTAL" : 30.670,
 		"COMPETENCY_WT100" : 76.680,
-        "SUB_EMPLOYEE_KPI_URL": null
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
 	},
 	{
 		"APPRAISAL_LEVEL" : 9,
@@ -93,6 +93,9 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 16.000,
 		"COMPETENCY_WT_TOTAL" : 30.670,
 		"COMPETENCY_WT100" : 76.680,
-        "SUB_EMPLOYEE_KPI_URL": null
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
 	}
 ]
+dummyKPI_new.sort((a,b)=>{
+	return b.APPRAISAL_LEVEL - a.APPRAISAL_LEVEL;
+});
