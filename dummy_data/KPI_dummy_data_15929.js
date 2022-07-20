@@ -131,7 +131,7 @@ let dummyKPI_new  = [
 		"APPRAISAL_LEVEL" : 10,
 		"EMPLOYEE_ID" : "16887",
 		"FUNCTION" : "BKKQA",
-		"EMPLOYEE_NAME" : "Dick Wenzinger",
+		"EMPLOYEE_NAME" : "Dave Wenzinger",
 		"COMPETENCY_REASON_NOTE" : null,
 		"COMPETENCY_LEAD1" : 3,
 		"COMPETENCY_LEAD2" : 3,

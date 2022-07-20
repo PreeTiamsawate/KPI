@@ -318,7 +318,7 @@
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Your work has been saved',
+                        title: 'Your evaluation has been saved',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -342,7 +342,7 @@
         let rawData = dummyKPI_new;
 
         if(rawData.length == 0 ){
-            Swal.fire('ไม่มีข้อมูลผู้ถูกประเมิน')
+            Swal.fire('สิ้นสุดการแสดงผล')
         }
         
         const gradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 != null)
