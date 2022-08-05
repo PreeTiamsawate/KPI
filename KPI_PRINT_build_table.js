@@ -9,18 +9,19 @@ const buildTablePrint = function(data) {
                         <td class="FUNCTION">${myList[i].FUNCTION}</td>
                         <td class="EMPLOYEE_FULLNAME">${myList[i].EMPLOYEE_NAME}</td>
                         <td></td>
-                        <td class="service_orientation_score score">${myList[i].COMPETENCY_CORE1 || 0}</td>
-                        <td class=" result_orientation_score score">${myList[i].COMPETENCY_CORE2 || 0}</td>
-                        <td class="flexibility_and_adaptability_score score">${myList[i].COMPETENCY_CORE3 || 0}</td>
-                        <td class="core_competency_total total d-none">${myList[i].COMPETENCY_WT_CORE || 0}</td>
+                        <td class="service_orientation_score score">${myList[i].COMPETENCY_CORE1 || "-"}</td>
+                        <td class=" result_orientation_score score">${myList[i].COMPETENCY_CORE2 || "-"}</td>
+                        <td class="flexibility_and_adaptability_score score">${myList[i].COMPETENCY_CORE3 || "-"}</td>
+                        <td class="core_competency_total total d-none">${myList[i].COMPETENCY_WT_CORE || "-"}</td>
                         <td></td>
-                        <td class="make_it_happen_score score">${myList[i].COMPETENCY_LEAD1 || 0}</td>
-                        <td class="provide_solutions_score score">${myList[i].COMPETENCY_LEAD2 || 0}</td>
-                        <td class="inspire_people_score score">${myList[i].COMPETENCY_LEAD3 || 0}</td>
-                        <td class="leadership_competency_total total d-none">${myList[i].COMPETENCY_WT_LEAD || 0}</td>
-                        <td class="raw_total grand_total d-none">${myList[i].COMPETENCY_WT_TOTAL || 0}</td>
+                        <td class="make_it_happen_score score">${myList[i].COMPETENCY_LEAD1 || "-"}</td>
+                        <td class="provide_solutions_score score">${myList[i].COMPETENCY_LEAD2 || "-"}</td>
+                        <td class="inspire_people_score score">${myList[i].COMPETENCY_LEAD3 || "-"}</td>
+                        <td class="leadership_competency_total total d-none">${myList[i].COMPETENCY_WT_LEAD || "-"}</td>
+                        <td class="raw_total grand_total d-none">${myList[i].COMPETENCY_WT_TOTAL || "-"}</td>
                         <td></td>
-                        <td class="total_competency_percent grand_total ">${myList[i].COMPETENCY_WT100 || 0}</td>
+                        <td class="total_competency_percent grand_total ">${myList[i].COMPETENCY_WT100 || "-"}</td>
+                        <td class="competency-reason-note d-none">${myList[i].COMPETENCY_REASON_NOTE || "-"}</td>
                     </tr>
     `
 
@@ -42,15 +43,24 @@ const buildTablePrint = function(data) {
         const leaderTotalCell = parentRow.querySelector('td.leadership_competency_total')
         const totalScoreCell = parentRow.querySelector('td.raw_total')
         const totalPercentCell = parentRow.querySelector('td.total_competency_percent')
-        if (totalScoreCell.innerText == "0") {
-            const badCells = [resultCell, flexibilityCell, coreTotalCell, makeItCell, provideCell, inspireCell, leaderTotalCell, totalScoreCell, totalPercentCell]
+        const competencyReasonNote = parentRow.querySelector('td.competency-reason-note')
+        const badCells = [resultCell, flexibilityCell, coreTotalCell, makeItCell, provideCell, inspireCell, leaderTotalCell, totalScoreCell, totalPercentCell]
+        if(competencyReasonNote.innerText != '-'){
+            for (let badCell of badCells) {
+                parentRow.removeChild(badCell)
+            }
+            serviceCell.setAttribute("colspan", "10")
+            serviceCell.classList.add("not-graded-watermark")
+            serviceCell.innerText = competencyReasonNote.innerText;
+        } else if (totalScoreCell.innerText == "-") {
             for (let badCell of badCells) {
                 parentRow.removeChild(badCell)
             }
             serviceCell.setAttribute("colspan", "10")
             serviceCell.classList.add("not-graded-watermark")
             serviceCell.innerText = "ยังไม่ได้รับการประเมินศักยภาพ"
-        } else if (employeeLv >= 1 && employeeLv <= 7) {
+        } else 
+        if (employeeLv >= 1 && employeeLv <= 7) {
             makeItCell.innerHTML = "-"
             provideCell.innerHTML = "-"
             inspireCell.innerHTML = "-"
