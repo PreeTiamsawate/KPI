@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="./KPI.css">
     <title>แบบประเมินผลการปฏิบัติงานของพนักงาน</title>
 
-
 </head>
 
 <body>
@@ -46,6 +45,7 @@
                     <img src="./kpi_image/score definitions.svg" alt="">
                     <div id="item-7" class="w3-dropdown-content score-definations">
                         <!-- insserted from database -->
+              
                     </div>
                 </div>
                 <div class="filter-boxes">
@@ -320,7 +320,7 @@
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Your work has been saved',
+                        title: 'Your evaluation has been saved',
                         showConfirmButton: false,
                         timer: 1500
                     })
@@ -342,21 +342,21 @@
     <script src="./dummy_data/KPI_items_json.js"></script>
     
     <script>
-        const score_weights = score_weight_dummy;
-        const kpiItems = kpi_items_dummy;
+        var score_weights = score_weight_dummy;
+        var kpiItems = kpi_items_dummy;
         let rawData = dummyKPI_new;
 
         if(rawData.length == 0 ){
-            Swal.fire('ไม่มีข้อมูลผู้ถูกประเมิน')
+            Swal.fire('สิ้นสุดการแสดงผล')
         }
         
-        const gradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 != null)
-        const notGradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 == null)
+        var gradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 != null || data.COMPETENCY_WT100 != 0)
+        var notGradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 == null || data.COMPETENCY_WT100 == 0)
         let filteredData = rawData
 
         const updateGradedNumbers = function (data) {
-            let gradedFilteredData = data.filter(data => data.COMPETENCY_WT100 != null)
-            let notGradedFilteredData = data.filter(data => data.COMPETENCY_WT100 == null)
+            let gradedFilteredData = data.filter(data => data.COMPETENCY_WT100 != null || data.COMPETENCY_WT100 != 0)
+            let notGradedFilteredData = data.filter(data => data.COMPETENCY_WT100 == null || data.COMPETENCY_WT100 == 0)
             const gradedNumber = document.querySelector("span.GRADED_NUMBER")
             const notGradedNumber = document.querySelector("span.NOT_GRADED_NUMBER")
             gradedNumber.innerText = `(${gradedFilteredData.length})`
@@ -670,12 +670,12 @@
               `
                 table.append(row)
                 let n = Number(i) + 1
-                let csScore1 = myList[i].COMPETENCY_CORE1 == null ? '""' : myList[i].COMPETENCY_CORE1;
-                let csScore2 = myList[i].COMPETENCY_CORE2 == null ? '""' : myList[i].COMPETENCY_CORE2;
-                let csScore3 = myList[i].COMPETENCY_CORE3 == null ? '""' : myList[i].COMPETENCY_CORE3;
-                let lsScore1 = myList[i].COMPETENCY_LEAD1 == null ? '""' : myList[i].COMPETENCY_LEAD1;
-                let lsScore2 = myList[i].COMPETENCY_LEAD2 == null ? '""' : myList[i].COMPETENCY_LEAD2;
-                let lsScore3 = myList[i].COMPETENCY_LEAD3 == null ? '""' : myList[i].COMPETENCY_LEAD3;
+                let csScore1 = myList[i].COMPETENCY_CORE1 == null ? '""' : Number(myList[i].COMPETENCY_CORE1);
+                let csScore2 = myList[i].COMPETENCY_CORE2 == null ? '""' : Number(myList[i].COMPETENCY_CORE2);
+                let csScore3 = myList[i].COMPETENCY_CORE3 == null ? '""' : Number(myList[i].COMPETENCY_CORE3);
+                let lsScore1 = myList[i].COMPETENCY_LEAD1 == null ? '""' : Number(myList[i].COMPETENCY_LEAD1);
+                let lsScore2 = myList[i].COMPETENCY_LEAD2 == null ? '""' : Number(myList[i].COMPETENCY_LEAD2);
+                let lsScore3 = myList[i].COMPETENCY_LEAD3 == null ? '""' : Number(myList[i].COMPETENCY_LEAD3);
 
                 console.log("N: " + n)
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score option[value=${csScore1}]`).attr("selected", "selected")

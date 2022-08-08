@@ -427,18 +427,18 @@
      }
      
      th>.w3-dropdown-hover>.w3-dropdown-content {
-         margin-top: 10px;
+         margin-top: 30px;
          background: #FFFFFF 0% 0% no-repeat padding-box;
          /* border: 1px solid #330066; */
          border-radius: 5px;
          /* padding: 15px; */
-         margin-left: -500px;
+         margin-left: -220px;
          padding-bottom: 20px;
      }
      
      th>.w3-dropdown-hover>.w3-dropdown-content>img {
-         width: 600px;
-         height: 500px;
+         width: 350px;
+         height: 230px;
      }
      
      td>.w3-dropdown-hover {
