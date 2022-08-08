@@ -3,6 +3,7 @@ const buildTablePrint = function(data) {
     let table = document.querySelector(".grading-tbody")
 
     for (var i in myList) {
+        var totalCompetencyPercent = myList[i].COMPETENCY_WT100 ? myList[i].COMPETENCY_WT100.toFixed(2) : "-"
         var row = `<tr>
                         <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
                         <td class="EMPLOYEE_ID">${myList[i].EMPLOYEE_ID}</td>
@@ -20,7 +21,7 @@ const buildTablePrint = function(data) {
                         <td class="leadership_competency_total total d-none">${myList[i].COMPETENCY_WT_LEAD || "-"}</td>
                         <td class="raw_total grand_total d-none">${myList[i].COMPETENCY_WT_TOTAL || "-"}</td>
                         <td></td>
-                        <td class="total_competency_percent grand_total ">${myList[i].COMPETENCY_WT100 || "-"}</td>
+                        <td class="total_competency_percent grand_total ">${totalCompetencyPercent}</td>
                         <td class="competency-reason-note d-none">${myList[i].COMPETENCY_REASON_NOTE || "-"}</td>
                     </tr>
     `
