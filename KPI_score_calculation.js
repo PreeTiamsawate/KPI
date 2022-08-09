@@ -49,40 +49,22 @@ const calculateScores = function() {
        
         var rawTotal = wtCoreTotal + wtLeadTotal
        
-        // const getTotalScores = function(coreWeight, leaderWeight) {
-        //     wtCoreTotal = coreTotal * coreWeight / 15;
-        //     wtLeaderTotal = leaderTotal * leaderWeight / 15
-        //     wtCompetencyPercent = (wtCoreTotal + wtLeaderTotal) * 100 / (coreWeight + leaderWeight)
-        //     rawTotal = wtCoreTotal + wtLeaderTotal;
-        //     return {wtCoreTotal, wtLeaderTotal, rawTotal, wtCompetencyPercent}
-        // }
-
-        // if (employeeLv >= 1 && employeeLv <= 7) {
-        //     competencyPercentTotals  = getTotalScores(50, 0)
-        // } else if (employeeLv >= 8 && employeeLv <= 9) {
-        //     competencyPercentTotals  = getTotalScores(20, 20)
-        // } else if (employeeLv == 10) {
-        //     competencyPercentTotals  = getTotalScores(10, 20)
-        // } else if (employeeLv == 11) {
-        //     competencyPercentTotals  = getTotalScores(0, 20)
-        // } else if (employeeLv >= 13 && employeeLv <= 14) {
-        //     competencyPercentTotals  = getTotalScores(0, 10)
-        // }
+       
         if (coreTotalInput) {
             coreTotalInput.setAttribute("value", String(wtCoreTotal.toFixed(3)) == "0.000" ? '' : String(wtCoreTotal.toFixed(3)))
         }
         if (leaderTotalInput) {
-            leaderTotalInput.setAttribute("value", String(wtLeadTotal.toFixed(3)) == "0.000" ? '' : String(wtCoreTotal.toFixed(3)) )
+            leaderTotalInput.setAttribute("value", String(wtLeadTotal.toFixed(3)) == "0.000" ? '' : String(wtLeadTotal.toFixed(3)) )
         }
        
         if (rawTotalInput) {
-            rawTotalInput.setAttribute("value", String(rawTotal.toFixed(3)) == "0.000" ? '' : String(wtCoreTotal.toFixed(3)) )
+            rawTotalInput.setAttribute("value", String(rawTotal.toFixed(3)) == "0.000" ? '' : String(rawTotal.toFixed(3)) )
         }
         if (competencyPercentTotalInput) {
-            competencyPercentTotalInput.setAttribute("value", String(wtCompetencyPercent.toFixed(2)) == "0.00" ? '-' : String(wtCoreTotal.toFixed(2)) )
+            competencyPercentTotalInput.setAttribute("value", String(wtCompetencyPercent.toFixed(2)) == "0.00" ? '-' : String(wtCompetencyPercent.toFixed(2)) )
         }
         if (competencyPercentTotalInputReal) {
-            competencyPercentTotalInputReal.setAttribute("value", String(wtCompetencyPercent.toFixed(3)) == "0.000" ? '' : String(wtCoreTotal.toFixed(3)) )
+            competencyPercentTotalInputReal.setAttribute("value", String(wtCompetencyPercent.toFixed(3)) == "0.000" ? '' : String(wtCompetencyPercent.toFixed(3)) )
         }
        
         

@@ -438,20 +438,20 @@
             buildTable(filteredData)
             callBasicFunctions()
         })
-        let dataBySearch = filteredData
+      
 
         searchInput.addEventListener('input', function () {
             console.log(this.value)
             let filterValue = this.value;
-
+          
             if (filterValue != "") {
-                dataBySearch = filteredData.filter(data => data.EMPLOYEE_ID.includes(filterValue) || data.EMPLOYEE_NAME.toUpperCase().includes(filterValue.toUpperCase()))
+                filteredData = rawData.filter(data => data.EMPLOYEE_ID.includes(filterValue) || data.EMPLOYEE_NAME.toUpperCase().includes(filterValue.toUpperCase()))
             } else {
-                dataBySearch = filteredData
+                filteredData = rawData 
             }
 
             $('.grading-tbody').empty()
-            buildTable(dataBySearch)
+            buildTable(filteredData)
             callBasicFunctions()
 
         })

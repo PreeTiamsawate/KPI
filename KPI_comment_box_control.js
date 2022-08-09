@@ -43,7 +43,7 @@ const commentBoxControl = function() {
 
                 } else {
                     commentBox.disabled = false
-                    commentBox.setAttribute("placeholder", "คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)")
+                    commentBox.setAttribute("placeholder", "คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)")
                 }
                 commentBox.className += " w3-show";
                 boxParent.style.border = "1px solid #330066";
