@@ -15,7 +15,6 @@
     <link rel="stylesheet" href="./KPI.css">
     <title>แบบประเมินผลการปฏิบัติงานของพนักงาน</title>
 
-
 </head>
 
 <body>
@@ -28,8 +27,8 @@
                 <div>
                     <img src="./kpi_image/thai logo.png">
                     <span>
-                        แบบประเมินศักยภาพของพนักงาน "Competency" ครั้งที่ 1/2565
-                        (<span class="QUARTER_YEAR">H1/2022</span>)
+                        แบบประเมินศักยภาพของพนักงาน "Competency" ครั้งที่ 2/2565
+                        (<span class="QUARTER_YEAR">H2/2022</span>)
                     </span>
 
                 </div>
@@ -46,6 +45,7 @@
                     <img src="./kpi_image/score definitions.svg" alt="">
                     <div id="item-7" class="w3-dropdown-content score-definations">
                         <!-- insserted from database -->
+
                     </div>
                 </div>
                 <div class="filter-boxes">
@@ -165,9 +165,10 @@
         </nav>
         <main id="to-print">
 
-            <form action="" method="" id="form1">
+            <form action="" method="">
                 <table id="GRADE_TABLE">
                     <colgroup>
+                        <col>
                         <col>
                         <col>
                         <col>
@@ -204,6 +205,9 @@
                                 Total
                             </th>
                             <th rowspan="2"></th>
+                            <th rowspan="2">
+                                Master Comment
+                            </th>
                             <th rowspan="2">
                                 <div class="w3-dropdown-hover">
                                     Weighted Competency (%)
@@ -292,7 +296,6 @@
                 </table>
                 <div class="grid-container ">
                     <div class="grid-item-1">
-                       
                         <button type="submit" id="submitPage">Submit This Page</button>
                     </div>
                     <div class="grid-item-2">
@@ -301,7 +304,7 @@
                     <div class="grid-item-3">
                         <div id="page-index-wraper"></div>
                     </div>
-                   
+
                     <div class="grid-item-5">
                         <div id="preview-btn">
                             <a href="./print.html" target="_blank">Print Preview</a>
@@ -314,49 +317,47 @@
 
             <!-- Success Alert After Save -->
             <!-- <button id="complete">Complete!</button> -->
-            <!-- <script>
+            <script>
                 const button = document.querySelector('#submitPage');
                 button.addEventListener('click', () => {
                     Swal.fire({
                         position: 'center',
                         icon: 'success',
-                        title: 'Your work has been saved',
+                        title: 'Your evaluation has been saved',
                         showConfirmButton: false,
                         timer: 1500
                     })
                 })
-            </script> -->
+            </script>
         </main>
 
     </div>
-    <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script> -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script> -->
-    <script src="https://code.jquery.com/jquery-3.6.0.js" integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk=" crossorigin="anonymous"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
     <script src="./sweetalert2.all.min.js"></script>
 
     <!-- Delete KPI_dummy_json.js below when connected to database!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
     <script src="./dummy_data/KPI_dummy_data_15929.js"></script>
     <script src="./dummy_data/KPI_score_weight_dummy.js"></script>
     <script src="./dummy_data/KPI_items_json.js"></script>
-    
+
     <script>
-        const score_weights = score_weight_dummy;
-        const kpiItems = kpi_items_dummy;
+ 
+        var score_weights = score_weight_dummy;
+        var kpiItems = kpi_items_dummy;
         let rawData = dummyKPI_new;
 
-        if(rawData.length == 0 ){
-            Swal.fire('ไม่มีข้อมูลผู้ถูกประเมิน')
+        if (rawData.length == 0) {
+            Swal.fire('สิ้นสุดการแสดงผล')
         }
-        
-        const gradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 != null)
-        const notGradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 == null)
+
+        var gradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 != null || data.COMPETENCY_WT100 != 0)
+        var notGradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 == null || data.COMPETENCY_WT100 == 0)
         let filteredData = rawData
 
         const updateGradedNumbers = function (data) {
-            let gradedFilteredData = data.filter(data => data.COMPETENCY_WT100 != null)
-            let notGradedFilteredData = data.filter(data => data.COMPETENCY_WT100 == null)
+            let gradedFilteredData = data.filter(data => data.COMPETENCY_WT100 != null || data.COMPETENCY_WT100 != 0)
+            let notGradedFilteredData = data.filter(data => data.COMPETENCY_WT100 == null || data.COMPETENCY_WT100 == 0)
             const gradedNumber = document.querySelector("span.GRADED_NUMBER")
             const notGradedNumber = document.querySelector("span.NOT_GRADED_NUMBER")
             gradedNumber.innerText = `(${gradedFilteredData.length})`
@@ -566,7 +567,7 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE1}</textarea>
+                                    <textarea name="CSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE1}</textarea>
                                 </div>
                             </td>
                             <td class=" result_orientation_score score ">
@@ -581,7 +582,7 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE2}</textarea>
+                                    <textarea name="CSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE2}</textarea>
                                 </div>
                             </td>
                             <td class="flexibility_and_adaptability_score score ">
@@ -596,7 +597,7 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE3}</textarea>
+                                    <textarea name="CSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE3}</textarea>
 
                                 </div>
                             </td>
@@ -616,7 +617,7 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD1}</textarea>
+                                    <textarea name="LSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD1}</textarea>
 
                                 </div>
                             </td>
@@ -632,7 +633,7 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD2}</textarea>
+                                    <textarea name="LSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD2}</textarea>
 
                                 </div>
                             </td>
@@ -648,18 +649,25 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD3}</textarea>
+                                    <textarea name="LSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD3}</textarea>
 
                                 </div>
                             </td>
+                            
                             <td class="leadership_competency_total total d-none">
-                                <input name="LSCORE_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_LEAD}" type="text" readonly>
+                                <input name="LSCORE_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_LEAD}" type="text " readonly>
                             </td>
 
                             <td class="raw_total grand_total d-none">
-                                <input name="COMPETENCY_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_TOTAL}" type="text" readonly>
+                                <input name="COMPETENCY_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_TOTAL}" type="text " readonly>
                             </td>
                             <td></td>
+                            <td class="master_comment">
+                                <div>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="PERSONAL_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].PERSONAL_COMMENT}</textarea>
+                                </div>        
+                            </td>
                             <td class="total_competency_percent grand_total">
                                 <input class="for-show-only"  value="${myList[i].COMPETENCY_WT100}" type="text" disabled>
                             </td>
@@ -670,12 +678,12 @@
               `
                 table.append(row)
                 let n = Number(i) + 1
-                let csScore1 = myList[i].COMPETENCY_CORE1 == null ? '""' : myList[i].COMPETENCY_CORE1;
-                let csScore2 = myList[i].COMPETENCY_CORE2 == null ? '""' : myList[i].COMPETENCY_CORE2;
-                let csScore3 = myList[i].COMPETENCY_CORE3 == null ? '""' : myList[i].COMPETENCY_CORE3;
-                let lsScore1 = myList[i].COMPETENCY_LEAD1 == null ? '""' : myList[i].COMPETENCY_LEAD1;
-                let lsScore2 = myList[i].COMPETENCY_LEAD2 == null ? '""' : myList[i].COMPETENCY_LEAD2;
-                let lsScore3 = myList[i].COMPETENCY_LEAD3 == null ? '""' : myList[i].COMPETENCY_LEAD3;
+                let csScore1 = myList[i].COMPETENCY_CORE1 == null ? '""' : Number(myList[i].COMPETENCY_CORE1);
+                let csScore2 = myList[i].COMPETENCY_CORE2 == null ? '""' : Number(myList[i].COMPETENCY_CORE2);
+                let csScore3 = myList[i].COMPETENCY_CORE3 == null ? '""' : Number(myList[i].COMPETENCY_CORE3);
+                let lsScore1 = myList[i].COMPETENCY_LEAD1 == null ? '""' : Number(myList[i].COMPETENCY_LEAD1);
+                let lsScore2 = myList[i].COMPETENCY_LEAD2 == null ? '""' : Number(myList[i].COMPETENCY_LEAD2);
+                let lsScore3 = myList[i].COMPETENCY_LEAD3 == null ? '""' : Number(myList[i].COMPETENCY_LEAD3);
 
                 console.log("N: " + n)
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score option[value=${csScore1}]`).attr("selected", "selected")

@@ -69,20 +69,20 @@ const calculateScores = function() {
         //     competencyPercentTotals  = getTotalScores(0, 10)
         // }
         if (coreTotalInput) {
-            coreTotalInput.setAttribute("value", String(wtCoreTotal.toFixed(3)))
+            coreTotalInput.setAttribute("value", String(wtCoreTotal.toFixed(3)) == "0.000" ? '' : String(wtCoreTotal.toFixed(3)))
         }
         if (leaderTotalInput) {
-            leaderTotalInput.setAttribute("value", String(wtLeadTotal.toFixed(3)))
+            leaderTotalInput.setAttribute("value", String(wtLeadTotal.toFixed(3)) == "0.000" ? '' : String(wtCoreTotal.toFixed(3)) )
         }
        
         if (rawTotalInput) {
-            rawTotalInput.setAttribute("value", String(rawTotal.toFixed(3)))
+            rawTotalInput.setAttribute("value", String(rawTotal.toFixed(3)) == "0.000" ? '' : String(wtCoreTotal.toFixed(3)) )
         }
         if (competencyPercentTotalInput) {
-            competencyPercentTotalInput.setAttribute("value", String(wtCompetencyPercent.toFixed(2)))
+            competencyPercentTotalInput.setAttribute("value", String(wtCompetencyPercent.toFixed(2)) == "0.00" ? '-' : String(wtCoreTotal.toFixed(2)) )
         }
         if (competencyPercentTotalInputReal) {
-            competencyPercentTotalInputReal.setAttribute("value", String(wtCompetencyPercent.toFixed(3)))
+            competencyPercentTotalInputReal.setAttribute("value", String(wtCompetencyPercent.toFixed(3)) == "0.000" ? '' : String(wtCoreTotal.toFixed(3)) )
         }
        
         
