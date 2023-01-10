@@ -29,7 +29,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 12.000,
 		"COMPETENCY_WT_TOTAL" : 24.000,
 		"COMPETENCY_WT100" : 60.000,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_14540.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_14540.html",
+		"PERSONAL_COMMENT": ""
 	},
 	{
 		"APPRAISAL_LEVEL" : 7,
@@ -61,7 +62,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 23.330,
 		"COMPETENCY_WT_TOTAL" : 23.330,
 		"COMPETENCY_WT100" : 46.660,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
+		"PERSONAL_COMMENT": ""
 	},
 	{
 		"APPRAISAL_LEVEL" : 7,
@@ -93,7 +95,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 26.670,
 		"COMPETENCY_WT_TOTAL" : 26.670,
 		"COMPETENCY_WT100" : 53.340,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
+		"PERSONAL_COMMENT": ""
 	},
 	{
 		"APPRAISAL_LEVEL" : 9,
@@ -125,7 +128,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 12.000,
 		"COMPETENCY_WT_TOTAL" : 24.000,
 		"COMPETENCY_WT100" : 60.000,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
+		"PERSONAL_COMMENT": ""
 	},
 	{
 		"APPRAISAL_LEVEL" : 9,
@@ -157,7 +161,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 12.000,
 		"COMPETENCY_WT_TOTAL" : 24.000,
 		"COMPETENCY_WT100" : 60.000,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
+		"PERSONAL_COMMENT": ""
 	},
 	{
 		"APPRAISAL_LEVEL" : 9,
@@ -189,7 +194,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 12.000,
 		"COMPETENCY_WT_TOTAL" : 25.330,
 		"COMPETENCY_WT100" : 63.330,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
+		"PERSONAL_COMMENT": ""
 	},
 	{
 		"APPRAISAL_LEVEL" : 7,
@@ -221,7 +227,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 26.670,
 		"COMPETENCY_WT_TOTAL" : 26.670,
 		"COMPETENCY_WT100" : 53.340,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
+		"PERSONAL_COMMENT": ""
 	},
 	{
 		"APPRAISAL_LEVEL" : 7,
@@ -253,7 +260,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 23.330,
 		"COMPETENCY_WT_TOTAL" : 23.330,
 		"COMPETENCY_WT100" : 46.660,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
+		"PERSONAL_COMMENT": ""
 	},
 	{
 		"APPRAISAL_LEVEL" : 7,
@@ -285,7 +293,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 26.670,
 		"COMPETENCY_WT_TOTAL" : 26.670,
 		"COMPETENCY_WT100" : 53.340,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
+		"PERSONAL_COMMENT": ""
 	},
 	{
 		"APPRAISAL_LEVEL" : 7,
@@ -317,7 +326,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 30.000,
 		"COMPETENCY_WT_TOTAL" : 30.000,
 		"COMPETENCY_WT100" : 60.000,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
+		"PERSONAL_COMMENT": ""
 	},
 	{
 		"APPRAISAL_LEVEL" : 7,
@@ -349,7 +359,8 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 30.000,
 		"COMPETENCY_WT_TOTAL" : 30.000,
 		"COMPETENCY_WT100" : 60.000,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
+		"PERSONAL_COMMENT": ""
 	}
 ]
 dummyKPI_new.sort((a,b)=>{
