@@ -14,7 +14,7 @@
     <!-- Local css -->
     <link rel="stylesheet" href="./KPI.css">
     <title>แบบประเมินผลการปฏิบัติงานของพนักงาน</title>
-    
+
 </head>
 
 <body>
@@ -27,8 +27,8 @@
                 <div>
                     <img src="./kpi_image/thai logo.png">
                     <span>
-                        แบบประเมินศักยภาพของพนักงาน "Competency" ครั้งที่ 1/2565
-                        (<span class="QUARTER_YEAR">H1/2022</span>)
+                        แบบประเมินศักยภาพของพนักงาน "Competency" ครั้งที่ 2/2565
+                        (<span class="QUARTER_YEAR">H2/2022</span>)
                     </span>
 
                 </div>
@@ -45,7 +45,7 @@
                     <img src="./kpi_image/score definitions.svg" alt="">
                     <div id="item-7" class="w3-dropdown-content score-definations">
                         <!-- insserted from database -->
-              
+
                     </div>
                 </div>
                 <div class="filter-boxes">
@@ -184,6 +184,7 @@
                         <col>
                         <col>
                         <col>
+                        <col>
                     </colgroup>
                     <!-- Table Header ========================================= -->
                     <thead>
@@ -204,6 +205,9 @@
                                 Total
                             </th>
                             <th rowspan="2"></th>
+                            <th rowspan="2">
+                                Master Comment
+                            </th>
                             <th rowspan="2">
                                 <div class="w3-dropdown-hover">
                                     Weighted Competency (%)
@@ -300,7 +304,7 @@
                     <div class="grid-item-3">
                         <div id="page-index-wraper"></div>
                     </div>
-                   
+
                     <div class="grid-item-5">
                         <div id="preview-btn">
                             <a href="./print.html" target="_blank">Print Preview</a>
@@ -338,14 +342,15 @@
     <script src="./dummy_data/KPI_items_json.js"></script>
 
     <script>
+ 
         var score_weights = score_weight_dummy;
         var kpiItems = kpi_items_dummy;
         let rawData = dummyKPI_new;
 
-        if(rawData.length == 0 ){
+        if (rawData.length == 0) {
             Swal.fire('สิ้นสุดการแสดงผล')
         }
-        
+
         var gradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 != null || data.COMPETENCY_WT100 != 0)
         var notGradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 == null || data.COMPETENCY_WT100 == 0)
         let filteredData = rawData
@@ -648,6 +653,7 @@
 
                                 </div>
                             </td>
+                            
                             <td class="leadership_competency_total total d-none">
                                 <input name="LSCORE_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_LEAD}" type="text " readonly>
                             </td>
@@ -656,6 +662,12 @@
                                 <input name="COMPETENCY_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_TOTAL}" type="text " readonly>
                             </td>
                             <td></td>
+                            <td class="master_comment">
+                                <div>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="PERSONAL_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].PERSONAL_COMMENT}</textarea>
+                                </div>        
+                            </td>
                             <td class="total_competency_percent grand_total">
                                 <input class="for-show-only"  value="${myList[i].COMPETENCY_WT100}" type="text" disabled>
                             </td>

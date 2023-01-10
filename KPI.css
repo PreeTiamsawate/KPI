@@ -363,7 +363,7 @@
      
      #GRADE_TABLE colgroup col:nth-of-type(4) {
          /* name surname */
-         width: 23%;
+         width: 16%;
      }
      
      #GRADE_TABLE colgroup col:nth-of-type(5),
@@ -383,8 +383,12 @@
          /* Score cols */
          width: 7.33%;
      }
-     
      #GRADE_TABLE colgroup col:nth-of-type(14){
+        /* Master Comment cols */
+        width: 7%;
+    }
+     
+     #GRADE_TABLE colgroup col:nth-of-type(15){
          /* Total Score 100% cols */
          width: 8.67%;
      }
@@ -537,6 +541,13 @@
          border-radius: 5px;
          padding: 10px;
      }
+     td.master_comment>div>textarea {
+        margin-top: 10px;
+        margin-left: -50px;
+        border: 1px solid #330066;
+        border-radius: 5px;
+        padding: 10px;
+    }
      td.competency-note>img{
         width: 16px;
         height: 16px;
