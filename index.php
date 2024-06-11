@@ -1,48 +1,84 @@
+﻿<?php
+//header('location: finished.html');
+//$currentDate = date('Ymd');
+//if (intval($currentDate) > 20220907) {
+//    header('location: finished.html');
+//}
+session_start();
+
+$_SESSION['year'] = 2022;
+$_SESSION['period'] = 'H1';
+
+if (isset($_GET['cmd']) && ($_GET['cmd'] == 'logout')) {
+    session_destroy();
+}
+if (isset($_POST['pid']) && ($_POST['pid'] != '')) {
+    if ($_POST['pid'] == 'null') { // Not logged in ThaiSquare
+        header('location: expired.html');
+    } else {
+        $_SESSION['user']['pid'] = $_POST['pid'];
+        $_SESSION['user']['eid'] = $_POST['eid'];
+        $_SESSION['user']['name'] = $_POST['name'];
+        $_SESSION['mode'] = 'Dev'; //'Prod';
+    }
+} else {
+    //Dummy Data -- DELETE FOR PRODUCTION USE
+    $_SESSION['user']['pid'] = 'tg17713'; //17713;
+    $_SESSION['user']['eid'] = '17713';
+    $_SESSION['user']['name'] = 'Demo User';
+    $_SESSION['mode'] = 'Dev'; //'Prod';
+}
+
+// Lock only specific person & allowable period
+/*$allowedList = array('37122','23242','28026','32195');
+if (!in_array($_SESSION['user']['eid'], $allowedList) && (intval(date('Ymd')) > 20220907)) {
+    header('location: finished.html');
+}*/
+
+if (!isset($_SESSION['user'])) {
+    //header('location: demo.html'); //NOT WORKING ON THIS SERVER???
+    echo "<script type='text/javascript'>window.location.href = 'expired.html';</script>";
+    exit();
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <!-- CSS for Bootstrap5 -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+    <link href="./assets/bootstrap.min.css" rel="stylesheet">
     <!-- W3 CSS Link" -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-
+    <link rel="stylesheet" href="./assets/w3.css">
     <!-- Local css -->
     <link rel="stylesheet" href="./KPI.css">
     <title>แบบประเมินผลการปฏิบัติงานของพนักงาน</title>
-
 </head>
-
 <body>
     <div class="container-xxl">
-
         <!-- Header Section ================================================== -->
         <header>
             <div class="headline">
                 <div>
                     <img src="./kpi_image/thai logo.png">
                     <span>
-                        แบบประเมินศักยภาพของพนักงาน "Competency" ครั้งที่ 1/2565
-                        (<span class="QUARTER_YEAR">H1/2022</span>)
+                    แบบประเมินความสามารถพนักงาน (Competency) ครั้งที่ <?php echo substr($_SESSION['period'], 1, 1); ?>/<?php echo $_SESSION['year']+543; ?>
+                        (<span class="QUARTER_YEAR"><?php echo $_SESSION['period']; ?>/<?php echo $_SESSION['year']; ?></span>)
                     </span>
-
                 </div>
                 <div>
                     <img src="./kpi_image/Icon awesome-user-circle.svg" class="USER_IMAGE">
-                    <span class="USER_ID">12345</span>
-                    <span class="USER_FULL_NAME">XXXXXX XXXXXXXXX</span>
+                    <span class="USER_ID"><?php echo $_SESSION['user']['eid']; ?></span>
+                    <span class="USER_FULL_NAME"><?php echo $_SESSION['user']['name']; ?></span>
                 </div>
             </div>
-
             <!-- Filter Bar Section =========================================== -->
             <nav>
                 <div class="w3-dropdown-hover">
                     <img src="./kpi_image/score definitions.svg" alt="">
                     <div id="item-7" class="w3-dropdown-content score-definations">
-                       <!-- insserted from database -->
+                        <!-- inserted from database -->
                     </div>
                 </div>
                 <div class="filter-boxes">
@@ -53,15 +89,15 @@
                     <form action="" id="filter-form" class="w3-dropdown-content">
                         <div>
                             <div>
-                                <div>
+                            <div>
                                     <input class="grade-checkbox" type="checkbox" id="graded" name="graded_number_filter">
                                     <label for="graded">ให้คะแนนแล้ว</label>
-                                    <span class="GRADED_NUMBER">(100)</span>
+                                    <span class="GRADED_NUMBER" id="GRADED_NUMBER">(100)</span>
                                 </div>
                                 <div>
                                     <input class="grade-checkbox" type="checkbox" id="not-graded" name="graded_number_filter">
                                     <label for="not-graded">ยังไม่ให้คะแนน</label>
-                                    <span class="NOT_GRADED_NUMBER">(900)</span>
+                                    <span class="NOT_GRADED_NUMBER" id="NOT_GRADED_NUMBER">(900)</span>
                                 </div>
                             </div>
                             <div>
@@ -123,7 +159,6 @@
                                     </div>
                                 </div>
                             </div>
-
                             <div>
                                 <button type="submit" id="use-filter-button">
                                     เลือก
@@ -131,38 +166,27 @@
                                 <button id="cancel-form-btn">
                                     ล้างตัวเลือก
                                 </button>
-
                             </div>
                         </div>
-
                     </form>
-
                     <div id="search-box">
                         <label for="search-id">
                             <img src="./kpi_image/Icon ionic-ios-search.svg" alt="">
                         </label>
                         <input type="text" placeholder="search ID or Name" id="search-id">
-
-
                     </div>
-
                 </div>
-
-
-
             </nav>
-
         </header>
-        <nav class="" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+        <nav class="d-none" style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
             <ol class="breadcrumb">
-              
             </ol>
         </nav>
         <main id="to-print">
-           
-            <form action="" method="">
+            <form name="form1" id="form1">
                 <table id="GRADE_TABLE">
                     <colgroup>
+                        <col>
                         <col>
                         <col>
                         <col>
@@ -182,7 +206,7 @@
                     </colgroup>
                     <!-- Table Header ========================================= -->
                     <thead>
-                        <tr>
+                    <tr>
                             <th rowspan="1" colspan="4">
                                 Personnel Information
                             </th>
@@ -194,11 +218,14 @@
                             <th colspan="3" height="50">
                                 Leadership Competency
                             </th>
-                     
+
                             <th rowspan="2" class="d-none">
                                 Total
                             </th>
                             <th rowspan="2"></th>
+                            <th rowspan="2">
+                                Overall Comment
+                            </th>
                             <th rowspan="2">
                                 <div class="w3-dropdown-hover">
                                     Weighted Competency (%)
@@ -209,7 +236,6 @@
 
                             </th>
                         </tr>
-
                         <tr>
                             <td>Lv</td>
                             <td>ID</td>
@@ -218,26 +244,25 @@
                             <td></td>
                             <td height="70">
                                 <div id="item-1" class="w3-dropdown-hover">
-                                    <!-- insserted from database -->
+                                    <!-- inserted from database -->
                                     <div class="w3-dropdown-content">
-                                        <!-- insserted from database -->
+                                        <!-- inserted from database -->
                                     </div>
                                 </div>
-
                             </td>
                             <td>
                                 <div id="item-2" class="w3-dropdown-hover">
-                                    <!-- insserted from database -->
+                                    <!-- inserted from database -->
                                     <div class="w3-dropdown-content">
-                                       <!-- insserted from database -->
+                                        <!-- inserted from database -->
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div id="item-3" class="w3-dropdown-hover">
-                                   <!-- insserted from database -->
+                                    <!-- inserted from database -->
                                     <div class="w3-dropdown-content">
-                                        <!-- insserted from database -->
+                                        <!-- inserted from database -->
                                     </div>
                                 </div>
                             </td>
@@ -247,47 +272,40 @@
                             <td></td>
                             <td>
                                 <div id="item-4" class="w3-dropdown-hover">
-                                   <!-- insserted from database -->
+                                    <!-- inserted from database -->
                                     <div class="w3-dropdown-content">
-                                       <!-- insserted from database -->
+                                        <!-- inserted from database -->
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div id="item-5" class="w3-dropdown-hover">
-                                   <!-- insserted from database -->
+                                    <!-- inserted from database -->
                                     <div class="w3-dropdown-content">
-                                       <!-- insserted from database -->
+                                        <!-- inserted from database -->
                                     </div>
                                 </div>
                             </td>
                             <td>
                                 <div id="item-6" class="w3-dropdown-hover">
-                                   <!-- insserted from database -->
+                                    <!-- inserted from database -->
                                     <div class="w3-dropdown-content">
-                                       <!-- insserted from database -->
+                                        <!-- inserted from database -->
                                     </div>
                                 </div>
                             </td>
-                            <td class="d-none"> 
+                            <td class="d-none">
                                 Total
                             </td>
                         </tr>
-
                     </thead>
-
                     <!-- Table Body ================================================================ -->
                     <tbody class="grading-tbody">
-
-
-
                     </tbody>
-
-
                 </table>
                 <div class="grid-container ">
                     <div class="grid-item-1">
-                        <!-- <button type="submit" id="submitPage">Submit This Page</button> -->
+                        <button type="submit" id="submitPage">Submit This Page</button>
                     </div>
                     <div class="grid-item-2">
                         <div id="pagination-wrapper"></div>
@@ -295,56 +313,130 @@
                     <div class="grid-item-3">
                         <div id="page-index-wraper"></div>
                     </div>
-                    <!-- <div class="grid-item-4 w3-dropdown-hover">
-                        หากท่านมีพนักงานที่ไม่ต้องรับการประเมินฯ
-                        <div id="no-grade-btn" class="">
-
-                            <a href="https://forms.office.com/r/qU6KHmMNsA" target="_blank"> 
-                                คลิกที่นี่   </a>
-                            <p class="w3-dropdown-content">
-                                <b>พนักงานกลุ่มที่ไม่ต้องประเมินผลการปฏิบัติงาน </b> <br> คือ พนักงานที่มีวันลา 45 วัน นับรวมวันหยุดในไตรมาสนั้นๆ เช่น พนักงานลาหยุดประเภทต่างๆ ดังนี้ ลาป่วย ลาคลอด ลาเลี้ยงดูบุตร การลาหยุดไม่รับเงินเดือน (Leave without
-                                Pay) นักบิน Non-Active ที่ไม่ได้ช่วยงานสำนักงาน เป็นต้น <br> <br> ทั้งนี้ พนักงานที่เกษียณ หรือลาออกระหว่างไตรมาส ต้องทำการประเมินผลเพื่อบันทึกไว้เป็นหลักฐานสำหรับการบริหารจัดการทรัพยากรบุคคลต่อไป
-                            </p>
-                        </div>
-                  
-
-                    </div> -->
-                    <!-- <div class="grid-item-5">
+                   
+                    <div class="grid-item-5">
                         <div id="preview-btn">
-                            <a href="./print.html" target="_blank">Print Preview</a>
+                            <a href="./print.php" target="_blank">Print Preview</a>
                         </div>
-                    </div> -->
+                    </div>
                 </div>
-
-
+                <input type="hidden" id="numGraded" name="numGraded">
+                <input type="hidden" id="totalRows" name="totalRows">
             </form>
 
-
-
+            <!-- Success Alert After Save -->
+            <!-- <button id="complete">Complete!</button>
+            <script>
+                const button = document.querySelector('#complete');
+                button.addEventListener('click', () => {
+                    Swal.fire({
+                        position: 'center',
+                        icon: 'success',
+                        title: 'Your work has been saved',
+                        showConfirmButton: false,
+                        timer: 1500
+                    })
+                })
+            </script> -->
         </main>
-
     </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script-->
+    <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script-->
+    <script src="./assets/jquery-3.6.0.min.js"></script>
+    <script src="./assets/bootstrap.min.js"></script>
     <script src="./sweetalert2.all.min.js"></script>
     <!-- Delete KPI_dummy_json.js below when connected to database!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-    <script src="./dummy_data/KPI_dummy_data_14540.js"></script>
-    <script src="./dummy_data/KPI_score_weight_dummy.js"></script>
-    <script src="./dummy_data/KPI_items_json.js"></script>
+    <!--script src="./dummy_data/KPI_dummy_data_15929.js"></script-->
+    <!--script src="./dummy_data/KPI_score_weight_dummy.js"></script-->
+    <!--script src="./dummy_data/KPI_items_json.js"></script-->
 
     <script>
-        const score_weights = score_weight_dummy;
-        const kpiItems = kpi_items_dummy;
-        let rawData = dummyKPI_new;
-        if(rawData.length == 0 ){
-            Swal.fire('สิ้นสุดการแสดงผล')
-        }
+        $(document).ready(function () {
+            $("#form1").on('submit', function(e) {
+                e.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: "updatescore.php",
+                    data: new FormData(this),
+                    dataType: 'json',
+                    contentType: false,
+                    processData: false,
+                    cache: false,
+                    success: function(response){
+                        //console.log(JSON.stringify(response));
+                        response.scores.forEach((item, index) => {
+                            console.log(`${index} : ID=${item.ID} Score=${item.org_score}/${item.new_score} Comment=${item.org_comment}/${item.new_comment}`);
+                            //$(`#ORIGINAL_SCORE_${item.ID}`).val(item.new_score);
+                            //$(`#ORIGINAL_COMMENT_${item.ID}`).val(item.new_comment);
+                            // *** เอา APPRAISAL_COMPETENCY_TOTAL ใส่กลับไปใน filteredData ***;
 
-        const gradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 != null)
-        const notGradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 == null)
+                            // Get new data
+                            req.open("GET", "getappraisal.php", false);
+                            req.send(null);
+                            var unpackedData = JSON.parse(req.response);
+                            dummyKPI_new = unpackedData.data;
+                            rawData = dummyKPI_new;
+                            for(let data of rawData ){
+                                if(data.EMPLOYEE_ID == item.ID ){
+                                    data.APPRAISAL_COMPETENCY_TOTAL = item.competency_total 
+                                }
+                            }
+                            //console.log($(`#ORIGINAL_SCORE_${item.ID}`).val());
+                        });
+                        updateGradedNumbers(rawData);
+                        //Reset rows color
+                        const greenRows = document.querySelectorAll("tr[row-status='newly-filled']")
+                        const submitBtn = document.querySelector('#submitPage');
+                        const paginationWrapper = document.querySelector("#pagination-wrapper")
+                        const paginationBtns = document.querySelectorAll("#pagination-wrapper > .btn")
+                        for(const greenRow of greenRows){
+                            greenRow.style.backgroundColor = "#FFFFFF";
+                            greenRow.setAttribute("row-status", "fully-filled")
+                        }
+                        submitBtn.style.backgroundColor = "#FFFFFF";
+                        paginationWrapper.style.backgroundColor = "transparent";
+                        paginationWrapper.style.cursor = "pointer"
+                        for (const paginationBtn of paginationBtns) {
+                            paginationBtn.disabled = false
+                        }
+                        Swal.fire(response.message);
+                    },
+                    error: function(request, textStatus, errorThrown) {
+                        Swal.fire(errorThrown);
+                    }
+                });
+            });
+        });
+        var req = new XMLHttpRequest();
+
+        // Get weighted scores data
+        req.open("GET", "getweightedscore.php", false);
+        req.send(null);
+        var score_weight_dummy = JSON.parse(req.response);
+        const score_weights = score_weight_dummy;
+        
+        // Get KPI items
+        req.open("GET", "getkpiitems.php", false);
+        req.send(null);
+        var kpi_items_dummy = JSON.parse(req.response);
+        const kpiItems = kpi_items_dummy;
+
+        // Get appraisal scores data
+        req.open("GET", "getappraisal.php", false);
+        req.send(null);
+        var unpackedData = JSON.parse(req.response);
+        var dummyKPI_new = unpackedData.data;
+        let rawData = dummyKPI_new;
+
+        if(rawData.length == 0 ){
+            Swal.fire('ไม่มีข้อมูลผู้ถูกประเมิน')
+        }
+        
+        var gradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 != null)
+        var notGradedDataInit = rawData.filter(data => data.COMPETENCY_WT100 == null)
         let filteredData = rawData
 
-        const updateGradedNumbers = function(data) {
+        const updateGradedNumbers = function (data) {
             let gradedFilteredData = data.filter(data => data.COMPETENCY_WT100 != null)
             let notGradedFilteredData = data.filter(data => data.COMPETENCY_WT100 == null)
             const gradedNumber = document.querySelector("span.GRADED_NUMBER")
@@ -367,19 +459,19 @@
         const useFilterBtn = document.querySelector('#use-filter-button')
         const cancelFormBtn = document.querySelector("#cancel-form-btn")
         const searchInput = document.querySelector("#search-id");
-        const callBasicFunctions = function() {
+        const callBasicFunctions = function () {
             commentBoxControl()
             dynamicInputControl()
-            // assignRowStatus()
-            // rowStatusBySelect()
-            // rowStatusByComment()
-            // commentRequired()
+            assignRowStatus()
+            rowStatusBySelect()
+            rowStatusByComment()
+            commentRequired()
             calculateScores()
             calculateScoresByInput()
         }
 
 
-        useFilterBtn.addEventListener('click', function(e) {
+        useFilterBtn.addEventListener('click', function (e) {
             e.preventDefault();
             let checkedLevelBoxes = Array.from(levelCheckboxes).filter(levelCheckbox => levelCheckbox.checked)
             let checkedLevelValues = checkedLevelBoxes.map(levelCheckbox => Number(levelCheckbox.value))
@@ -409,7 +501,7 @@
             filterBtn.addEventListener("mouseover", btnHoverActive)
             filterBtn.addEventListener("mouseleave", btnHoverOff)
         })
-        cancelFormBtn.addEventListener('click', function(e) {
+        cancelFormBtn.addEventListener('click', function (e) {
             e.preventDefault();
 
             dropdownForm.className = dropdownForm.className.replace(" w3-show", "");
@@ -428,20 +520,20 @@
             buildTable(filteredData)
             callBasicFunctions()
         })
-        let dataBySearch = filteredData
+        //let dataBySearch = filteredData
 
-        searchInput.addEventListener('input', function() {
+        searchInput.addEventListener('input', function () {
             console.log(this.value)
             let filterValue = this.value;
 
             if (filterValue != "") {
-                dataBySearch = filteredData.filter(data => data.EMPLOYEE_ID.includes(filterValue) || data.EMPLOYEE_NAME.toUpperCase().includes(filterValue.toUpperCase()))
+                filteredData = rawData.filter(data => data.EMPLOYEE_ID.includes(filterValue) || data.EMPLOYEE_NAME.toUpperCase().includes(filterValue.toUpperCase()))
             } else {
-                dataBySearch = filteredData
+                filteredData = rawData
             }
 
             $('.grading-tbody').empty()
-            buildTable(dataBySearch)
+            buildTable(filteredData)
             callBasicFunctions()
 
         })
@@ -506,7 +598,7 @@
             $(`button[value = ${state.page}]`).css({
                 border: "1px solid #330066"
             })
-            $('.page').on('click', function(e) {
+            $('.page').on('click', function (e) {
                 $('.grading-tbody').empty()
                 state.page = Number($(this).val())
                 console.log("click state page: ", state.page);
@@ -521,6 +613,13 @@
 
         }
 
+        function b64DecodeUnicode(str) {
+            // Going backwards: from bytestream, to percent-encoding, to original string.
+            return decodeURIComponent(atob(str).split('').map(function(c) {
+                return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+            }).join(''));
+        }
+
         function buildTable(Data) {
 
             var table = $('.grading-tbody')
@@ -528,18 +627,17 @@
 
 
             console.log("screenedData :", Data.length)
-                // Here!
+            // Here!
             if (Data.length < (state.page - 1) * state.rows + 1) {
                 state.page = 1
             }
             var data = pagination(Data, state.page, state.rows)
             var myList = data.querySet
-
             for (var i in myList) {
                 //Keep in mind we are using "Template Litterals to create rows"
                 var row = `<tr row-status="">
                             <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
-                            <td class="EMPLOYEE_ID"><a class="employee-link" href="${myList[i].SUB_EMPLOYEE_KPI_URL || ""}">${myList[i].EMPLOYEE_ID}</a></td>
+                            <td class="EMPLOYEE_ID" ><a class="employee-link" href="${myList[i].SUB_EMPLOYEE_KPI_URL || ""}">${myList[i].EMPLOYEE_ID}</a></td>
                             <td class="FUNCTION">${myList[i].FUNCTION}</td>
                             <td class="EMPLOYEE_FULLNAME">${myList[i].EMPLOYEE_NAME}</td>
                             <td class="competency-note" note-data="${myList[i].COMPETENCY_REASON_NOTE}">
@@ -548,7 +646,7 @@
                             </td>
                             <td class="service_orientation_score score">
                                 <div>
-                                    <select disabled name="CSCORE1[${myList[i].EMPLOYEE_ID}]">
+                                    <select name="CSCORE1[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]">
                                         <option value=""></option>
                                         <option value="1">1</option>
                                         <option value="2">2</option>
@@ -557,14 +655,13 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea readonly name="CSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE1}</textarea>
+                                    <textarea name="CSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE1}</textarea>
                                 </div>
                             </td>
                             <td class=" result_orientation_score score ">
                                 <div>
-                                    <select disabled name="CSCORE2[${myList[i].EMPLOYEE_ID}]">
+                                    <select name="CSCORE2[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]">
                                         <option value=""></option>
-                                   
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -572,14 +669,13 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea readonly  name="CSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE2}</textarea>
+                                    <textarea name="CSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE2}</textarea>
                                 </div>
                             </td>
                             <td class="flexibility_and_adaptability_score score ">
                                 <div>
-                                    <select disabled name="CSCORE3[${myList[i].EMPLOYEE_ID}]">
+                                    <select name="CSCORE3[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]">
                                         <option value=""></option>
-                                      
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -587,19 +683,18 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea readonly  name="CSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE3}</textarea>
+                                    <textarea name="CSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE3}</textarea>
 
                                 </div>
                             </td>
                             <td class= "core_competency_total total d-none">
-                                <input name="CSCORE_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_CORE}" type="text" readonly>
+                                <input name="CSCORE_TOTAL[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].COMPETENCY_WT_CORE}" type="text" readonly>
                             </td>
                             <td></td>
                             <td class="make_it_happen_score score ">
                                 <div>
-                                    <select disabled name="LSCORE1[${myList[i].EMPLOYEE_ID}]">
+                                    <select name="LSCORE1[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]">
                                         <option value=""></option>
-                               
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -607,15 +702,14 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea readonly  name="LSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD1}</textarea>
+                                    <textarea name="LSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD1}</textarea>
 
                                 </div>
                             </td>
                             <td class="provide_solutions_score score ">
                                 <div>
-                                    <select disabled name="LSCORE2[${myList[i].EMPLOYEE_ID}]">
+                                    <select name="LSCORE2[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]">
                                         <option value=""></option>
-                                  
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -623,15 +717,14 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea readonly  name="LSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD2}</textarea>
+                                    <textarea name="LSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD2}</textarea>
 
                                 </div>
                             </td>
                             <td class="inspire_people_score score ">
                                 <div>
-                                    <select disabled name="LSCORE3[${myList[i].EMPLOYEE_ID}]">
+                                    <select name="LSCORE3[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]">
                                         <option value=""></option>
-                            
                                         <option value="1">1</option>
                                         <option value="2">2</option>
                                         <option value="3">3</option>
@@ -639,22 +732,31 @@
                                         <option value="5">5</option>
                                     </select>
                                     <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea readonly  name="LSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD3}</textarea>
+                                    <textarea name="LSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD3}</textarea>
 
                                 </div>
                             </td>
                             <td class="leadership_competency_total total d-none">
-                                <input readonly  name="LSCORE_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_LEAD}" type="text " readonly>
+                                <input name="LSCORE_TOTAL[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].COMPETENCY_WT_LEAD}" type="text " readonly>
                             </td>
 
                             <td class="raw_total grand_total d-none">
-                                <input readonly  name="COMPETENCY_TOTAL[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT_TOTAL}" type="text " readonly>
+                                <input name="COMPETENCY_TOTAL[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].COMPETENCY_WT_TOTAL}" type="text " readonly>
                             </td>
                             <td></td>
-                            <td class="total_competency_percent grand_total ">
-                                <input readonly  name="COMPETENCY_TOTAL100[${myList[i].EMPLOYEE_ID}]" value="${myList[i].COMPETENCY_WT100}" type="text " readonly>
+                            <td class="master_comment">
+                                <div>
+                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="PERSONAL_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].PERSONAL_COMMENT}</textarea>
+                                </div>        
                             </td>
-                            <input type="hidden" name="ORIGINAL_SCORE[${myList[i].EMPLOYEE_ID}]" value="${myList[i].ORIGINAL_SCORE}">
+                            <td class="total_competency_percent grand_total">
+                                <input class="for-show-only"  value="${myList[i].COMPETENCY_WT100}" type="text" disabled>
+                            </td>
+                            <input class="real-input-total100" name="COMPETENCY_TOTAL100[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].COMPETENCY_WT100}" type="hidden" readonly>
+                            <input name="ORIGINAL_SCORE[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].ORIGINAL_SCORE}" type="hidden">
+                            <input name="ORIGINAL_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].ORIGINAL_COMMENT}" type="hidden">
+                            <input name="ID[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}" type="hidden">
                         </tr>
               `
                 table.append(row)
@@ -666,30 +768,28 @@
                 let lsScore2 = myList[i].COMPETENCY_LEAD2 == null ? '""' : myList[i].COMPETENCY_LEAD2;
                 let lsScore3 = myList[i].COMPETENCY_LEAD3 == null ? '""' : myList[i].COMPETENCY_LEAD3;
 
-                console.log("N: "+ n)
+                console.log("N: " + n)
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.service_orientation_score option[value=${csScore1}]`).attr("selected", "selected")
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.result_orientation_score option[value=${csScore2}]`).attr("selected", "selected")
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.flexibility_and_adaptability_score option[value=${csScore3}]`).attr("selected", "selected")
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.make_it_happen_score option[value=${lsScore1}]`).attr("selected", "selected")
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.provide_solutions_score option[value=${lsScore2}]`).attr("selected", "selected")
                 $(`.grading-tbody > tr:nth-of-type(${n}) > td.inspire_people_score option[value=${lsScore3}]`).attr("selected", "selected")
-    
+
             }
 
             pageButtons(Data, data.pages)
 
         }
     </script>
-  
+
     <script src="./KPI_dropdown_control.js "></script>
     <script src="./KPI_comment_box_control.js"></script>
     <script src="./KPI_dynamic_input.js"></script>
-    <!-- <script src="./KPI_row_status_control.js"></script> -->
+    <script src="./KPI_row_status_control.js"></script>
     <script src="./KPI_score_calculation.js"></script>
-    <!-- <script src="./KPI_row_status_submit.js"></script> -->
+    <!--script src="./KPI_row_status_submit.js"></script-->
     <script src="./KPI_items.js"></script>
     <script src="./KPI_breadcrumb_control.js"></script>
 </body>
-
-
 </html>

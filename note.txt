@@ -1,0 +1,2 @@
+server_name: sdolpcn2
+server_ip: 57.59.0.135

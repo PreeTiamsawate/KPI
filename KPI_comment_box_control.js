@@ -1,16 +1,16 @@
-const commentBoxControl = function() {
+const commentBoxControl = function () {
     const commentIcons = document.querySelectorAll("td.score > div > .w3-dropdown-click");
     const commentBoxes = document.querySelectorAll("td.score > div > .w3-dropdown-content");
     const boxParents = document.querySelectorAll("td.score > div");
     const scoreSelects = document.querySelectorAll("td.score > div > select");
     for (const scoreSelect of scoreSelects) {
-        scoreSelect.addEventListener('click', function() {
+        scoreSelect.addEventListener('click', function () {
             const commentBox = this.nextElementSibling.nextElementSibling;
             const boxParent = this.parentElement;
             commentBox.classList.remove("w3-show")
             boxParent.style.border = "none";
         })
-        scoreSelect.addEventListener('change', function() {
+        scoreSelect.addEventListener('change', function () {
             const commentBox = this.nextElementSibling.nextElementSibling;
             const commentIcon = this.nextElementSibling;
             if (this.value == "0") {
@@ -21,7 +21,7 @@ const commentBoxControl = function() {
     }
 
     for (const commentIcon of commentIcons) {
-        commentIcon.addEventListener('click', function() {
+        commentIcon.addEventListener('click', function () {
             const commentBox = this.nextElementSibling;
             const scoreSelect = this.previousElementSibling;
             const boxParent = this.parentElement;
@@ -43,7 +43,7 @@ const commentBoxControl = function() {
 
                 } else {
                     commentBox.disabled = false
-                    commentBox.setAttribute("placeholder", "คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)")
+                    commentBox.setAttribute("placeholder", "คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)")
                 }
                 commentBox.className += " w3-show";
                 boxParent.style.border = "1px solid #330066";
@@ -65,7 +65,7 @@ const commentBoxControl = function() {
             commentIcon.setAttribute("src", "./kpi_image/Icon-filled-comment.svg")
 
         }
-        commentBox.addEventListener('input', function() {
+        commentBox.addEventListener('input', function () {
             if (this.value !== "" || commentBox.innerText !== "") {
                 commentIcon.setAttribute("src", "./kpi_image/Icon-filled-comment.svg")
                 if (commentBox.value.includes('|')) {
@@ -80,13 +80,13 @@ const commentBoxControl = function() {
     }
 }
 
-const masterCommentBoxControl = ()=>{
+const masterCommentBoxControl = () => {
     const commentIcons = document.querySelectorAll("td.master_comment > div > .w3-dropdown-click");
     const commentBoxes = document.querySelectorAll("td.master_comment > div > .w3-dropdown-content");
     const boxParents = document.querySelectorAll("td.master_comment > div");
 
     for (const commentIcon of commentIcons) {
-        commentIcon.addEventListener('click', function() {
+        commentIcon.addEventListener('click', function () {
             const commentBox = this.nextElementSibling;
             const boxParent = this.parentElement;
             if (commentBox.className.indexOf("w3-show") == -1) {
@@ -96,7 +96,7 @@ const masterCommentBoxControl = ()=>{
             } else {
                 commentBox.className = commentBox.className.replace(" w3-show", "");
                 boxParent.style.border = "none";
-            
+
 
             }
         })
@@ -107,7 +107,7 @@ const masterCommentBoxControl = ()=>{
             commentIcon.setAttribute("src", "./kpi_image/Icon-filled-comment.svg")
 
         }
-        commentBox.addEventListener('input', function() {
+        commentBox.addEventListener('input', function () {
             if (this.value !== "" || commentBox.innerText !== "") {
                 commentIcon.setAttribute("src", "./kpi_image/Icon-filled-comment.svg")
                 if (commentBox.value.includes('|')) {

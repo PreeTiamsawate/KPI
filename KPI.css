@@ -344,53 +344,55 @@
          border-collapse: separate;
          border-spacing: 0;
          margin-top: 10px;
+         overflow: auto;
      }
      
-     #GRADE_TABLE colgroup col:nth-of-type(1) {
+     #GRADE_TABLE colgroup col.lv {
          /* Lv Col */
          width: 3.33%;
      }
      
-     #GRADE_TABLE colgroup col:nth-of-type(2) {
+     #GRADE_TABLE colgroup col.id {
          /* ID col */
          width: 6%;
      }
      
-     #GRADE_TABLE colgroup col:nth-of-type(3) {
+     #GRADE_TABLE colgroup col.function {
          /* function col */
          width: 11%;
      }
      
-     #GRADE_TABLE colgroup col:nth-of-type(4) {
+     #GRADE_TABLE colgroup col.nameSurname{
          /* name surname */
          width: 16%;
      }
      
-     #GRADE_TABLE colgroup col:nth-of-type(5),
-     #GRADE_TABLE colgroup col:nth-of-type(9),
-     #GRADE_TABLE colgroup col:nth-of-type(13){
+     #GRADE_TABLE colgroup col.spacer{
         /* spacing col  */
-        width: 2%;
+        width: 0.3%;
      }
 
 
-     #GRADE_TABLE colgroup col:nth-of-type(6),
-     #GRADE_TABLE colgroup col:nth-of-type(7),
-     #GRADE_TABLE colgroup col:nth-of-type(8),
-     #GRADE_TABLE colgroup col:nth-of-type(10),
-     #GRADE_TABLE colgroup col:nth-of-type(11),
-     #GRADE_TABLE colgroup col:nth-of-type(12) {
+     #GRADE_TABLE colgroup col.score {
          /* Score cols */
          width: 7.33%;
      }
-     #GRADE_TABLE colgroup col:nth-of-type(14){
+     #GRADE_TABLE colgroup col.coreValue{
+         /* Core Value col */
+         width: 8%;
+     }
+     #GRADE_TABLE colgroup col.moral{
+         /* Moral col */
+         width: 11%;
+     }
+     #GRADE_TABLE colgroup col.comment{
         /* Master Comment cols */
         width: 7%;
     }
      
-     #GRADE_TABLE colgroup col:nth-of-type(15){
+     #GRADE_TABLE colgroup col.totalPercent{
          /* Total Score 100% cols */
-         width: 8.67%;
+         width: 9%;
      }
      
      thead {

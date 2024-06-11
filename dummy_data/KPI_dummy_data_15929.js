@@ -161,7 +161,7 @@ let dummyKPI_new  = [
 		"COMPETENCY_REASON_CORE5" : "",
 		"COMPETENCY_WT_CORE" : 6.000,
 		"COMPETENCY_WT_TOTAL" : 18.000,
-		"COMPETENCY_WT100" : 60.000,
+		"COMPETENCY_WT100" : null,
         "SUB_EMPLOYEE_KPI_URL": "./sub_page_empty.html",
 		"PERSONAL_COMMENT": "Good"
 	},
@@ -195,8 +195,7 @@ let dummyKPI_new  = [
 		"COMPETENCY_WT_CORE" : 6.000,
 		"COMPETENCY_WT_TOTAL" : 18.000,
 		"COMPETENCY_WT100" : 60.000,
-        "SUB_EMPLOYEE_KPI_URL": "./sub_page_17854.html",
-		"PERSONAL_COMMENT": "Good"
+        "SUB_EMPLOYEE_KPI_URL": "./sub_page_17854.html"
 	},
 	{
 		"APPRAISAL_LEVEL" : 7,

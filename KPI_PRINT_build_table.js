@@ -1,8 +1,9 @@
-const buildTablePrint = function(data) {
+const buildTablePrint = function (data) {
     const myList = data;
     let table = document.querySelector(".grading-tbody")
 
     for (var i in myList) {
+        var totalCompetencyPercent = myList[i].COMPETENCY_WT100 ? myList[i].COMPETENCY_WT100.toFixed(2) : "-"
         var row = `<tr>
                         <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
                         <td class="EMPLOYEE_ID">${myList[i].EMPLOYEE_ID}</td>
@@ -17,10 +18,14 @@ const buildTablePrint = function(data) {
                         <td class="make_it_happen_score score">${myList[i].COMPETENCY_LEAD1 || "-"}</td>
                         <td class="provide_solutions_score score">${myList[i].COMPETENCY_LEAD2 || "-"}</td>
                         <td class="inspire_people_score score">${myList[i].COMPETENCY_LEAD3 || "-"}</td>
+                        
                         <td class="leadership_competency_total total d-none">${myList[i].COMPETENCY_WT_LEAD || "-"}</td>
                         <td class="raw_total grand_total d-none">${myList[i].COMPETENCY_WT_TOTAL || "-"}</td>
                         <td></td>
-                        <td class="total_competency_percent grand_total ">${myList[i].COMPETENCY_WT100 || "-"}</td>
+                        <td class="core_value">...</td>
+                        <td></td>
+                        <td class="moral_integrity">...</td>
+                        <td class="total_competency_percent grand_total ">${totalCompetencyPercent}</td>
                         <td class="competency-reason-note d-none">${myList[i].COMPETENCY_REASON_NOTE || "-"}</td>
                     </tr>
     `
@@ -41,11 +46,13 @@ const buildTablePrint = function(data) {
         const provideCell = parentRow.querySelector('td.provide_solutions_score')
         const inspireCell = parentRow.querySelector('td.inspire_people_score')
         const leaderTotalCell = parentRow.querySelector('td.leadership_competency_total')
+        const coreValueCell = parentRow.querySelector('td.core_value')
+        const moralCell = parentRow.querySelector('td.moral_integrity')
         const totalScoreCell = parentRow.querySelector('td.raw_total')
         const totalPercentCell = parentRow.querySelector('td.total_competency_percent')
         const competencyReasonNote = parentRow.querySelector('td.competency-reason-note')
-        const badCells = [resultCell, flexibilityCell, coreTotalCell, makeItCell, provideCell, inspireCell, leaderTotalCell, totalScoreCell, totalPercentCell]
-        if(competencyReasonNote.innerText != '-'){
+        const badCells = [resultCell, flexibilityCell, coreTotalCell, makeItCell, provideCell, inspireCell, leaderTotalCell, totalScoreCell, totalPercentCell, coreValueCell, moralCell]
+        if (competencyReasonNote.innerText != '-') {
             for (let badCell of badCells) {
                 parentRow.removeChild(badCell)
             }
@@ -59,18 +66,18 @@ const buildTablePrint = function(data) {
             serviceCell.setAttribute("colspan", "10")
             serviceCell.classList.add("not-graded-watermark")
             serviceCell.innerText = "ยังไม่ได้รับการประเมินศักยภาพ"
-        } else 
-        if (employeeLv >= 1 && employeeLv <= 7) {
-            makeItCell.innerHTML = "-"
-            provideCell.innerHTML = "-"
-            inspireCell.innerHTML = "-"
-            leaderTotalCell.innerHTML = "-"
-        } else if (employeeLv >= 11 && employeeLv <= 14) {
-            serviceCell.innerHTML = "-"
-            resultCell.innerHTML = "-"
-            flexibilityCell.innerHTML = "-"
-            coreTotalCell.innerHTML = "-"
-        }
+        } else
+            if (employeeLv >= 1 && employeeLv <= 7) {
+                makeItCell.innerHTML = "-"
+                provideCell.innerHTML = "-"
+                inspireCell.innerHTML = "-"
+                leaderTotalCell.innerHTML = "-"
+            } else if (employeeLv >= 11 && employeeLv <= 14) {
+                serviceCell.innerHTML = "-"
+                resultCell.innerHTML = "-"
+                flexibilityCell.innerHTML = "-"
+                coreTotalCell.innerHTML = "-"
+            }
     }
 
 }
