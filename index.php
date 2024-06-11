@@ -1,13 +1,19 @@
-﻿<?php
+<?php
+
 //header('location: finished.html');
-//$currentDate = date('Ymd');
-//if (intval($currentDate) > 20220907) {
-//    header('location: finished.html');
-//}
+/*
+$currentDate = date('YmdHi');
+if (intval($currentDate) > 202303011700) {
+    header('location: finished.html');
+}
+*/
 session_start();
 
-$_SESSION['year'] = 2022;
-$_SESSION['period'] = 'H1';
+$_SESSION['year'] = 2023;
+$_SESSION['period'] = 'H2';
+//$_SESSION['mode'] = 'Dev';//'Prod'; 
+$_SESSION['mode'] = 'Prod';//'Dev'; 
+
 
 if (isset($_GET['cmd']) && ($_GET['cmd'] == 'logout')) {
     session_destroy();
@@ -19,21 +25,23 @@ if (isset($_POST['pid']) && ($_POST['pid'] != '')) {
         $_SESSION['user']['pid'] = $_POST['pid'];
         $_SESSION['user']['eid'] = $_POST['eid'];
         $_SESSION['user']['name'] = $_POST['name'];
-        $_SESSION['mode'] = 'Dev'; //'Prod';
     }
 } else {
     //Dummy Data -- DELETE FOR PRODUCTION USE
-    $_SESSION['user']['pid'] = 'tg17713'; //17713;
-    $_SESSION['user']['eid'] = '17713';
+    /*
+    $_SESSION['user']['eid'] = '17739';  //17713; 17739 17854 38800 21482 20307   
+    $_SESSION['user']['pid'] = 'tg'.$_SESSION['user']['eid'];
     $_SESSION['user']['name'] = 'Demo User';
-    $_SESSION['mode'] = 'Dev'; //'Prod';
+    */
 }
+//echo $_SESSION['user']['eid'];
 
 // Lock only specific person & allowable period
-/*$allowedList = array('37122','23242','28026','32195');
+//$allowedList = array('37122','23242','28026','32195');
+//$allowedList = array('45923');
 if (!in_array($_SESSION['user']['eid'], $allowedList) && (intval(date('Ymd')) > 20220907)) {
     header('location: finished.html');
-}*/
+}
 
 if (!isset($_SESSION['user'])) {
     //header('location: demo.html'); //NOT WORKING ON THIS SERVER???
@@ -52,7 +60,8 @@ if (!isset($_SESSION['user'])) {
     <!-- W3 CSS Link" -->
     <link rel="stylesheet" href="./assets/w3.css">
     <!-- Local css -->
-    <link rel="stylesheet" href="./KPI.css">
+    <link rel="stylesheet" href="./public/css/KPI.css">
+    <link type="image/x-icon" href="./public/kpi_image/favicon.ico" rel="shortcut icon">
     <title>แบบประเมินผลการปฏิบัติงานของพนักงาน</title>
 </head>
 <body>
@@ -61,14 +70,14 @@ if (!isset($_SESSION['user'])) {
         <header>
             <div class="headline">
                 <div>
-                    <img src="./kpi_image/thai logo.png">
+                    <img src="./public/kpi_image/thai logo.png">
                     <span>
                     แบบประเมินความสามารถพนักงาน (Competency) ครั้งที่ <?php echo substr($_SESSION['period'], 1, 1); ?>/<?php echo $_SESSION['year']+543; ?>
                         (<span class="QUARTER_YEAR"><?php echo $_SESSION['period']; ?>/<?php echo $_SESSION['year']; ?></span>)
                     </span>
                 </div>
                 <div>
-                    <img src="./kpi_image/Icon awesome-user-circle.svg" class="USER_IMAGE">
+                    <img src="./public/kpi_image/Icon awesome-user-circle.svg" class="USER_IMAGE">
                     <span class="USER_ID"><?php echo $_SESSION['user']['eid']; ?></span>
                     <span class="USER_FULL_NAME"><?php echo $_SESSION['user']['name']; ?></span>
                 </div>
@@ -76,14 +85,14 @@ if (!isset($_SESSION['user'])) {
             <!-- Filter Bar Section =========================================== -->
             <nav>
                 <div class="w3-dropdown-hover">
-                    <img src="./kpi_image/score definitions.svg" alt="">
+                    <img src="./public/kpi_image/score definitions.svg" alt="">
                     <div id="item-7" class="w3-dropdown-content score-definations">
                         <!-- inserted from database -->
                     </div>
                 </div>
                 <div class="filter-boxes">
                     <div id="filter-btn" class="w3-dropdown-click w3-dropdown-hover">
-                        <img src="./kpi_image/Icon material-filter-list.svg">
+                        <img src="./public/kpi_image/Icon material-filter-list.svg">
                         <div class="w3-dropdown-content " id="filter-defination"> Filter </div>
                     </div>
                     <form action="" id="filter-form" class="w3-dropdown-content">
@@ -171,7 +180,7 @@ if (!isset($_SESSION['user'])) {
                     </form>
                     <div id="search-box">
                         <label for="search-id">
-                            <img src="./kpi_image/Icon ionic-ios-search.svg" alt="">
+                            <img src="./public/kpi_image/Icon ionic-ios-search.svg" alt="">
                         </label>
                         <input type="text" placeholder="search ID or Name" id="search-id">
                     </div>
@@ -186,23 +195,24 @@ if (!isset($_SESSION['user'])) {
             <form name="form1" id="form1">
                 <table id="GRADE_TABLE">
                     <colgroup>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
-                        <col>
+                        <col class="lv">
+                        <col class="id">
+                        <col class="function">
+                        <col class="nameSurname">
+                        <col class="spacer">
+                        <col class="score">
+                        <col class="score">
+                        <col class="score">
+                        <col class="spacer">
+                        <col class="score">
+                        <col class="score">
+                        <col class="score">
+                        <col class="spacer">
+                        <col class="coreValue">
+                        <col class="spacer">
+                        <col class="moral">
+                        <col class="comment">
+                        <col class="totalPercent">
                     </colgroup>
                     <!-- Table Header ========================================= -->
                     <thead>
@@ -223,14 +233,23 @@ if (!isset($_SESSION['user'])) {
                                 Total
                             </th>
                             <th rowspan="2"></th>
+                            <!-- New ------------------------------------------ -->
+                            <th height="50">
+                                Core Value
+                            </th>
+                            <th rowspan="2"></th>
+                            <th height="50">
+                                Moral & Integrity
+                            </th>
+                            <!-- ------------------------------------------ -->
                             <th rowspan="2">
-                                Overall Comment
+                            Additional Feedback
                             </th>
                             <th rowspan="2">
                                 <div class="w3-dropdown-hover">
                                     Weighted Competency (%)
                                     <div class="w3-dropdown-content">
-                                        <img src="./kpi_image/total_competency_description.png">
+                                        <img src="./public/kpi_image/total_competency_description.png">
                                     </div>
                                 </div>
 
@@ -294,6 +313,35 @@ if (!isset($_SESSION['user'])) {
                                     </div>
                                 </div>
                             </td>
+                            <!-- New ------------------------------------------ -->
+                            <td>
+                                <div id="item-8" class="w3-dropdown-hover">
+                                <!-- insserted from database -->
+                                AIM <br> ที่โดดเด่น
+                                <div class="w3-dropdown-content">
+                                    <!-- insserted from database -->
+                                    <h6>ท่านเห็นว่าพนักงานท่านนี้มีพฤติกรรม AIM ข้อใดที่โดดเด่นที่สุด</h6>
+                                    <p>A: ยืดหยุ่น คล่องตัว แสวงหำโอกำส (Agility for Growth)</p>
+                                    <p>I : โปร่งใส ร่วมมือ ซื่อตรง (Integrity for Trust)</p>
+                                    <p>M : คิดใหม่ ทำใหม่ อย่ำงมืออำชีพ (Mastery for Professionalism)</p>
+                                    <p>ไม่พบ : ไม่พบพฤติกรรมทั้ง 3 ข้อ</p>
+                                </div>
+                                </div>
+                            </td>
+                            <td>
+                                <div id="item-9" class="w3-dropdown-hover">
+                                <!-- insserted from database -->
+                                yes / no
+                                <div class="w3-dropdown-content">
+                                    <!-- insserted from database -->
+                                    <h6>yes or no</h6>
+                                    <p>พนักงานได้ปฏิบัติงานเป็นไปตามกฎหมาย กฎ ระเบียบ
+                                    ข้อบังคับขององค์กร รวมทั้งมีพฤติกรรมที่เป็นไปตามแนวทาง
+                                    ที่กำหนดไว้ในคู่มือการกำกับดูแลกิจการที่ดี</p>
+                                </div>
+                                </div>
+                            </td>
+                            <!--  ------------------------------------------ -->
                             <td class="d-none">
                                 Total
                             </td>
@@ -344,7 +392,7 @@ if (!isset($_SESSION['user'])) {
     <!--script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script-->
     <script src="./assets/jquery-3.6.0.min.js"></script>
     <script src="./assets/bootstrap.min.js"></script>
-    <script src="./sweetalert2.all.min.js"></script>
+    <script src="./public/js/sweetalert2.all.min.js"></script>
     <!-- Delete KPI_dummy_json.js below when connected to database!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
     <!--script src="./dummy_data/KPI_dummy_data_15929.js"></script-->
     <!--script src="./dummy_data/KPI_score_weight_dummy.js"></script-->
@@ -420,14 +468,14 @@ if (!isset($_SESSION['user'])) {
         req.send(null);
         var kpi_items_dummy = JSON.parse(req.response);
         const kpiItems = kpi_items_dummy;
-
+        
         // Get appraisal scores data
         req.open("GET", "getappraisal.php", false);
         req.send(null);
         var unpackedData = JSON.parse(req.response);
         var dummyKPI_new = unpackedData.data;
         let rawData = dummyKPI_new;
-
+        console.log(req.response);
         if(rawData.length == 0 ){
             Swal.fire('ไม่มีข้อมูลผู้ถูกประเมิน')
         }
@@ -634,14 +682,15 @@ if (!isset($_SESSION['user'])) {
             var data = pagination(Data, state.page, state.rows)
             var myList = data.querySet
             for (var i in myList) {
+                const subEmpLink = myList[i].SUB_EMPLOYEE_KPI_URL ?  `<a class="employee-link" href="${myList[i].SUB_EMPLOYEE_KPI_URL || ""}">${myList[i].EMPLOYEE_ID}</a>`:`${myList[i].EMPLOYEE_ID}` ;
                 //Keep in mind we are using "Template Litterals to create rows"
                 var row = `<tr row-status="">
                             <td class="EMPLOYEE_LEVEL">${myList[i].APPRAISAL_LEVEL}</td>
-                            <td class="EMPLOYEE_ID" ><a class="employee-link" href="${myList[i].SUB_EMPLOYEE_KPI_URL || ""}">${myList[i].EMPLOYEE_ID}</a></td>
+                            <td class="EMPLOYEE_ID" >${subEmpLink}</td>
                             <td class="FUNCTION">${myList[i].FUNCTION}</td>
                             <td class="EMPLOYEE_FULLNAME">${myList[i].EMPLOYEE_NAME}</td>
                             <td class="competency-note" note-data="${myList[i].COMPETENCY_REASON_NOTE}">
-                                <img class="d-none" src="./kpi_image/icon-info.png" alt="i">
+                                <img class="d-none" src="./public/kpi_image/icon-info.png" alt="i">
                                 <div class="d-none"></div>
                             </td>
                             <td class="service_orientation_score score">
@@ -654,8 +703,8 @@ if (!isset($_SESSION['user'])) {
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE1}</textarea>
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="CSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="สำหรับคะแนน 1 และ 5 จำเป็นต้องใส่เหตุผลประกอบ (ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE1}</textarea>
                                 </div>
                             </td>
                             <td class=" result_orientation_score score ">
@@ -668,8 +717,8 @@ if (!isset($_SESSION['user'])) {
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE2}</textarea>
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="CSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="สำหรับคะแนน 1 และ 5 จำเป็นต้องใส่เหตุผลประกอบ (ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE2}</textarea>
                                 </div>
                             </td>
                             <td class="flexibility_and_adaptability_score score ">
@@ -682,8 +731,8 @@ if (!isset($_SESSION['user'])) {
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="CSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE3}</textarea>
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="CSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="สำหรับคะแนน 1 และ 5 จำเป็นต้องใส่เหตุผลประกอบ (ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE3}</textarea>
 
                                 </div>
                             </td>
@@ -701,8 +750,8 @@ if (!isset($_SESSION['user'])) {
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD1}</textarea>
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="LSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="สำหรับคะแนน 1 และ 5 จำเป็นต้องใส่เหตุผลประกอบ (ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD1}</textarea>
 
                                 </div>
                             </td>
@@ -716,8 +765,8 @@ if (!isset($_SESSION['user'])) {
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD2}</textarea>
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="LSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="สำหรับคะแนน 1 และ 5 จำเป็นต้องใส่เหตุผลประกอบ (ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD2}</textarea>
 
                                 </div>
                             </td>
@@ -731,8 +780,8 @@ if (!isset($_SESSION['user'])) {
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="LSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD3}</textarea>
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="LSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="สำหรับคะแนน 1 และ 5 จำเป็นต้องใส่เหตุผลประกอบ (ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD3}</textarea>
 
                                 </div>
                             </td>
@@ -744,10 +793,43 @@ if (!isset($_SESSION['user'])) {
                                 <input name="COMPETENCY_TOTAL[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].COMPETENCY_WT_TOTAL}" type="text " readonly>
                             </td>
                             <td></td>
+                            // new=========================
+                            <td class="core_value score ">
+                              <div>
+                                <select name="...">
+                                  <option value=""></option>
+
+                                  <option value="A">A</option>
+                                  <option value="I">I</option>
+                                  <option value="M">M</option>
+                                  <option value="none">ไม่พย</option>
+                                </select>
+                                <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                <textarea name="..." cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)"></textarea>
+
+                              </div>
+                            </td>
+                            <td></td>
+                            <td class="moral score ">
+                              <div>
+                                <select name="...">
+                                  <option value=""></option>
+
+                                  <option value="true">yes</option>
+                                  <option value="false">no</option>
+
+                                </select>
+                                <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                <textarea name="..." cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)"></textarea>
+
+                              </div>
+                            </td>
+
+                            //=========================
                             <td class="master_comment">
                                 <div>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
-                                    <textarea name="PERSONAL_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].PERSONAL_COMMENT}</textarea>
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <textarea name="ADDITIONAL_FEEDBACK[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="ความคิดเห็นเพิ่มเติม (ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].ADDITIONAL_FEEDBACK}</textarea>
                                 </div>        
                             </td>
                             <td class="total_competency_percent grand_total">
@@ -756,6 +838,7 @@ if (!isset($_SESSION['user'])) {
                             <input class="real-input-total100" name="COMPETENCY_TOTAL100[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].COMPETENCY_WT100}" type="hidden" readonly>
                             <input name="ORIGINAL_SCORE[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].ORIGINAL_SCORE}" type="hidden">
                             <input name="ORIGINAL_COMMENT[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].ORIGINAL_COMMENT}" type="hidden">
+                            <input name="ORIGINAL_FEEDBACK[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].ADDITIONAL_FEEDBACK}" type="hidden">
                             <input name="ID[${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}]" value="${myList[i].EMPLOYEE_ID}_${myList[i].FUNCTION}_${myList[i].FUNCTION_LEVEL}" type="hidden">
                         </tr>
               `
@@ -783,13 +866,14 @@ if (!isset($_SESSION['user'])) {
         }
     </script>
 
-    <script src="./KPI_dropdown_control.js "></script>
-    <script src="./KPI_comment_box_control.js"></script>
-    <script src="./KPI_dynamic_input.js"></script>
-    <script src="./KPI_row_status_control.js"></script>
-    <script src="./KPI_score_calculation.js"></script>
-    <!--script src="./KPI_row_status_submit.js"></script-->
-    <script src="./KPI_items.js"></script>
-    <script src="./KPI_breadcrumb_control.js"></script>
+    <script src="./public/js/KPI_dropdown_control.js "></script>
+    <script src="./public/js/KPI_comment_box_control.js"></script>
+    <script src="./public/js/KPI_dynamic_input.js"></script>
+    <script src="./public/js/KPI_row_status_control.js"></script>
+    <script src="./public/js/KPI_score_calculation.js"></script>
+    <!-- Don't Use -->
+    <!--<script src="./public/js/KPI_row_status_submit.js"></script>-->
+    <script src="./public/js/KPI_items.js"></script>
+    <script src="./public/js/KPI_breadcrumb_control.js"></script>
 </body>
 </html>

@@ -9,20 +9,20 @@
   <!-- Local css -->
   <!-- CSS for Bootstrap5 -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
-  <link rel="stylesheet" href="./KPI_print.css">
+  <link rel="stylesheet" href="./public/css/KPI_print.css">
   <title>รายงานผลการปฏิบัติงานของพนักงาน</title>
 </head>
 
 <body>
   <div class="print-btn-container">
-    <button onclick="window.print()"> <img src="./kpi_image/Icon metro-printer.svg"> <span>Print</span></button>
+    <button onclick="window.print()"> <img src="./public/kpi_image/Icon metro-printer.svg"> <span>Print</span></button>
   </div>
 
   <!-- Header Section ================================================== -->
   <header>
     <div class="headline">
       <div>
-        <img src="./kpi_image/thai logo.png">
+        <img src="./public/kpi_image/thai logo.png">
         <span>
           ผลการประเมินศักยภาพของพนักงาน "Competency" ครั้งที่ 1/2565
           (<span class="QUARTER_YEAR">H1/2022</span>)
@@ -35,7 +35,7 @@
       </div>
     </div>
     <div class="score-def">
-      <img src="./kpi_image/Ref. score.svg">
+      <img src="./public/kpi_image/Ref. score.svg">
     </div>
   </header>
   <main>
@@ -139,13 +139,13 @@
 
 
   <div class="print-btn-container">
-    <button onclick="window.print()"> <img src="./kpi_image/Icon metro-printer.svg"> <span>Print</span></button>
+    <button onclick="window.print()"> <img src="./public/kpi_image/Icon metro-printer.svg"> <span>Print</span></button>
   </div>
   <!-- Delete KPI_dummy_json.js below when connected to database!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! -->
-  <!-- <script src="./KPI_dummy_json.js"></script> -->
+  <!-- <script src="./public/js/KPI_dummy_json.js"></script> -->
   <script src="./dummy_data/KPI_dummy_data_15929.js"></script>
 
-  <script src="./KPI_PRINT_build_table.js"></script>
+  <script src="./public/js/KPI_PRINT_build_table.js"></script>
   <script>
     buildTablePrint(dummyKPI_new)
   </script>

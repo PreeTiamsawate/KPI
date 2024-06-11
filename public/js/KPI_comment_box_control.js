@@ -14,7 +14,7 @@ const commentBoxControl = function () {
             const commentBox = this.nextElementSibling.nextElementSibling;
             const commentIcon = this.nextElementSibling;
             if (this.value == "0") {
-                commentIcon.setAttribute("src", "./kpi_image/Icon-empty-comment.svg")
+                commentIcon.setAttribute("src", "./public/kpi_image/Icon-empty-comment.svg")
                 commentBox.innerText = ""
             }
         })
@@ -62,18 +62,18 @@ const commentBoxControl = function () {
     for (const commentBox of commentBoxes) {
         const commentIcon = commentBox.previousElementSibling;
         if (commentBox.innerText !== "" || commentBox.value !== "") {
-            commentIcon.setAttribute("src", "./kpi_image/Icon-filled-comment.svg")
+            commentIcon.setAttribute("src", "./public/kpi_image/Icon-filled-comment.svg")
 
         }
         commentBox.addEventListener('input', function () {
             if (this.value !== "" || commentBox.innerText !== "") {
-                commentIcon.setAttribute("src", "./kpi_image/Icon-filled-comment.svg")
+                commentIcon.setAttribute("src", "./public/kpi_image/Icon-filled-comment.svg")
                 if (commentBox.value.includes('|')) {
                     commentBox.value = commentBox.value.replace('|', '');
                     alert(" | is not allowed  ")
                 }
             } else if (this.value === "" || commentBox.innerText === "") {
-                commentIcon.setAttribute("src", "./kpi_image/Icon-empty-comment.svg")
+                commentIcon.setAttribute("src", "./public/kpi_image/Icon-empty-comment.svg")
             }
         })
 
@@ -104,18 +104,18 @@ const masterCommentBoxControl = () => {
     for (const commentBox of commentBoxes) {
         const commentIcon = commentBox.previousElementSibling;
         if (commentBox.innerText !== "" || commentBox.value !== "") {
-            commentIcon.setAttribute("src", "./kpi_image/Icon-filled-comment.svg")
+            commentIcon.setAttribute("src", "./public/kpi_image/Icon-filled-comment.svg")
 
         }
         commentBox.addEventListener('input', function () {
             if (this.value !== "" || commentBox.innerText !== "") {
-                commentIcon.setAttribute("src", "./kpi_image/Icon-filled-comment.svg")
+                commentIcon.setAttribute("src", "./public/kpi_image/Icon-filled-comment.svg")
                 if (commentBox.value.includes('|')) {
                     commentBox.value = commentBox.value.replace('|', '');
                     alert(" | is not allowed  ")
                 }
             } else if (this.value === "" || commentBox.innerText === "") {
-                commentIcon.setAttribute("src", "./kpi_image/Icon-empty-comment.svg")
+                commentIcon.setAttribute("src", "./public/kpi_image/Icon-empty-comment.svg")
             }
         })
 

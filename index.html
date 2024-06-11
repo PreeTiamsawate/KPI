@@ -11,7 +11,7 @@
   <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 
   <!-- Local css -->
-  <link rel="stylesheet" href="./KPI.css">
+  <link rel="stylesheet" href="./public/css/KPI.css">
   <title>แบบประเมินผลการปฏิบัติงานของพนักงาน</title>
 
 </head>
@@ -24,7 +24,7 @@
     <header>
       <div class="headline">
         <div>
-          <img src="./kpi_image/thai logo.png">
+          <img src="./public/kpi_image/thai logo.png">
           <span>
             แบบประเมินศักยภาพของพนักงาน "Competency" ครั้งที่ 2/2565
             (<span class="QUARTER_YEAR">H2/2022</span>)
@@ -32,7 +32,7 @@
 
         </div>
         <div>
-          <img src="./kpi_image/Icon awesome-user-circle.svg" class="USER_IMAGE">
+          <img src="./public/kpi_image/Icon awesome-user-circle.svg" class="USER_IMAGE">
           <span class="USER_ID">12345</span>
           <span class="USER_FULL_NAME">XXXXXX XXXXXXXXX</span>
         </div>
@@ -41,7 +41,7 @@
       <!-- Filter Bar Section =========================================== -->
       <nav>
         <div class="w3-dropdown-hover">
-          <img src="./kpi_image/score definitions.svg" alt="">
+          <img src="./public/kpi_image/score definitions.svg" alt="">
           <div id="item-7" class="w3-dropdown-content score-definations">
             <!-- insserted from database -->
 
@@ -49,7 +49,7 @@
         </div>
         <div class="filter-boxes">
           <div id="filter-btn" class="w3-dropdown-click w3-dropdown-hover">
-            <img src="./kpi_image/Icon material-filter-list.svg">
+            <img src="./public/kpi_image/Icon material-filter-list.svg">
             <div class="w3-dropdown-content " id="filter-defination"> Filter </div>
           </div>
           <form action="" id="filter-form" class="w3-dropdown-content">
@@ -141,7 +141,7 @@
 
           <div id="search-box">
             <label for="search-id">
-              <img src="./kpi_image/Icon ionic-ios-search.svg" alt="">
+              <img src="./public/kpi_image/Icon ionic-ios-search.svg" alt="">
             </label>
             <input type="text" placeholder="search ID or Name" id="search-id">
 
@@ -220,7 +220,7 @@
                 <div class="w3-dropdown-hover">
                   Weighted Competency (%)
                   <div class="w3-dropdown-content">
-                    <img src="./kpi_image/total_competency_description.png">
+                    <img src="./public/kpi_image/total_competency_description.png">
                   </div>
                 </div>
 
@@ -593,7 +593,7 @@
                             <td class="FUNCTION">${myList[i].FUNCTION}</td>
                             <td class="EMPLOYEE_FULLNAME">${myList[i].EMPLOYEE_NAME}</td>
                             <td class="competency-note" note-data="${myList[i].COMPETENCY_REASON_NOTE}">
-                                <img class="d-none" src="./kpi_image/icon-info.png" alt="i">
+                                <img class="d-none" src="./public/kpi_image/icon-info.png" alt="i">
                                 <div class="d-none"></div>
                             </td>
                             <td class="service_orientation_score score">
@@ -606,7 +606,7 @@
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                                     <textarea name="CSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE1}</textarea>
                                 </div>
                             </td>
@@ -621,7 +621,7 @@
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                                     <textarea name="CSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE2}</textarea>
                                 </div>
                             </td>
@@ -636,7 +636,7 @@
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                                     <textarea name="CSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_CORE3}</textarea>
 
                                 </div>
@@ -656,7 +656,7 @@
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                                     <textarea name="LSCORE1_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD1}</textarea>
 
                                 </div>
@@ -672,7 +672,7 @@
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                                     <textarea name="LSCORE2_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD2}</textarea>
 
                                 </div>
@@ -688,7 +688,7 @@
                                         <option value="4">4</option>
                                         <option value="5">5</option>
                                     </select>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                                     <textarea name="LSCORE3_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)">${myList[i].COMPETENCY_REASON_LEAD3}</textarea>
 
                                 </div>
@@ -713,7 +713,7 @@
                                   <option value="M">M</option>
                                   <option value="none">ไม่พย</option>
                                 </select>
-                                <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                                 <textarea name="..." cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)"></textarea>
 
                               </div>
@@ -728,7 +728,7 @@
                                   <option value="false">no</option>
 
                                 </select>
-                                <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                                 <textarea name="..." cols="30" rows="5" class="w3-dropdown-content" maxlength="500" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 500 ตัวอักษร)"></textarea>
 
                               </div>
@@ -737,7 +737,7 @@
                             //=========================
                             <td class="master_comment">
                                 <div>
-                                    <img src="./kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
+                                    <img src="./public/kpi_image/Icon-empty-comment.svg" class="w3-dropdown-click">
                                     <textarea name="PERSONAL_COMMENT[${myList[i].EMPLOYEE_ID}]" cols="30" rows="5" class="w3-dropdown-content" maxlength="800" placeholder="คำอธิบายประกอบการประเมิน(ความยาวไม่เกิน 800 ตัวอักษร)">${myList[i].PERSONAL_COMMENT}</textarea>
                                 </div>        
                             </td>
@@ -773,14 +773,14 @@
     }
   </script>
 
-  <script src="./KPI_dropdown_control.js "></script>
-  <script src="./KPI_comment_box_control.js"></script>
-  <script src="./KPI_dynamic_input.js"></script>
-  <script src="./KPI_row_status_control.js"></script>
-  <script src="./KPI_score_calculation.js"></script>
+  <script src="./public/js/KPI_dropdown_control.js "></script>
+  <script src="./public/js/KPI_comment_box_control.js"></script>
+  <script src="./public/js/KPI_dynamic_input.js"></script>
+  <script src="./public/js/KPI_row_status_control.js"></script>
+  <script src="./public/js/KPI_score_calculation.js"></script>
 
-  <script src="./KPI_items.js"></script>
-  <script src="./KPI_breadcrumb_control.js"></script>
+  <script src="./public/js/KPI_items.js"></script>
+  <script src="./public/js/KPI_breadcrumb_control.js"></script>
 </body>
 
 
